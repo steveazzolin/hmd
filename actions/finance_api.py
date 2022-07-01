@@ -10,14 +10,16 @@ import plotly.graph_objects as go
 from datetime import datetime, timedelta
 from sklearn.linear_model import LinearRegression
 import numpy as np
+from urllib.request import urlopen
+import json
 
 from actions.api_keys import *
 
 
 """
 TODO:
-    - Ask the user the first time that want a plot sent whether it wants a candle/line plot and save the result for next queries
     - Ask the user the period of the plot
+    - Fix utter_greetings after showing the news of the company instead of asking the Telegram links
 """
 
 def get_symbol_from_name(name, debug=False):
@@ -104,6 +106,12 @@ def send_plot_telegram(plot_path, message=None, chat_id="403864881"):
     bot.send_photo(chat_id=chat_id, photo=open(plot_path, 'rb'))
 
 
+def send_message_telegram(msg, chat_id="403864881"):
+    assert msg is not None and msg != ""
+    bot = telegram.Bot(token=TELEGRAM_API_KEY)
+    bot.send_message(chat_id=chat_id, text=msg)
+
+
 def predict_trend(data, debug=False):
     """
     Return an positive/negative int with the degree of rise/fall
@@ -122,3 +130,11 @@ def predict_trend(data, debug=False):
         ax.legend()
         plt.savefig("plots/debug_predict_trend.jpeg")
     return regressor.coef_
+
+
+def get_company_news(company_name):
+    url = NEWS_API_URL
+    url += f"business%20news%20{company_name}&" + NEWS_API_KEY
+    response = urlopen(url)
+    data = json.loads(response.read())
+    return data["response"]["results"]

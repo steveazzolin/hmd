@@ -177,3 +177,50 @@ class ActionAskWantStock(Action):
             dispatcher.utter_message(text="Do you want to have also some news about its stock value?")
         return []
 
+cached_company_news = []
+cached_last_news_shown = []
+class ActionGetNews(Action):
+    def name(self) -> Text:
+        return "search_company_news"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        print("ActionGetNews")
+        global cached_company_news
+        global cached_last_news_shown
+        company_name = tracker.get_slot("company")
+        
+        data = finance_api.get_company_news(company_name)
+        if len(data) == 0:
+            dispatcher.utter_message(text="No news where found")
+            return []
+
+        dispatcher.utter_message(text="The first three news found on the Guardian will follow:")
+        dispatcher.utter_message(text="")
+
+        cached_company_news = data
+        n = 0
+        for news in cached_company_news[:3]:
+            dispatcher.utter_message(text=f"{n+1}. {news['pillarName']}: {news['webTitle']}")
+            dispatcher.utter_message(text=f"")
+            n += 1
+        cached_last_news_shown.extend(cached_company_news[:n].copy())
+        del cached_company_news[:n]
+        return []
+
+class ActionSendNewsLinks(Action):
+    def name(self) -> Text:
+        return "send_news_link"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        print("ActionSendNewsLinks")
+        global cached_last_news_shown
+        assert cached_last_news_shown != []
+
+        for news in cached_last_news_shown:
+            finance_api.send_message_telegram(f"{news['pillarName']}: {news['webTitle']}\n {news['webUrl']}")
+        cached_last_news_shown = []
+        return []

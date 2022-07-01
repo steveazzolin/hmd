@@ -57,6 +57,8 @@ responses:
   - text: Great, carry on!
   utter_goodbye:
   - text: Bye
+  utter_ok:
+  - text: Ok
   utter_iamabot:
   - text: I am a bot, powered by Rasa.
   utter_searching_stock_updates:
@@ -72,6 +74,8 @@ responses:
   - text: Please, tell me the company for which you want information
   utter_ask_plot_type:
   - text: Which kind of plot do you prefer between line and candle plots? \n Your answer will be saved for future requests
+  utter_ask_want_news_link:
+  - text: Do you want to read the full articles on your device?
   utter_clear_company:
   - text: Sorry, if it was wrong, let me clean my memory. Please continue...
   utter_confirm_stop:
@@ -100,6 +104,8 @@ actions:
 - get_stock_value
 - send_stock_value_plot
 - predict_stock_trend
+- search_company_news
+- send_news_link
 
 forms:
   company_form:

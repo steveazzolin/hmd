@@ -80,7 +80,7 @@ stories:
   - action: company_form
   - active_loop: company_form
 
-- story: Company news + ask for stock updates + affirm + send plot
+- story: Company news + ask for sending links (yes) +  ask for stock updates + affirm + send plot
   steps:
   - intent: company_news
   - action: company_form
@@ -91,6 +91,10 @@ stories:
   - slot_was_set:
     - requested_slot: null
   - action: utter_searching_company_news
+  - action: search_company_news
+  - action: utter_ask_want_news_link
+  - intent: affirm
+  - action: send_news_link
   - action: ask_want_stock
   - intent: affirm
   - action: get_stock_value
@@ -102,7 +106,7 @@ stories:
   - action: clear_company
 
 
-- story: Company news + ask for stock updates + affirm + no plot
+- story: Company news + ask for sending links (no) + ask for stock updates + affirm + send plot
   steps:
   - intent: company_news
   - action: company_form
@@ -113,6 +117,35 @@ stories:
   - slot_was_set:
     - requested_slot: null
   - action: utter_searching_company_news
+  - action: search_company_news
+  - action: utter_ask_want_news_link
+  - intent: deny
+  - action: utter_ok
+  - action: ask_want_stock
+  - intent: affirm
+  - action: get_stock_value
+  - action: utter_stock_value
+  - action: utter_want_stock_plot
+  - intent: affirm
+  - action: send_stock_value_plot
+  - action: utter_stock_plot_sent
+  - action: clear_company
+
+- story: Company news + ask for sending links (no) + ask for stock updates + affirm + no plot
+  steps:
+  - intent: company_news
+  - action: company_form
+  - active_loop: company_form
+  - slot_was_set:
+    - company: meta
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_searching_company_news
+  - action: search_company_news
+  - action: utter_ask_want_news_link
+  - intent: deny
+  - action: utter_ok
   - action: ask_want_stock
   - intent: affirm
   - action: get_stock_value
@@ -123,7 +156,7 @@ stories:
   - action: clear_company
 
 
-- story: Company news + ask for stock updates + deny
+- story: Company news + ask for sending links (yes) + ask for stock updates + affirm + no plot
   steps:
   - intent: company_news
   - action: company_form
@@ -134,6 +167,54 @@ stories:
   - slot_was_set:
     - requested_slot: null
   - action: utter_searching_company_news
+  - action: search_company_news
+  - action: utter_ask_want_news_link
+  - intent: affirm
+  - action: send_news_link
+  - action: ask_want_stock
+  - intent: affirm
+  - action: get_stock_value
+  - action: utter_stock_value
+  - action: utter_want_stock_plot
+  - intent: deny
+  - action: utter_stopped
+  - action: clear_company
+
+
+- story: Company news + ask for sending links (no) + ask for stock updates + deny
+  steps:
+  - intent: company_news
+  - action: company_form
+  - active_loop: company_form
+  - slot_was_set:
+    - company: meta
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_searching_company_news
+  - action: search_company_news
+  - action: utter_ask_want_news_link
+  - intent: deny
+  - action: utter_ok
+  - action: ask_want_stock
+  - intent: deny
+  - action: utter_happy
+
+- story: Company news + ask for sending links (yes) + ask for stock updates + deny
+  steps:
+  - intent: company_news
+  - action: company_form
+  - active_loop: company_form
+  - slot_was_set:
+    - company: meta
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_searching_company_news
+  - action: search_company_news
+  - action: utter_ask_want_news_link
+  - intent: affirm
+  - action: send_news_link
   - action: ask_want_stock
   - intent: deny
   - action: utter_happy

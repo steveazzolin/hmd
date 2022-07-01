@@ -60,3 +60,4 @@ rules:
   - slot_was_set:
     - requested_slot: null
   wait_for_user_input: false
+  

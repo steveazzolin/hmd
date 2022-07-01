@@ -115,7 +115,11 @@ def telegram():
 ##
 from actions import finance_api
 
-company_symbol , ambiguity = finance_api.get_symbol_from_name("amazon", debug=False)
-data = finance_api.get_past_values_from_symbol(company_symbol, debug=True)
-#plot_path = finance_api.create_past_values_plot(data, "Alphabet Inc.", type="line")
-finance_api.predict_trend(data)
+# company_symbol , ambiguity = finance_api.get_symbol_from_name("amazon", debug=False)
+# data = finance_api.get_past_values_from_symbol(company_symbol, debug=True)
+# #plot_path = finance_api.create_past_values_plot(data, "Alphabet Inc.", type="line")
+# finance_api.predict_trend(data)
+
+
+data = finance_api.get_company_news("amazon")
+print(len(data["response"]["results"]))
