@@ -1,0 +1,147 @@
+version: "2.0"
+nlu:
+- intent: greet
+  examples: |
+    - hey
+    - hello
+    - hi
+    - hello there
+    - good morning
+    - good evening
+    - moin
+    - hey there
+    - let's go
+    - hey dude
+    - goodmorning
+    - goodevening
+    - good afternoon
+- intent: goodbye
+  examples: |
+    - good afternoon
+    - cu
+    - good by
+    - cee you later
+    - good night
+    - bye
+    - goodbye
+    - have a nice day
+    - see you around
+    - bye bye
+    - see you later
+- intent: affirm
+  examples: |
+    - yes
+    - y
+    - indeed
+    - of course
+    - that sounds good
+    - correct
+    - right
+    - yep
+- intent: deny
+  examples: |
+    - no
+    - n
+    - never
+    - I don't think so
+    - don't like that
+    - no way
+    - not really
+    - wrong
+    - nope
+    - stop
+- intent: mood_great
+  examples: |
+    - perfect
+    - great
+    - amazing
+    - feeling like a king
+    - wonderful
+    - I am feeling very good
+    - I am great
+    - I am amazing
+    - I am going to save the world
+    - super stoked
+    - extremely good
+    - so so perfect
+    - so good
+    - so perfect
+- intent: mood_unhappy
+  examples: |
+    - my day was horrible
+    - I am sad
+    - I don't feel very well
+    - I am disappointed
+    - super sad
+    - I'm so sad
+    - sad
+    - very sad
+    - unhappy
+    - not good
+    - not very good
+    - extremly sad
+    - so saad
+    - so sad
+- intent: bot_challenge
+  examples: |
+    - are you a bot?
+    - are you a human?
+    - am I talking to a bot?
+    - am I talking to a human?
+- intent: stock_value
+  examples: |
+    - i want an update on stock market
+    - stock market
+    - stock updates for [Meta](company)
+    - stock updates for [Google](company)
+    - stock updates for [Amazon](company)
+    - stock news for [Google](company)
+    - stock news for [Amazon](company)
+    - updates for [Meta](company)
+    - updates of [Meta](company)
+    - [Meta](company) stock news
+- intent: company_news
+  examples: |
+    - news about [Meta](company)
+    - news about [Amazon](company)
+    - news about [Google](company)
+    - news [Meta](company)
+    - [Meta](company) news
+    - [Facebook]{"entity": "company", "value": "Meta"} news
+    - how is [Google](company) doing?
+    - what about [Amazon](company)?
+- intent: company_info
+  examples: |
+    - [Meta](company)
+    - [Facebook]{"entity": "company", "value": "Meta"}
+    - [Google](company)
+    - [Amazon](company)
+    - company [Meta](company)
+    - company [Google](company)
+    - company [Amazon](company)
+    - business [Meta](company)
+    - business [Facebook]{"entity": "company", "value": "Meta"}
+    - business [Amazon](company)
+    - Can you describe me [Meta](company) ?
+    - What is [Facebook]{"entity": "company", "value": "Meta"} ?
+    - What is [Google](company) ?
+    - What kind of company is [Amazon](company) ?
+- intent: change_plot_type
+  examples: |
+    - i want [line](plot_type) plots
+    - i want [candle](plot_type) plots
+    - next time send me a [line](plot_type) plot
+    - please send [candle](plot_type) plots
+    - just [line](plot_type) plots
+- intent: predict_stock_trend
+  examples: |
+    - how is [Google](company) doing?
+    - what about [Amazon](company) stock-wise?
+    - what about [Facebook](company) stock wise?
+    - will [Meta](company) grow?
+    - is [Meta](company) growing?
+    - do you think is worth investing in [Google](company)?
+    - predict the trend for [Amazon](company)
+- synonym: Meta
+  examples: |
+    - Facebook

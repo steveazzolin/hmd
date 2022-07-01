@@ -1,0 +1,114 @@
+version: '2.0'
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+
+intents:
+- greet
+- goodbye
+- affirm
+- deny
+- mood_great
+- mood_unhappy
+- bot_challenge
+- stock_value
+- company_news
+- company_info
+- change_plot_type
+- predict_stock_trend
+
+
+entities:
+- company
+- plot_type
+
+slots:
+  company:
+    type: text
+    influence_conversation: true
+  plot_type:
+    type: text
+    influence_conversation: true
+  companies_stock_asked:
+    type: list
+    influence_conversation: false
+  requested_slot:
+    type: unfeaturized
+    influence_conversation: false
+  company_symbol:
+    type: text
+    influence_conversation: false
+  company_stock_value:
+    type: text
+    influence_conversation: false
+  currency:
+    type: text
+    influence_conversation: false
+
+responses:
+  utter_greet:
+  - text: Hey! How are you?
+  utter_cheer_up:
+  - image: https://i.imgur.com/nGF1K8f.jpg
+    text: 'Here is something to cheer you up:'
+  utter_did_that_help:
+  - text: Did that help you?
+  utter_happy:
+  - text: Great, carry on!
+  utter_goodbye:
+  - text: Bye
+  utter_iamabot:
+  - text: I am a bot, powered by Rasa.
+  utter_searching_stock_updates:
+  - text: I am looking stock market updates for {company} ({company_symbol})...
+  - text: Searching stock market updates for {company} ({company_symbol})...
+  utter_searching_company_news:
+  - text: I am looking for news about {company}...
+  - text: Searching news about {company}...
+  utter_searching_company_info:
+  - text: I am searching information about {company}
+  utter_ask_company:
+  - text: For which company do you want information?
+  - text: Please, tell me the company for which you want information
+  utter_ask_plot_type:
+  - text: Which kind of plot do you prefer between line and candle plots? \n Your answer will be saved for future requests
+  utter_clear_company:
+  - text: Sorry, if it was wrong, let me clean my memory. Please continue...
+  utter_confirm_stop:
+  - text: Are you sure that you want to stop the search?
+  utter_stopped:
+  - text: Done! What do you want to do next?
+  utter_stock_value:
+  - text: The current stock value for {company} ({company_symbol}) is {company_stock_value} {currency}
+  utter_want_stock_plot:
+  - text: Do you want me to send you a Telegram report of the stock performance for the last period?
+  - text: Do you want the plot of the past performances on Telegram?
+  utter_stock_plot_sent:
+  - text: Sent!
+  - text: Done!
+  utter_plot_type_changed:
+  - text: Your preferences have been updated
+  
+
+actions:
+- validate_company_form
+- validate_plot_type_form
+- clear_company
+- clear_company_with_msg
+- save_asked_company
+- ask_want_stock
+- get_stock_value
+- send_stock_value_plot
+- predict_stock_trend
+
+forms:
+  company_form:
+    required_slots:
+      company:
+      - entity: company
+        type: from_text
+  plot_type_form:
+    required_slots:
+      plot_type:
+      - entity: plot_type
+        type: from_text

@@ -1,0 +1,62 @@
+version: "2.0"
+
+rules:
+
+- rule: Say goodbye anytime the user says goodbye
+  steps:
+  - intent: goodbye
+  - action: utter_goodbye
+
+- rule: Say 'I am a bot' anytime the user challenges
+  steps:
+  - intent: bot_challenge
+  - action: utter_iamabot
+
+
+###
+# Domain specific rules
+###
+- rule: Company news
+  steps:
+  - intent: company_news
+  - action: company_form
+  - active_loop: company_form
+
+- rule: Stock updates
+  steps:
+  - intent: stock_value
+  - action: company_form
+  - active_loop: company_form
+
+- rule: Company info
+  steps:
+  - intent: company_info
+  - action: company_form
+  - active_loop: company_form
+
+- rule: Resume form
+  steps:
+  - action: utter_confirm_stop
+  - intent: deny
+  - action: company_form
+  - active_loop: company_form
+
+- rule: Submit company_form
+  condition:
+  - active_loop: company_form
+  steps:
+  - action: company_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  wait_for_user_input: false
+
+- rule: Submit plot_type_form
+  condition:
+  - active_loop: plot_type_form
+  steps:
+  - action: plot_type_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  wait_for_user_input: false

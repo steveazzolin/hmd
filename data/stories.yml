@@ -1,0 +1,356 @@
+version: "2.0"
+
+stories:
+
+- story: happy path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great
+  - action: utter_happy
+
+- story: sad path 1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: affirm
+  - action: utter_happy
+
+- story: sad path 2
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: deny
+  - action: utter_goodbye
+
+
+
+
+
+###
+# Domain specific stories
+###
+
+- story: Company news
+  steps:
+  - intent: company_news
+  - action: company_form
+  - active_loop: company_form
+  - slot_was_set:
+    - company: meta
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_searching_company_news
+  - intent: deny
+  - action: clear_company_with_msg
+
+- story: Company news + interruption affirm
+  steps:
+  - intent: company_news
+  - action: company_form
+  - active_loop: company_form
+  - slot_was_set:
+    - company: meta
+  - intent: deny
+  - action: utter_confirm_stop
+  - intent: affirm
+  - action: action_deactivate_loop
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_stopped
+
+- story: Company news + interruption not_affirm
+  steps:
+  - intent: company_news
+  - action: company_form
+  - active_loop: company_form
+  - slot_was_set:
+    - company: meta
+  - intent: deny
+  - action: utter_confirm_stop
+  - intent: deny
+  - action: company_form
+  - active_loop: company_form
+
+- story: Company news + ask for stock updates + affirm + send plot
+  steps:
+  - intent: company_news
+  - action: company_form
+  - active_loop: company_form
+  - slot_was_set:
+    - company: meta
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_searching_company_news
+  - action: ask_want_stock
+  - intent: affirm
+  - action: get_stock_value
+  - action: utter_stock_value
+  - action: utter_want_stock_plot
+  - intent: affirm
+  - action: send_stock_value_plot
+  - action: utter_stock_plot_sent
+  - action: clear_company
+
+
+- story: Company news + ask for stock updates + affirm + no plot
+  steps:
+  - intent: company_news
+  - action: company_form
+  - active_loop: company_form
+  - slot_was_set:
+    - company: meta
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_searching_company_news
+  - action: ask_want_stock
+  - intent: affirm
+  - action: get_stock_value
+  - action: utter_stock_value
+  - action: utter_want_stock_plot
+  - intent: deny
+  - action: utter_stopped
+  - action: clear_company
+
+
+- story: Company news + ask for stock updates + deny
+  steps:
+  - intent: company_news
+  - action: company_form
+  - active_loop: company_form
+  - slot_was_set:
+    - company: meta
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_searching_company_news
+  - action: ask_want_stock
+  - intent: deny
+  - action: utter_happy
+
+
+- story: Stock updates + affirm telegram plot
+  steps:
+  - intent: stock_value
+  - action: company_form
+  - active_loop: company_form
+  - slot_was_set:
+    - company: meta
+  - active_loop: null
+  - slot_was_set:
+    - company: Any_company
+  - action: get_stock_value
+  - action: utter_stock_value
+  - action: save_asked_company
+  - action: utter_want_stock_plot
+  - intent: affirm
+
+  - action: plot_type_form
+  - active_loop: plot_type_form
+  - slot_was_set:
+    - plot_type: line
+  - active_loop: null
+  - slot_was_set:
+    - plot_type: Any_plot
+
+  - action: send_stock_value_plot
+  - action: utter_stock_plot_sent
+
+- story: Stock updates + deny telegram plot
+  steps:
+  - intent: stock_value
+  - action: company_form
+  - active_loop: company_form
+  - slot_was_set:
+    - company: meta
+  - active_loop: null
+  - slot_was_set:
+    - company: Any_company
+  - action: get_stock_value
+  - action: utter_stock_value
+  - action: save_asked_company
+  - action: utter_want_stock_plot
+  - intent: deny
+  - action: utter_stopped
+
+
+# - story: Stock updates + clear
+#   steps:
+#   - intent: stock_value
+#   - action: company_form
+#   - active_loop: company_form
+#   - slot_was_set:
+#     - company: meta
+#   - active_loop: null
+#   - slot_was_set:
+#     - requested_slot: null
+#     - company: Any_company
+#   - action: get_stock_value
+#   - action: utter_stock_value
+#   - action: save_asked_company
+#   - intent: deny
+#   - slot_was_set:
+#     - company: Any_company
+#   - action: clear_company
+
+- story: Stock updates + interruption affirm
+  steps:
+  - intent: stock_value
+  - action: company_form
+  - active_loop: company_form
+  - slot_was_set:
+    - company: meta
+  #- intent: deny
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+    - company: null
+  - action: utter_confirm_stop
+  - intent: affirm
+  - action: action_deactivate_loop
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_stopped
+
+
+- story: Stock updates + interruption not_affirm
+  steps:
+  - intent: stock_value
+  - action: company_form
+  - active_loop: company_form
+  - slot_was_set:
+    - company: meta
+  #- active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+    - company: null
+  - action: utter_confirm_stop
+  - intent: deny
+  - action: company_form
+  - active_loop: company_form
+
+
+- story: Company info + affirm stock + send plot
+  steps:
+  - intent: company_info
+  - action: company_form
+  - active_loop: company_form
+  - slot_was_set:
+    - company: meta
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_searching_company_info
+  - action: ask_want_stock
+  - intent: affirm
+  - action: get_stock_value
+  - action: utter_stock_value
+  - action: utter_want_stock_plot
+  - intent: affirm
+  - action: send_stock_value_plot
+  - action: utter_stock_plot_sent
+  - action: clear_company
+
+
+- story: Company info + affirm stock + no plot
+  steps:
+  - intent: company_info
+  - action: company_form
+  - active_loop: company_form
+  - slot_was_set:
+    - company: meta
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_searching_company_info
+  - action: ask_want_stock
+  - intent: affirm
+  - action: get_stock_value
+  - action: utter_stock_value
+  - action: utter_want_stock_plot
+  - intent: deny
+  - action: utter_stopped
+  - action: clear_company
+
+
+- story: Company info + deny stock
+  steps:
+  - intent: company_info
+  - action: company_form
+  - active_loop: company_form
+  - slot_was_set:
+    - company: meta
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_searching_company_info
+  - action: ask_want_stock
+  - intent: deny
+  - action: utter_stopped
+
+
+- story: Company info + interruption affirm
+  steps:
+  - intent: company_info
+  - action: company_form
+  - active_loop: company_form
+  - slot_was_set:
+    - company: meta
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+    - company: null
+  - action: utter_confirm_stop
+  - intent: affirm
+  - action: action_deactivate_loop
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_stopped
+
+
+- story: Company info + interruption not_affirm
+  steps:
+  - intent: company_info
+  - action: company_form
+  - active_loop: company_form
+  - slot_was_set:
+    - company: meta
+  - slot_was_set:
+    - requested_slot: null
+    - company: null
+  - action: utter_confirm_stop
+  - intent: deny
+  - action: company_form
+  - active_loop: company_form
+
+
+- story: Change plot type
+  steps:
+  - intent: change_plot_type
+  - action: utter_plot_type_changed
+
+
+- story: Predict stock trend
+  steps:
+  - intent: predict_stock_trend
+  - action: company_form
+  - active_loop: company_form
+  - slot_was_set:
+    - company: meta
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: predict_stock_trend
+  
