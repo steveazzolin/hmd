@@ -110,6 +110,8 @@ nlu:
     - [Facebook]{"entity": "company", "value": "Meta"} news
     - how is [Google](company) doing?
     - what about [Amazon](company)?
+    - can you look for some news about [Meta](company)
+    - company news
 - intent: company_info
   examples: |
     - [Meta](company)

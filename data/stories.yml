@@ -101,6 +101,13 @@ stories:
   - action: utter_stock_value
   - action: utter_want_stock_plot
   - intent: affirm
+  - action: plot_type_form
+  - active_loop: plot_type_form
+  - slot_was_set:
+    - plot_type: line
+  - active_loop: null
+  - slot_was_set:
+    - plot_type: Any_plot
   - action: send_stock_value_plot
   - action: utter_stock_plot_sent
   - action: clear_company
@@ -127,9 +134,17 @@ stories:
   - action: utter_stock_value
   - action: utter_want_stock_plot
   - intent: affirm
+  - action: plot_type_form
+  - active_loop: plot_type_form
+  - slot_was_set:
+    - plot_type: line
+  - active_loop: null
+  - slot_was_set:
+    - plot_type: Any_plot
   - action: send_stock_value_plot
   - action: utter_stock_plot_sent
   - action: clear_company
+
 
 - story: Company news + ask for sending links (no) + ask for stock updates + affirm + no plot
   steps:
@@ -181,7 +196,7 @@ stories:
   - action: clear_company
 
 
-- story: Company news + ask for sending links (no) + ask for stock updates + deny
+- story: Company news + ask for sending links (no) + ask for stock updates (no) + deny
   steps:
   - intent: company_news
   - action: company_form
@@ -200,7 +215,7 @@ stories:
   - intent: deny
   - action: utter_happy
 
-- story: Company news + ask for sending links (yes) + ask for stock updates + deny
+- story: Company news + ask for sending links (yes) + ask for stock updates (yes) + deny
   steps:
   - intent: company_news
   - action: company_form
@@ -339,6 +354,13 @@ stories:
   - action: utter_stock_value
   - action: utter_want_stock_plot
   - intent: affirm
+  - action: plot_type_form
+  - active_loop: plot_type_form
+  - slot_was_set:
+    - plot_type: line
+  - active_loop: null
+  - slot_was_set:
+    - plot_type: Any_plot
   - action: send_stock_value_plot
   - action: utter_stock_plot_sent
   - action: clear_company
