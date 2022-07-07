@@ -106,6 +106,7 @@ actions:
 - predict_stock_trend
 - search_company_news
 - send_news_link
+- get_company_info
 
 forms:
   company_form:

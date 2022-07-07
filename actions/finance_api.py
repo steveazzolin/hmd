@@ -138,3 +138,15 @@ def get_company_news(company_name):
     response = urlopen(url)
     data = json.loads(response.read())
     return data["response"]["results"]
+
+def get_company_info(company_name):
+    url = INFO_API_URL
+    url += f"{company_name}&" + INFO_API_KEY
+    print(url)
+    response = urlopen(url)
+    data = json.loads(response.read())
+    print(data)
+    if len(data["itemListElement"]) > 0:
+        return data["itemListElement"][0]["result"]["detailedDescription"]["articleBody"]
+    else:
+        return "No mathing results with your query"

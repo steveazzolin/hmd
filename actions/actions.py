@@ -224,3 +224,20 @@ class ActionSendNewsLinks(Action):
             finance_api.send_message_telegram(f"{news['pillarName']}: {news['webTitle']}\n {news['webUrl']}")
         cached_last_news_shown = []
         return []
+
+
+
+
+class ActionGetCompanyInfo(Action):
+    def name(self) -> Text:
+        return "get_company_info"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        print("ActionGetCompanyInfo")
+        company_name = tracker.get_slot("company")
+        
+        info = finance_api.get_company_info(company_name.lower())
+        dispatcher.utter_message(text=info)
+        return []

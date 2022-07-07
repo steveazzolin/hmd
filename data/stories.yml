@@ -214,6 +214,7 @@ stories:
   - action: ask_want_stock
   - intent: deny
   - action: utter_happy
+  - action: clear_company
 
 - story: Company news + ask for sending links (yes) + ask for stock updates (yes) + deny
   steps:
@@ -347,7 +348,7 @@ stories:
   - active_loop: null
   - slot_was_set:
     - requested_slot: null
-  - action: utter_searching_company_info
+  - action: get_company_info
   - action: ask_want_stock
   - intent: affirm
   - action: get_stock_value
@@ -376,7 +377,7 @@ stories:
   - active_loop: null
   - slot_was_set:
     - requested_slot: null
-  - action: utter_searching_company_info
+  - action: get_company_info
   - action: ask_want_stock
   - intent: affirm
   - action: get_stock_value
@@ -397,7 +398,7 @@ stories:
   - active_loop: null
   - slot_was_set:
     - requested_slot: null
-  - action: utter_searching_company_info
+  - action: get_company_info
   - action: ask_want_stock
   - intent: deny
   - action: utter_stopped

@@ -121,5 +121,9 @@ from actions import finance_api
 # finance_api.predict_trend(data)
 
 
-data = finance_api.get_company_news("amazon")
-print(len(data["response"]["results"]))
+# data = finance_api.get_company_news("amazon")
+# print(len(data["response"]["results"]))
+
+
+data = finance_api.get_company_info("amazon")
+print(data)
