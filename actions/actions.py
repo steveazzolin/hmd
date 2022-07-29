@@ -275,5 +275,5 @@ class ActionGetWorstIndex(Action):
         print("save_feedback")
         msg = tracker.get_slot("feedback")
         with open("data/feedbacks.txt", "a") as myfile:
-            myfile.write(msg)
-        return [{"feedback": None}]
+            myfile.write(msg + "\n")
+        return [SlotSet("feedback", None)]
