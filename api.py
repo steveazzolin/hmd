@@ -125,5 +125,4 @@ from actions import finance_api
 # print(len(data["response"]["results"]))
 
 
-data = finance_api.get_company_info("amazon")
-print(data)
+print(finance_api.get_best_index())

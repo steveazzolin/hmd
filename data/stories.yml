@@ -458,3 +458,57 @@ stories:
     - requested_slot: null
   - action: predict_stock_trend
   
+
+- story: Get worst index
+  steps:
+  - intent: worst_index
+  - action: get_worst_index
+
+- story: Get best index
+  steps:
+  - intent: best_index
+  - action: get_best_index
+
+- story: Giving feedback
+  steps:
+  - intent: feedback
+  - action: feedback_form
+  - active_loop: feedback_form
+  - slot_was_set:
+    - feedback: any
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: save_feedback
+  - action: utter_sending_feedback  
+
+
+
+# - story: Company news + interruption affirm
+#   steps:
+#   - intent: company_news
+#   - action: company_form
+#   - active_loop: company_form
+#   - slot_was_set:
+#     - company: meta
+#   - intent: deny
+#   - action: utter_confirm_stop
+#   - intent: affirm
+#   - action: action_deactivate_loop
+#   - active_loop: null
+#   - slot_was_set:
+#     - requested_slot: null
+#   - action: utter_stopped
+
+# - story: Company news + interruption not_affirm
+#   steps:
+#   - intent: company_news
+#   - action: company_form
+#   - active_loop: company_form
+#   - slot_was_set:
+#     - company: meta
+#   - intent: deny
+#   - action: utter_confirm_stop
+#   - intent: deny
+#   - action: company_form
+#   - active_loop: company_form

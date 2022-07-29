@@ -16,11 +16,15 @@ intents:
 - company_info
 - change_plot_type
 - predict_stock_trend
+- best_index
+- worst_index
+- feedback
 
 
 entities:
 - company
 - plot_type
+- feedback
 
 slots:
   company:
@@ -42,6 +46,9 @@ slots:
     type: text
     influence_conversation: false
   currency:
+    type: text
+    influence_conversation: false
+  feedback:
     type: text
     influence_conversation: false
 
@@ -73,7 +80,7 @@ responses:
   - text: For which company do you want information?
   - text: Please, tell me the company for which you want information
   utter_ask_plot_type:
-  - text: Which kind of plot do you prefer between line and candle plots? \n Your answer will be saved for future requests
+  - text: Which kind of plot do you prefer between line and candle plots? Your answer will be saved for future requests
   utter_ask_want_news_link:
   - text: Do you want to read the full articles on your device?
   utter_clear_company:
@@ -92,6 +99,10 @@ responses:
   - text: Done!
   utter_plot_type_changed:
   - text: Your preferences have been updated
+  utter_ask_feedback:
+  - text: Please, tell me what you are thinking
+  utter_sending_feedback:
+  - text: Thank you for helping us! We will forward the message to the developers
   
 
 actions:
@@ -107,6 +118,9 @@ actions:
 - search_company_news
 - send_news_link
 - get_company_info
+- get_best_index
+- get_worst_index
+- save_feedback
 
 forms:
   company_form:
@@ -118,4 +132,9 @@ forms:
     required_slots:
       plot_type:
       - entity: plot_type
+        type: from_text
+  feedback_form:
+    required_slots:
+      feedback:
+      - entity: feedback
         type: from_text

@@ -4,6 +4,7 @@ import requests
 import telegram
 
 from pandas_datareader import data
+import pandas as pd
 
 import matplotlib.pyplot as plt    
 import plotly.graph_objects as go
@@ -149,4 +150,14 @@ def get_company_info(company_name):
     if len(data["itemListElement"]) > 0:
         return data["itemListElement"][0]["result"]["detailedDescription"]["articleBody"]
     else:
-        return "No mathing results with your query"
+        return "No matching results with your query"
+
+def get_best_index():
+    data = pd.read_csv("data/nasdaq.csv")
+    data = data.sort_values(by=["% Change"], ascending=False)
+    return data.iloc[0, 0], data.iloc[0, 1], data.iloc[0, 4]
+
+def get_worst_index():
+    data = pd.read_csv("data/nasdaq.csv")
+    data = data.sort_values(by=["% Change"], ascending=True)
+    return data.iloc[0, 0], data.iloc[0, 1], data.iloc[0, 4]

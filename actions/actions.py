@@ -241,3 +241,39 @@ class ActionGetCompanyInfo(Action):
         info = finance_api.get_company_info(company_name.lower())
         dispatcher.utter_message(text=info)
         return []
+
+
+class ActionGetBestIndex(Action):
+    def name(self) -> Text:
+        return "get_best_index"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        symbol , name , change = finance_api.get_best_index()
+        dispatcher.utter_message(text=f"{name} ({symbol}) registers an increase of {change}%")
+        return []
+
+class ActionGetWorstIndex(Action):
+    def name(self) -> Text:
+        return "get_worst_index"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        symbol , name , change = finance_api.get_worst_index()
+        dispatcher.utter_message(text=f"{name} ({symbol}) registers a decrease of {-change}%")
+        return []
+
+class ActionGetWorstIndex(Action):
+    def name(self) -> Text:
+        return "save_feedback"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        print("save_feedback")
+        msg = tracker.get_slot("feedback")
+        with open("data/feedbacks.txt", "a") as myfile:
+            myfile.write(msg)
+        return [{"feedback": None}]

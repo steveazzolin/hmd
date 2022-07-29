@@ -144,6 +144,23 @@ nlu:
     - is [Meta](company) growing?
     - do you think is worth investing in [Google](company)?
     - predict the trend for [Amazon](company)
+- intent: best_index
+  examples: |
+    - which is the best index?
+    - best index
+    - which index is performing the best?
+- intent: worst_index
+  examples: |
+    - which is the worst index?
+    - worst index
+    - which index is performing the worse?
+- intent: feedback
+  examples: |
+    - i want to give some feddback
+    - feedback
+    - suggestions
+    - i found a problem
+    - can you add a feature?
 - synonym: Meta
   examples: |
     - Facebook

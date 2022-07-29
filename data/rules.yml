@@ -61,3 +61,8 @@ rules:
     - requested_slot: null
   wait_for_user_input: false
   
+- rule: Give feedback
+  steps:
+  - intent: feedback
+  - action: feedback_form
+  - active_loop: feedback_form
