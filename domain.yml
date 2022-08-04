@@ -50,7 +50,7 @@ slots:
     influence_conversation: false
   feedback:
     type: text
-    influence_conversation: false
+    influence_conversation: true
 
 responses:
   utter_greet:
@@ -101,8 +101,11 @@ responses:
   - text: Your preferences have been updated
   utter_ask_feedback:
   - text: Please, tell me what you are thinking
-  utter_sending_feedback:
-  - text: Thank you for helping us! We will forward the message to the developers
+  utter_help:
+  - text: 'Hi! My name is FIN'
+    image: http://azzolinsteve.altervista.org/hmd_project/fin_logo.png
+    # text: "Here is what I can do:"
+    # text: "..."
   
 
 actions:

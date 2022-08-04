@@ -34,12 +34,19 @@ rules:
   - action: company_form
   - active_loop: company_form
 
-- rule: Resume form
-  steps:
-  - action: utter_confirm_stop
-  - intent: deny
-  - action: company_form
-  - active_loop: company_form
+# - rule: Resume company form
+#   steps:
+#   - action: utter_confirm_stop
+#   - intent: deny
+#   - action: company_form
+#   - active_loop: company_form
+
+# - rule: Resume feedback form
+#   steps:
+#   - action: utter_confirm_stop
+#   - intent: deny
+#   - action: feedback_form
+#   - active_loop: feedback_form
 
 - rule: Submit company_form
   condition:

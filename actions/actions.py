@@ -265,7 +265,7 @@ class ActionGetWorstIndex(Action):
         dispatcher.utter_message(text=f"{name} ({symbol}) registers a decrease of {-change}%")
         return []
 
-class ActionGetWorstIndex(Action):
+class ActionSaveFeedback(Action):
     def name(self) -> Text:
         return "save_feedback"
 
@@ -273,7 +273,13 @@ class ActionGetWorstIndex(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         print("save_feedback")
+        if tracker.latest_message['intent']['name'] == "deny":
+            dispatcher.utter_message(text=f"Cancelling the action. What do you want to do next?")
+            return [SlotSet("feedback", None)]
+
         msg = tracker.get_slot("feedback")
         with open("data/feedbacks.txt", "a") as myfile:
             myfile.write(msg + "\n")
+
+        dispatcher.utter_message(text=f"Thank you for helping us! We will forward the message to the developers")
         return [SlotSet("feedback", None)]
