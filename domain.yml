@@ -8,9 +8,9 @@ intents:
 - goodbye
 - affirm
 - deny
-- mood_great
-- mood_unhappy
-- bot_challenge
+# - mood_great
+# - mood_unhappy
+# - bot_challenge
 - stock_value
 - company_news
 - company_info
@@ -19,6 +19,7 @@ intents:
 - best_index
 - worst_index
 - feedback
+- help
 
 
 entities:
@@ -101,11 +102,25 @@ responses:
   - text: Your preferences have been updated
   utter_ask_feedback:
   - text: Please, tell me what you are thinking
-  utter_help:
+  utter_help1:
   - text: 'Hi! My name is FIN'
     image: http://azzolinsteve.altervista.org/hmd_project/fin_logo.png
-    # text: "Here is what I can do:"
-    # text: "..."
+  utter_help2:
+  - text: "I'm the FINancial chatbot, here to help you with queries about the stock market and about news about companies"
+  utter_help3:
+  - text: 'Here a list of tasks I can do:'
+  utter_help4:
+  - text: '- Search the stock value of a company'
+  utter_help5:
+  - text: '- Search news about a company'
+  utter_help6:
+  - text: '- Search information about a company'
+  utter_help7:
+  - text: '- Search for the best/worst performing index in the market'
+  utter_help8:
+  - text: '- Predict the trend of future performance for a company'
+  utter_help9:
+  - text: '- Collect feedbacks from users to improve my capabilities'
   
 
 actions:

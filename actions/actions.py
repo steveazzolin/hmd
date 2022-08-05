@@ -205,7 +205,7 @@ class ActionGetNews(Action):
             dispatcher.utter_message(text=f"{n+1}. {news['pillarName']}: {news['webTitle']}")
             dispatcher.utter_message(text=f"")
             n += 1
-        cached_last_news_shown.extend(cached_company_news[:n].copy())
+        cached_last_news_shown.extend(cached_company_news[:3].copy())
         del cached_company_news[:n]
         return []
 
@@ -220,7 +220,7 @@ class ActionSendNewsLinks(Action):
         global cached_last_news_shown
         assert cached_last_news_shown != []
 
-        for news in cached_last_news_shown:
+        for news in cached_last_news_shown[-3:]:
             finance_api.send_message_telegram(f"{news['pillarName']}: {news['webTitle']}\n {news['webUrl']}")
         cached_last_news_shown = []
         return []
