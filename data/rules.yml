@@ -7,10 +7,18 @@ rules:
   - intent: goodbye
   - action: utter_goodbye
 
-- rule: Say 'I am a bot' anytime the user challenges
+- rule: Describe yourself anytime the user challenges
   steps:
-  - intent: bot_challenge
-  - action: utter_iamabot
+  - intent: help
+  - action: utter_help1
+  - action: utter_help2
+  - action: utter_help3
+  - action: utter_help4
+  - action: utter_help5
+  - action: utter_help6
+  - action: utter_help7
+  - action: utter_help8
+  - action: utter_help9
 
 
 ###

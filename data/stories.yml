@@ -2,32 +2,32 @@ version: "2.0"
 
 stories:
 
-- story: happy path
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: mood_great
-  - action: utter_happy
+# - story: happy path
+#   steps:
+#   - intent: greet
+#   - action: utter_greet
+#   - intent: mood_great
+#   - action: utter_happy
 
-- story: sad path 1
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: mood_unhappy
-  - action: utter_cheer_up
-  - action: utter_did_that_help
-  - intent: affirm
-  - action: utter_happy
+# - story: sad path 1
+#   steps:
+#   - intent: greet
+#   - action: utter_greet
+#   - intent: mood_unhappy
+#   - action: utter_cheer_up
+#   - action: utter_did_that_help
+#   - intent: affirm
+#   - action: utter_happy
 
-- story: sad path 2
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: mood_unhappy
-  - action: utter_cheer_up
-  - action: utter_did_that_help
-  - intent: deny
-  - action: utter_goodbye
+# - story: sad path 2
+#   steps:
+#   - intent: greet
+#   - action: utter_greet
+#   - intent: mood_unhappy
+#   - action: utter_cheer_up
+#   - action: utter_did_that_help
+#   - intent: deny
+#   - action: utter_goodbye
 
 
 
@@ -37,48 +37,48 @@ stories:
 # Domain specific stories
 ###
 
-- story: Company news
-  steps:
-  - intent: company_news
-  - action: company_form
-  - active_loop: company_form
-  - slot_was_set:
-    - company: meta
-  - active_loop: null
-  - slot_was_set:
-    - requested_slot: null
-  - action: utter_searching_company_news
-  - intent: deny
-  - action: clear_company_with_msg
+# - story: Company news
+#   steps:
+#   - intent: company_news
+#   - action: company_form
+#   - active_loop: company_form
+#   - slot_was_set:
+#     - company: meta
+#   - active_loop: null
+#   - slot_was_set:
+#     - requested_slot: null
+#   - action: utter_searching_company_news
+#   - intent: deny
+#   - action: clear_company_with_msg
 
-- story: Company news + interruption affirm
-  steps:
-  - intent: company_news
-  - action: company_form
-  - active_loop: company_form
-  - slot_was_set:
-    - company: meta
-  - intent: deny
-  - action: utter_confirm_stop
-  - intent: affirm
-  - action: action_deactivate_loop
-  - active_loop: null
-  - slot_was_set:
-    - requested_slot: null
-  - action: utter_stopped
+# - story: Company news + interruption affirm
+#   steps:
+#   - intent: company_news
+#   - action: company_form
+#   - active_loop: company_form
+#   - slot_was_set:
+#     - company: meta
+#   - intent: deny
+#   - action: utter_confirm_stop
+#   - intent: affirm
+#   - action: action_deactivate_loop
+#   - active_loop: null
+#   - slot_was_set:
+#     - requested_slot: null
+#   - action: utter_stopped
 
-- story: Company news + interruption not_affirm
-  steps:
-  - intent: company_news
-  - action: company_form
-  - active_loop: company_form
-  - slot_was_set:
-    - company: meta
-  - intent: deny
-  - action: utter_confirm_stop
-  - intent: deny
-  - action: company_form
-  - active_loop: company_form
+# - story: Company news + interruption not_affirm
+#   steps:
+#   - intent: company_news
+#   - action: company_form
+#   - active_loop: company_form
+#   - slot_was_set:
+#     - company: meta
+#   - intent: deny
+#   - action: utter_confirm_stop
+#   - intent: deny
+#   - action: company_form
+#   - active_loop: company_form
 
 - story: Company news + ask for sending links (yes) +  ask for stock updates + affirm + send plot
   steps:
@@ -458,7 +458,6 @@ stories:
     - requested_slot: null
   - action: predict_stock_trend
   
-
 - story: Get worst index
   steps:
   - intent: worst_index
@@ -480,3 +479,16 @@ stories:
   - slot_was_set:
     - requested_slot: null
   - action: save_feedback
+
+
+# - story: Help
+#   steps:
+#   - action: utter_help1
+#   - action: utter_help2
+#   - action: utter_help3
+#   - action: utter_help4
+#   - action: utter_help5
+#   - action: utter_help6
+#   - action: utter_help7
+#   - action: utter_help8
+#   - action: utter_help9
