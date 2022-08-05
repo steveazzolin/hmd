@@ -1,33 +1,5 @@
 version: "2.0"
 nlu:
-# - intent: greet
-#   examples: |
-#     - hey
-#     - hello
-#     - hi
-#     - hello there
-#     - good morning
-#     - good evening
-#     - moin
-#     - hey there
-#     - let's go
-#     - hey dude
-#     - goodmorning
-#     - goodevening
-#     - good afternoon
-# - intent: goodbye
-#   examples: |
-#     - good afternoon
-#     - cu
-#     - good by
-#     - cee you later
-#     - good night
-#     - bye
-#     - goodbye
-#     - have a nice day
-#     - see you around
-#     - bye bye
-#     - see you later
 - intent: affirm
   examples: |
     - yes
@@ -50,44 +22,6 @@ nlu:
     - wrong
     - nope
     - stop
-# - intent: mood_great
-#   examples: |
-#     - perfect
-#     - great
-#     - amazing
-#     - feeling like a king
-#     - wonderful
-#     - I am feeling very good
-#     - I am great
-#     - I am amazing
-#     - I am going to save the world
-#     - super stoked
-#     - extremely good
-#     - so so perfect
-#     - so good
-#     - so perfect
-# - intent: mood_unhappy
-#   examples: |
-#     - my day was horrible
-#     - I am sad
-#     - I don't feel very well
-#     - I am disappointed
-#     - super sad
-#     - I'm so sad
-#     - sad
-#     - very sad
-#     - unhappy
-#     - not good
-#     - not very good
-#     - extremly sad
-#     - so saad
-#     - so sad
-# - intent: bot_challenge
-#   examples: |
-#     - are you a bot?
-#     - are you a human?
-#     - am I talking to a bot?
-#     - am I talking to a human?
 - intent: stock_value
   examples: |
     - i want an update on stock market
@@ -112,6 +46,7 @@ nlu:
     - what about [Amazon](company)?
     - can you look for some news about [Meta](company)
     - company news
+    - [meta](company) news
 - intent: company_info
   examples: |
     - [Meta](company)
@@ -128,6 +63,7 @@ nlu:
     - What is [Facebook]{"entity": "company", "value": "Meta"} ?
     - What is [Google](company) ?
     - What kind of company is [Amazon](company) ?
+    - what is [google](company)
 - intent: change_plot_type
   examples: |
     - i want [line](plot_type) plots
@@ -135,6 +71,7 @@ nlu:
     - next time send me a [line](plot_type) plot
     - please send [candle](plot_type) plots
     - just [line](plot_type) plots
+    - [line](plot_type)
 - intent: predict_stock_trend
   examples: |
     - how is [Google](company) doing?

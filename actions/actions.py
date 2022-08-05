@@ -196,7 +196,7 @@ class ActionGetNews(Action):
             dispatcher.utter_message(text="No news where found")
             return []
 
-        dispatcher.utter_message(text="The first three news found on the Guardian will follow:")
+        dispatcher.utter_message(text="The first three news found on The Guardian will follow:")
         dispatcher.utter_message(text="")
 
         cached_company_news = data

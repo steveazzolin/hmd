@@ -492,3 +492,82 @@ stories:
 #   - action: utter_help7
 #   - action: utter_help8
 #   - action: utter_help9
+- story: interactive_story_1
+  steps:
+  - intent: company_news
+    entities:
+    - company: meta
+  - slot_was_set:
+    - company: meta
+  - action: company_form
+  - active_loop: company_form
+  - slot_was_set:
+    - company: meta
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_searching_company_news
+  - action: search_company_news
+  - action: utter_ask_want_news_link
+  - intent: deny
+  - action: utter_ok
+  - action: ask_want_stock
+  - intent: affirm
+  - action: get_stock_value
+  - slot_was_set:
+    - company_symbol: META
+  - slot_was_set:
+    - company_stock_value: 170.57
+  - slot_was_set:
+    - currency: USD
+  - action: utter_stock_value
+  - action: utter_want_stock_plot
+  - intent: affirm
+  - action: plot_type_form
+  - active_loop: plot_type_form
+  - slot_was_set:
+    - requested_slot: plot_type
+  - slot_was_set:
+    - plot_type: line
+  - slot_was_set:
+    - plot_type: line
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: send_stock_value_plot
+  - action: utter_stock_plot_sent
+  - action: clear_company
+  - slot_was_set:
+    - company: null
+
+- story: interactive_story_2
+  steps:
+  - intent: company_info
+    entities:
+    - company: google
+  - slot_was_set:
+    - company: google
+  - action: company_form
+  - active_loop: company_form
+  - slot_was_set:
+    - company: google
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: get_company_info
+  - action: ask_want_stock
+  - intent: affirm
+  - action: get_stock_value
+  - slot_was_set:
+    - company_symbol: GOOG
+  - slot_was_set:
+    - company_stock_value: 118.87
+  - slot_was_set:
+    - currency: USD
+  - action: utter_stock_value
+  - action: utter_want_stock_plot
+  - intent: deny
+  - action: utter_stopped
+  - action: clear_company
+  - slot_was_set:
+    - company: null
