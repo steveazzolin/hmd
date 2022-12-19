@@ -102,27 +102,43 @@ def telegram():
     bot.send_photo(chat_id="403864881", photo=open('C:/Users/Steve/Pictures/conci.jpg', 'rb'))
 
 #stock = input("Enter the company's name: ")
-#final = getStock(stock)
-#print(final)
+# stock = "meta"
+# final = getStock(stock)
+# print(final)
+
 
 #getChart2()
 
 #getChart("amazon")
 
 
+
+
+
+
+
 ##
 # Test finance api
 ##
 from actions import finance_api
+import pandas_datareader.data as web
+
+company_symbol , ambiguity = finance_api.get_symbol_from_name("google", debug=False)
+df = web.DataReader(company_symbol, 'stooq', start='2019-09-10', end='2019-10-09')
+print(df.head())
+
+company_symbol , ambiguity = finance_api.get_symbol_from_name("google", debug=False)
+finance_api.get_value_from_symbol(company_symbol, debug=False)
 
 # company_symbol , ambiguity = finance_api.get_symbol_from_name("amazon", debug=False)
-# data = finance_api.get_past_values_from_symbol(company_symbol, debug=True)
+data = finance_api.get_past_values_from_symbol(company_symbol, debug=True)
+print(data)
 # #plot_path = finance_api.create_past_values_plot(data, "Alphabet Inc.", type="line")
 # finance_api.predict_trend(data)
 
 
-# data = finance_api.get_company_news("amazon")
-# print(len(data["response"]["results"]))
+data = finance_api.get_company_news("amazon")
+print(len(data["response"]["results"]))
 
 
 print(finance_api.get_best_index())

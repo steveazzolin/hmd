@@ -34,6 +34,8 @@ nlu:
     - updates for [Meta](company)
     - updates of [Meta](company)
     - [Meta](company) stock news
+    - how much is [Meta](company) worth?
+    - which is the current stock value of [Meta](company)?
 - intent: company_news
   examples: |
     - news about [Meta](company)

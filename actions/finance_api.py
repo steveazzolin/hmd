@@ -45,15 +45,17 @@ def get_symbol_from_name(name, debug=False):
     return results[0] , len(results) == 1
 
 
-def get_value_from_symbol(symbol, debug=False):
+def get_value_from_symbol(symbol, debug=False):    
     try:
         stock = yf.Ticker(symbol)
         price = stock.info["regularMarketPrice"]
         full_name = stock.info['longName']
         currency = stock.info["currency"]
+        print("Full name = ", full_name)
     except Exception as e:
         print('Something went wrong')
-    print("Full name = ", full_name)
+        print(str(e))
+        full_name = None
     return price, full_name, currency
     
 def get_past_values_from_symbol(symbol, debug=False, start_date=None, end_date=None):
@@ -63,7 +65,7 @@ def get_past_values_from_symbol(symbol, debug=False, start_date=None, end_date=N
         if end_date is None:
             end_date = datetime.today().strftime('%Y-%m-%d')
 
-        panel_data = data.DataReader(symbol, 'yahoo', start_date, end_date)
+        panel_data = data.DataReader(symbol, 'stooq', start_date, end_date)
         if debug:
             print(panel_data.head())
     except Exception as e:

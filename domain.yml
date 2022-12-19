@@ -2,15 +2,11 @@ version: '2.0'
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
-
 intents:
 - greet
 - goodbye
 - affirm
 - deny
-# - mood_great
-# - mood_unhappy
-# - bot_challenge
 - stock_value
 - company_news
 - company_info
@@ -20,20 +16,21 @@ intents:
 - worst_index
 - feedback
 - help
-
-
+- nlu_fallback
 entities:
 - company
 - plot_type
 - feedback
-
 slots:
   company:
     type: text
     influence_conversation: true
   plot_type:
-    type: text
+    type: categorical
     influence_conversation: true
+    values:
+      - line
+      - candle
   companies_stock_asked:
     type: list
     influence_conversation: false
@@ -52,7 +49,6 @@ slots:
   feedback:
     type: text
     influence_conversation: true
-
 responses:
   utter_greet:
   - text: Hey! How are you?
@@ -103,10 +99,10 @@ responses:
   utter_ask_feedback:
   - text: Please, tell me what you are thinking
   utter_help1:
-  - text: 'Hi! My name is FIN'
-    image: http://azzolinsteve.altervista.org/hmd_project/fin_logo.png
+  - image: http://azzolinsteve.altervista.org/hmd_project/fin_logo.png
+    text: Hi! My name is FIN
   utter_help2:
-  - text: "I'm the FINancial chatbot, here to help you with queries about the stock market and about news about companies"
+  - text: I'm the FINancial chatbot, here to help you with queries about the stock market and about news about companies
   utter_help3:
   - text: 'Here a list of tasks I can do:'
   utter_help4:
@@ -121,8 +117,12 @@ responses:
   - text: '- Predict the trend of future performance for a company'
   utter_help9:
   - text: '- Collect feedbacks from users to improve my capabilities'
-  
-
+  utter_out_of_scope:
+  - text: Sorry, I can't handle that request
+  utter_please_rephrase:
+  - text: I'm sorry, I didn't quite understand that. Could you rephrase?
+  utter_default:
+  - text: Sorry I didn't get that. Can you rephrase?
 actions:
 - validate_company_form
 - validate_plot_type_form
@@ -139,7 +139,6 @@ actions:
 - get_best_index
 - get_worst_index
 - save_feedback
-
 forms:
   company_form:
     required_slots:

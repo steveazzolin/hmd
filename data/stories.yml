@@ -443,6 +443,13 @@ stories:
 - story: Change plot type
   steps:
   - intent: change_plot_type
+  - action: plot_type_form
+  - active_loop: plot_type_form
+  - slot_was_set:
+    - plot_type: line
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
   - action: utter_plot_type_changed
 
 
@@ -481,17 +488,19 @@ stories:
   - action: save_feedback
 
 
-# - story: Help
-#   steps:
-#   - action: utter_help1
-#   - action: utter_help2
-#   - action: utter_help3
-#   - action: utter_help4
-#   - action: utter_help5
-#   - action: utter_help6
-#   - action: utter_help7
-#   - action: utter_help8
-#   - action: utter_help9
+- story: Help
+  steps:
+  - action: utter_help1
+  - action: utter_help2
+  - action: utter_help3
+  - action: utter_help4
+  - action: utter_help5
+  - action: utter_help6
+  - action: utter_help7
+  - action: utter_help8
+  - action: utter_help9
+
+  
 - story: interactive_story_1
   steps:
   - intent: company_news

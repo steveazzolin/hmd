@@ -51,9 +51,11 @@ class ValidatePlotTypeForm(FormValidationAction):
         """Validate plot type value."""
 
         if slot_value.lower() in self.plots_db():
+            print("Validating plot_type = True")
             return {"plot_type": slot_value}
         else:
             # validation failed, set this slot to None so that the user will be asked for the slot again
+            print("Validating plot_type = False")
             return {"plot_type": None}
 
 
@@ -262,7 +264,8 @@ class ActionGetWorstIndex(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         symbol , name , change = finance_api.get_worst_index()
-        dispatcher.utter_message(text=f"{name} ({symbol}) registers a decrease of {-change}%")
+        change = change[1:-1]
+        dispatcher.utter_message(text=f"{name} ({symbol}) registers a decrease of {change}%")
         return []
 
 class ActionSaveFeedback(Action):
