@@ -3,24 +3,24 @@ session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
 intents:
+- company_info
+- stock_value
+- deny
+- affirm
+- change_plot_type
+- nlu_fallback
 - greet
 - goodbye
-- affirm
-- deny
-- stock_value
 - company_news
-- company_info
-- change_plot_type
 - predict_stock_trend
 - best_index
 - worst_index
 - feedback
 - help
-- nlu_fallback
 entities:
 - company
-- plot_type
 - feedback
+- plot_type
 slots:
   company:
     type: text
@@ -29,8 +29,8 @@ slots:
     type: categorical
     influence_conversation: true
     values:
-      - line
-      - candle
+    - line
+    - candle
   companies_stock_asked:
     type: list
     influence_conversation: false
@@ -95,7 +95,7 @@ responses:
   - text: Sent!
   - text: Done!
   utter_plot_type_changed:
-  - text: Your preferences have been updated
+  - text: Your preferences have been updated. The type of the plot is now {plot_type}.
   utter_ask_feedback:
   - text: Please, tell me what you are thinking
   utter_help1:
@@ -123,22 +123,29 @@ responses:
   - text: I'm sorry, I didn't quite understand that. Could you rephrase?
   utter_default:
   - text: Sorry I didn't get that. Can you rephrase?
+  utter_company_not_found:
+  - text: I didn't manage to find {company} in my database. Try with another company.
 actions:
-- validate_company_form
-- validate_plot_type_form
+- ask_want_stock
 - clear_company
 - clear_company_with_msg
-- save_asked_company
-- ask_want_stock
+- get_best_index
+- get_company_info
 - get_stock_value
-- send_stock_value_plot
+- get_worst_index
 - predict_stock_trend
+- save_asked_company
+- save_feedback
 - search_company_news
 - send_news_link
-- get_company_info
-- get_best_index
-- get_worst_index
-- save_feedback
+- send_stock_value_plot
+- utter_company_not_found
+- utter_stock_plot_sent
+- utter_stock_value
+- utter_stopped
+- utter_want_stock_plot
+- validate_company_form
+- validate_plot_type_form
 forms:
   company_form:
     required_slots:

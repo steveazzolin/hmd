@@ -123,11 +123,32 @@ def telegram():
 from actions import finance_api
 import pandas_datareader.data as web
 
-company_symbol , ambiguity = finance_api.get_symbol_from_name("google", debug=False)
-df = web.DataReader(company_symbol, 'stooq', start='2019-09-10', end='2019-10-09')
-print(df.head())
+keys = [
+        "GOOG",
+        "apple",
+        "tesla",
+        "meta",
+        "pfizer",
+        "juventus",
+        "roma",
+        "microsoft",
+        "netflix",
+        "amazon",
+        "nvidia",
+        "nike",
+        "neo",
+        "cisco",
+        "intel",
+        "qualcomm"
+]
+ret = {}
+for k in keys:
+    company_symbol , ambiguity = finance_api.get_symbol_from_name(k, debug=False)
+    ret[k] = company_symbol
+    
+print(ret)
 
-company_symbol , ambiguity = finance_api.get_symbol_from_name("google", debug=False)
+company_symbol , ambiguity = finance_api.get_symbol_from_name("apple", debug=False)
 finance_api.get_value_from_symbol(company_symbol, debug=False)
 
 # company_symbol , ambiguity = finance_api.get_symbol_from_name("amazon", debug=False)
@@ -136,9 +157,6 @@ print(data)
 # #plot_path = finance_api.create_past_values_plot(data, "Alphabet Inc.", type="line")
 # finance_api.predict_trend(data)
 
-
-data = finance_api.get_company_news("amazon")
-print(len(data["response"]["results"]))
 
 
 print(finance_api.get_best_index())

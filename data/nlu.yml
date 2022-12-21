@@ -10,6 +10,7 @@ nlu:
     - correct
     - right
     - yep
+    - deepmind
 - intent: deny
   examples: |
     - no
@@ -36,6 +37,9 @@ nlu:
     - [Meta](company) stock news
     - how much is [Meta](company) worth?
     - which is the current stock value of [Meta](company)?
+    - stock values
+    - stock value
+    - stock updates
 - intent: company_news
   examples: |
     - news about [Meta](company)
@@ -66,6 +70,8 @@ nlu:
     - What is [Google](company) ?
     - What kind of company is [Amazon](company) ?
     - what is [google](company)
+    - [google](company)
+    - [google](company)
 - intent: change_plot_type
   examples: |
     - i want [line](plot_type) plots
@@ -74,6 +80,7 @@ nlu:
     - please send [candle](plot_type) plots
     - just [line](plot_type) plots
     - [line](plot_type)
+    - [candle](plot_type)
 - intent: predict_stock_trend
   examples: |
     - how is [Google](company) doing?
@@ -112,6 +119,12 @@ nlu:
     - are you a human?
     - am I talking to a bot?
     - am I talking to a human?
+    - hi
+    - hello
+    - hey there
+- intent: nlu_fallback
+  examples: |
+    - apple
 - synonym: Meta
   examples: |
     - Facebook

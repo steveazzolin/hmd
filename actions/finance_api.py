@@ -42,6 +42,8 @@ def get_symbol_from_name(name, debug=False):
     for i in response['ResultSet']['Result']:
         final = i['symbol']
         results.append(final)
+    if len(results) == 0:
+        return None, True
     return results[0] , len(results) == 1
 
 

@@ -4,6 +4,9 @@
 # See this guide on how to implement these action:
 # https://rasa.com/docs/rasa/custom-actions
 
+import random
+import numpy as np
+
 from urllib import response
 from actions import finance_api
 
@@ -12,7 +15,47 @@ from typing import Any, Text, Dict, List
 from rasa_sdk import Action, Tracker, FormValidationAction
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.types import DomainDict
-from rasa_sdk.events import SlotSet, UserUttered, ActionExecuted, ActiveLoop, EventType
+from rasa_sdk.events import SlotSet, UserUttered, ActionExecuted, ActiveLoop, EventType, AllSlotsReset
+
+
+stock_names = [
+        "GOOG",
+        "apple",
+        "tesla",
+        "meta",
+        "pfizer",
+        "juventus",
+        "roma",
+        "microsoft",
+        "netflix",
+        "amazon",
+        "nvidia",
+        "nike",
+        "neo",
+        "cisco",
+        "intel",
+        "qualcomm"
+]
+stock_type = {
+        'GOOG': "sw", 
+        'AAPL': "sw", 
+        'TSLA': "car", 
+        'META': "sw", 
+        'PFE': "medicine", 
+        'JVTSF': "sport", 
+        'NROM': "sport", 
+        'MSFT': "sw", 
+        'NFLX': "entert", 
+        'AMZN': "entert", 
+        'NVDA': "hw", 
+        'NKE': "enter", 
+        'NEO': "car", 
+        'CSCO': "hw", 
+        'INTC': "hw", 
+        'QCOM': "hw"
+}
+name_symbol_mapper = {}
+stock_type_counter = {v:0 for k,v in stock_type.items()}
 
 
 class ValidateCompanyForm(FormValidationAction):
@@ -28,6 +71,27 @@ class ValidateCompanyForm(FormValidationAction):
         if len(slot_value.split(" ")) > 1:
             dispatcher.utter_message(text="Sorry, I can't find such company. Please repeat")
             return {"company": None}
+
+        if slot_value.lower() not in name_symbol_mapper:
+            company_symbol , ambiguity = finance_api.get_symbol_from_name(slot_value, debug=False)
+            if company_symbol is None:
+                print(f"{slot_value} not found")
+                dispatcher.utter_message(text=f"I didn't manage to find {slot_value} in my database, please try with another company.")        
+                
+                # provide a simple reccomendation based on prev. history
+                if sum([v for k , v in stock_type_counter.items()]) == 0: #if is first search suggest random
+                    index = random.randint(0, len(set(stock_type.values())))
+                    proposed = stock_names[index]
+                    dispatcher.utter_message(text=f"In case you are looking for something new, I may suggest you to check out {proposed}")                    
+                else: #suggest based on prev. experience
+                    index = np.argmax(list(stock_type_counter.values()))
+                    proposed_type = stock_type_counter[index]
+                    possible_proposals = [k for k , v in stock_type.items() if v == proposed_type]
+                    proposed = possible_proposals[random.randint(0, len(possible_proposals))]
+                    dispatcher.utter_message(text=f"Based on your previous searches, I may suggest you to check out {proposed}")                    
+
+                print(proposed, "was proposed")
+                return {"company": None}
         else:
             print("Validation ok")
             return {"company": slot_value}
@@ -60,8 +124,6 @@ class ValidatePlotTypeForm(FormValidationAction):
 
 
 
-
-name_symbol_mapper = {}
 class ActionGetStockValues(Action):
     def name(self) -> Text:
         return "get_stock_value"
@@ -73,6 +135,10 @@ class ActionGetStockValues(Action):
         company_name = tracker.get_slot("company")
         if company_name.lower() not in name_symbol_mapper:
             company_symbol , ambiguity = finance_api.get_symbol_from_name(company_name, debug=False)
+            if company_symbol is None:
+                print(f"{company_name} not found")
+                dispatcher.utter_message(text=f"I didn't manage to find {company_name} in my database. Try with another company.")        
+                return [AllSlotsReset()]
             if ambiguity:
                 print("Ambuigity for ", company_name)
             name_symbol_mapper[company_name.lower()] = company_symbol
@@ -111,6 +177,10 @@ class ActionPredictTrend(Action):
         company_name = tracker.get_slot("company")
         if company_name.lower() not in name_symbol_mapper:
             company_symbol , ambiguity = finance_api.get_symbol_from_name(company_name, debug=False)
+            if company_symbol is None:
+                print(f"{company_name} not found")
+                dispatcher.utter_message(text=f"I didn't manage to find {company_name} in my database. Try with another company.")        
+                return []
             if ambiguity:
                 print("Ambuigity for ", company_name)
             name_symbol_mapper[company_name.lower()] = company_symbol

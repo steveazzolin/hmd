@@ -259,9 +259,9 @@ stories:
   - active_loop: null
   - slot_was_set:
     - plot_type: Any_plot
-
   - action: send_stock_value_plot
   - action: utter_stock_plot_sent
+  - action: clear_company
 
 - story: Stock updates + deny telegram plot
   steps:
@@ -580,3 +580,110 @@ stories:
   - action: clear_company
   - slot_was_set:
     - company: null
+
+- story: interactive_story_1
+  steps:
+  - intent: stock_value
+  - action: company_form
+  - active_loop: company_form
+  - slot_was_set:
+    - requested_slot: company
+  - slot_was_set:
+    - company: apple
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: get_stock_value
+  - slot_was_set:
+    - company_symbol: AAPL
+  - slot_was_set:
+    - company_stock_value: 132.37
+  - slot_was_set:
+    - currency: USD
+  - action: utter_stock_value
+  - action: save_asked_company
+  - slot_was_set:
+    - companies_stock_asked:
+      - apple
+  - action: utter_want_stock_plot
+  - intent: affirm
+  - action: plot_type_form
+  - active_loop: plot_type_form
+  - slot_was_set:
+    - requested_slot: plot_type
+  - slot_was_set:
+    - plot_type: candle
+  - slot_was_set:
+    - plot_type: candle
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: send_stock_value_plot
+  - action: utter_stock_plot_sent
+  - action: clear_company
+  - slot_was_set:
+    - company: null
+
+
+# - story: test to stop story if company not found
+#   steps:
+#   - intent: stock_value
+#   - action: company_form
+#   - active_loop: company_form
+#   - slot_was_set:
+#     - requested_slot: company
+#   - slot_was_set:
+#     - company: deepmind
+#   - slot_was_set:
+#     - requested_slot: null
+#   - active_loop: null
+#   - action: get_stock_value
+#   - slot_was_set:
+#     - company_symbol: null
+#   - action: utter_company_not_found
+#   - action: clear_company
+
+# - story: interactive_story_1
+#   steps:
+#   - intent: stock_value
+#   - action: company_form
+#   - active_loop: company_form
+#   - slot_was_set:
+#     - requested_slot: company
+#   - slot_was_set:
+#     - company: deepmind
+#   - slot_was_set:
+#     - requested_slot: null
+#   - active_loop: null
+#   - action: get_stock_value
+#   - action: utter_company_not_found
+#   - action: clear_company
+#   - slot_was_set:
+#     - company: null
+#   - intent: stock_value
+#   - action: company_form
+#   - active_loop: company_form
+#   - slot_was_set:
+#     - requested_slot: company
+#   - slot_was_set:
+#     - company: google
+#   - slot_was_set:
+#     - company: google
+#   - slot_was_set:
+#     - requested_slot: null
+#   - active_loop: null
+#   - action: get_stock_value
+#   - slot_was_set:
+#     - company_symbol: GOOG
+#   - slot_was_set:
+#     - company_stock_value: 89.15
+#   - slot_was_set:
+#     - currency: USD
+#   - action: utter_stock_value
+#   - action: save_asked_company
+#   - slot_was_set:
+#     - companies_stock_asked:
+#       - google
+#   - action: utter_want_stock_plot
+#   - intent: deny
+#   - action: utter_stopped
