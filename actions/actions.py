@@ -19,22 +19,22 @@ from rasa_sdk.events import SlotSet, UserUttered, ActionExecuted, ActiveLoop, Ev
 
 
 stock_names = [
-        "GOOG",
-        "apple",
-        "tesla",
-        "meta",
-        "pfizer",
-        "juventus",
-        "roma",
-        "microsoft",
-        "netflix",
-        "amazon",
-        "nvidia",
-        "nike",
-        "neo",
-        "cisco",
-        "intel",
-        "qualcomm"
+        "Google",
+        "Apple",
+        "Tesla",
+        "Meta",
+        "Pfizer",
+        "Juventus",
+        "Roma",
+        "Microsoft",
+        "Netflix",
+        "Amazon",
+        "Nvidia",
+        "Nike",
+        "Neo",
+        "Cisco",
+        "Intel",
+        "Qualcomm"
 ]
 stock_type = {
         'GOOG': "sw", 
@@ -84,17 +84,24 @@ class ValidateCompanyForm(FormValidationAction):
                     proposed = stock_names[index]
                     dispatcher.utter_message(text=f"In case you are looking for something new, I may suggest you to check out {proposed}")                    
                 else: #suggest based on prev. experience
-                    index = np.argmax(list(stock_type_counter.values()))
-                    proposed_type = stock_type_counter[index]
-                    possible_proposals = [k for k , v in stock_type.items() if v == proposed_type]
-                    proposed = possible_proposals[random.randint(0, len(possible_proposals))]
+                    index = np.argmax(list(stock_type_counter.values()))  #the most freq. type of stock
+                    proposed_type = list(stock_type_counter.keys())[index]
+                    possible_proposals = [stock_names[i] for i , (k,v) in enumerate(stock_type.items()) if v == proposed_type and v not in tracker.get_slot("companies_stock_asked")] 
+                    proposed = possible_proposals[random.randint(0, len(possible_proposals)-1) if len(possible_proposals) > 1 else 0]
                     dispatcher.utter_message(text=f"Based on your previous searches, I may suggest you to check out {proposed}")                    
 
                 print(proposed, "was proposed")
                 return {"company": None}
+            else:
+                name_symbol_mapper[slot_value.lower()] = company_symbol
         else:
-            print("Validation ok")
-            return {"company": slot_value}
+            company_symbol = name_symbol_mapper[slot_value.lower()]
+        
+        print("Validation ok")
+        if company_symbol in stock_type.keys():
+            print(f"Updating stock_type for {stock_type[company_symbol]}")
+            stock_type_counter[stock_type[company_symbol]] += 1
+        return {"company": slot_value}
 
 class ValidatePlotTypeForm(FormValidationAction):
     def name(self) -> Text:
