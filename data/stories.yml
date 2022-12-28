@@ -640,6 +640,7 @@ stories:
   - action: save_asked_company
   - action: utter_what_todo_next
 
+
 - story: Main task - don't want the description of the company
   steps:
   - intent: suggest
@@ -656,6 +657,36 @@ stories:
   - action: utter_investment_type
   - action: suggest_investment_type_form
   - active_loop: suggest_investment_type_form
+  - slot_was_set:
+    - requested_slot: suggest_investment_type
+  - slot_was_set:
+    - suggest_investment_type: shorting
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null  
+  - action: make_suggestion
+  - action: utter_ask_want_description
+  - intent: deny
+  - action: utter_stopped
+
+- story: Main task - don't want the description of the company
+  steps:
+  - intent: suggest
+  - action: utter_choose_category
+  - action: suggest_category_form
+  - active_loop: suggest_category_form
+  - slot_was_set:
+    - requested_slot: suggest_category
+  - slot_was_set:
+    - suggest_category: sport
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null  
+  - action: utter_investment_type
+  - action: suggest_investment_type_form
+  - active_loop: suggest_investment_type_form
+  - intent: clarify_investment_type
+  - action: clarify_investment_type
   - slot_was_set:
     - requested_slot: suggest_investment_type
   - slot_was_set:
