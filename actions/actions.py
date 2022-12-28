@@ -448,6 +448,6 @@ class ActionMakeSuggestion(Action):
 
         return [
             SlotSet("suggest_category", None), 
-            SlotSet("inv_type", None), 
+            SlotSet("suggest_investment_type", None), 
             SlotSet("company", proposed)
         ]
