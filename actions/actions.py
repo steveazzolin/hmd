@@ -37,22 +37,22 @@ stock_names = [
         "Qualcomm"
 ]
 stock_type = {
-        'GOOG': "sw", 
-        'AAPL': "sw", 
+        'GOOG': "software", 
+        'AAPL': "software", 
         'TSLA': "car", 
-        'META': "sw", 
+        'META': "software", 
         'PFE': "medicine", 
         'JVTSF': "sport", 
         'NROM': "sport", 
-        'MSFT': "sw", 
+        'MSFT': "software", 
         'NFLX': "entert", 
         'AMZN': "entert", 
-        'NVDA': "hw", 
-        'NKE': "enter", 
+        'NVDA': "hardware", 
+        'NKE': "entert", 
         'NEO': "car", 
-        'CSCO': "hw", 
-        'INTC': "hw", 
-        'QCOM': "hw"
+        'CSCO': "hardware", 
+        'INTC': "hardware", 
+        'QCOM': "hardware"
 }
 name_symbol_mapper = {}
 stock_type_counter = {v:0 for k,v in stock_type.items()}
@@ -136,7 +136,7 @@ class ValidateSuggestCategoryForm(FormValidationAction):
     @staticmethod
     def plots_db() -> List[Text]:
         """Database of supported categories"""
-        return ["sport", "software", "hardware", "cars", "car"]
+        return ["sport", "software", "hardware", "cars", "car", "entert"]
 
     def validate_suggest_category(
         self,
@@ -149,6 +149,8 @@ class ValidateSuggestCategoryForm(FormValidationAction):
 
         if slot_value.lower() in self.plots_db():
             print(f"Validating suggest_category = True ({slot_value})")
+            if slot_value == "cars":
+                slot_value = "car"
             return {"suggest_category": slot_value}
         else:
             # validation failed, set this slot to None so that the user will be asked for the slot again
@@ -431,10 +433,16 @@ class ActionMakeSuggestion(Action):
         inv_type = tracker.get_slot("inv_type")
 
         #EXTENSION: include here some business logic to take into consideration the investment type specified by the user
-        possible_proposals = [stock_names[i] for i , (k,v) in enumerate(stock_type.items()) if v == category and stock_names[i].lower() not in tracker.get_slot("companies_stock_asked")] 
+        possible_proposals = [(k, stock_names[i]) for i , (k,v) in enumerate(stock_type.items()) if v == category and stock_names[i].lower() not in tracker.get_slot("companies_stock_asked")] 
         print("possible_proposals: ", possible_proposals)
         proposed = possible_proposals[random.randint(0, len(possible_proposals)-1) if len(possible_proposals) > 1 else 0]
-        dispatcher.utter_message(text=f"Got it. I believe that a good fit can be {proposed}")                    
+        print("the chosen is: ", proposed)
+        dispatcher.utter_message(text=f"Got it. I believe that a good fit can be {proposed[1]}")  
+
+        if proposed[0] in stock_type.keys():
+            print(f"Updating stock_type for {stock_type[proposed[0]]}")
+            stock_type_counter[stock_type[proposed[0]]] += 1   
+
         return [
             SlotSet("suggest_category", None), 
             SlotSet("inv_type", None), 
