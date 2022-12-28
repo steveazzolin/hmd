@@ -634,7 +634,7 @@ stories:
     - requested_slot: null
   - active_loop: null  
   - action: make_suggestion
-  - action: ask_want_description
+  - action: utter_ask_want_description
   - intent: affirm
   - action: get_company_info
 
@@ -662,7 +662,7 @@ stories:
     - requested_slot: null
   - active_loop: null  
   - action: make_suggestion
-  - action: ask_want_description
+  - action: utter_ask_want_description
   - intent: deny
   - action: utter_stopped
 
