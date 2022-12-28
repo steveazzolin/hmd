@@ -126,6 +126,7 @@ responses:
   - text: Do you want more info about {company}?
 actions:
 - ask_want_stock
+- ask_want_description
 - clear_company
 - clear_company_with_msg
 - get_best_index
