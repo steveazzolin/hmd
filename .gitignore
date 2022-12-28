@@ -1,1 +1,4 @@
 actions/api_keys.py
+plots/*
+results/*
+__pycache__/*
