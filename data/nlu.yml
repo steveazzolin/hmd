@@ -75,7 +75,7 @@ nlu:
     - What kind of company is [Amazon](company) ?
     - what is [google](company)
     - [google](company)
-    - [google](company)
+    - [amazon](company)
 - intent: change_plot_type
   examples: |
     - i want [line](plot_type) plots
