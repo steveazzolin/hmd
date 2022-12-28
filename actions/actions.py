@@ -170,6 +170,8 @@ class ValidateInvestmentTypeForm(FormValidationAction):
         domain: DomainDict,
     ) -> Dict[Text, Any]:
 
+        print(slot_value)
+
         if "shorting" in slot_value.lower():
             print(f"Validating suggest_investment_type = shorting ({slot_value})")
             return {"suggest_investment_type": "shorting"}
@@ -430,7 +432,7 @@ class ActionMakeSuggestion(Action):
         print("ActionMakeSuggestion")
         
         category = tracker.get_slot("suggest_category")
-        inv_type = tracker.get_slot("inv_type")
+        inv_type = tracker.get_slot("suggest_investment_type")
 
         #EXTENSION: include here some business logic to take into consideration the investment type specified by the user
         possible_proposals = [(k, stock_names[i]) for i , (k,v) in enumerate(stock_type.items()) if v == category and stock_names[i].lower() not in tracker.get_slot("companies_stock_asked")] 
