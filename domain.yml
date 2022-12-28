@@ -160,6 +160,7 @@ actions:
 - validate_plot_type_form
 - validate_suggest_category_form
 - validate_suggest_investment_type_form
+- make_suggestion
 forms:
   company_form:
     required_slots:

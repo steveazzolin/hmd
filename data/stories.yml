@@ -642,7 +642,7 @@ stories:
   - slot_was_set:
     - requested_slot: null
   - active_loop: null  
-  - action: utter_happy
+  - action: make_suggestion
 
   # - action: utter_ask_want_news_link
   # - intent: deny

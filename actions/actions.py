@@ -147,11 +147,6 @@ class ValidateSuggestCategoryForm(FormValidationAction):
     ) -> Dict[Text, Any]:
         """Validate suggest_category value."""
 
-        print(tracker.latest_message)
-        print(tracker.latest_message["intent"]["name"])
-        print(tracker.latest_message["entities"])
-        print()
-
         if slot_value.lower() in self.plots_db():
             print(f"Validating suggest_category = True ({slot_value})")
             return {"suggest_category": slot_value}
@@ -172,11 +167,6 @@ class ValidateInvestmentTypeForm(FormValidationAction):
         tracker: Tracker,
         domain: DomainDict,
     ) -> Dict[Text, Any]:
-
-        print(tracker.latest_message)
-        print(tracker.latest_message["intent"]["name"])
-        print(tracker.latest_message["entities"])
-        print()
 
         if "shorting" in slot_value.lower():
             print(f"Validating suggest_investment_type = shorting ({slot_value})")
@@ -426,3 +416,27 @@ class ActionSaveFeedback(Action):
 
         dispatcher.utter_message(text=f"Thank you for helping us! We will forward the message to the developers")
         return [SlotSet("feedback", None)]
+
+
+class ActionMakeSuggestion(Action):
+    def name(self) -> Text:
+        return "make_suggestion"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        print("ActionMakeSuggestion")
+        
+        category = tracker.get_slot("suggest_category")
+        inv_type = tracker.get_slot("inv_type")
+
+        #EXTENSION: include here some business logic to take into consideration the investment type specified by the user
+        possible_proposals = [stock_names[i] for i , (k,v) in enumerate(stock_type.items()) if v == category and stock_names[i].lower() not in tracker.get_slot("companies_stock_asked")] 
+        print("possible_proposals: ", possible_proposals)
+        proposed = possible_proposals[random.randint(0, len(possible_proposals)-1) if len(possible_proposals) > 1 else 0]
+        dispatcher.utter_message(text=f"Got it. I believe that a good fit can be {proposed}")                    
+        return [
+            SlotSet("suggest_category", None), 
+            SlotSet("inv_type", None), 
+            SlotSet("company", proposed)
+        ]
