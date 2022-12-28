@@ -16,9 +16,12 @@ rules:
     - requested_slot: null
 
 - rule: Reset the rasa state when user want to change path
+  condition:
+  - active_loop: company_form
   steps:
   - intent: reset
   - action: reset
+  - action: action_deactivate_loop
   - active_loop: null
   - slot_was_set:
     - requested_slot: null

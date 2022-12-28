@@ -125,6 +125,8 @@ responses:
   utter_ask_want_description:
   - text: Would you like to know more about {company}?
   - text: Do you want more info about {company}?
+  utter_what_todo_next:
+  - text: How can I help you now?
 actions:
 - ask_want_stock
 - clear_company
