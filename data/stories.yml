@@ -484,9 +484,9 @@ stories:
   - action: save_feedback
 
 
-- story: Help
-  steps:
-  - action: utter_help1
+# - story: Help
+#   steps:
+#   - action: utter_help1
   
 - story: interactive_story_1
   steps:

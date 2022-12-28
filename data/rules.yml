@@ -11,15 +11,6 @@ rules:
   steps:
   - intent: help
   - action: utter_help1
-  - action: utter_help2
-  - action: utter_help3
-  - action: utter_help4
-  - action: utter_help5
-  - action: utter_help6
-  - action: utter_help7
-  - action: utter_help8
-  - action: utter_help9
-
 
 ###
 # Domain specific rules
