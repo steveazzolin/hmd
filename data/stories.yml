@@ -637,9 +637,10 @@ stories:
   - action: utter_ask_want_description
   - intent: affirm
   - action: get_company_info
+  - action: save_asked_company
   - action: utter_what_todo_next
 
-- story: Main task - don't want the desciption of the company
+- story: Main task - don't want the description of the company
   steps:
   - intent: suggest
   - action: utter_choose_category
