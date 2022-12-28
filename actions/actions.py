@@ -66,7 +66,7 @@ class ValidateCompanyForm(FormValidationAction):
         # TODO: capture more intents here. Do not include company_info unless you change nlu pattern
         print("Validating", slot_value)
         if tracker.latest_message['intent']['name'] in ["deny", "reset"]: # and tracker.latest_message['intent']['confidence'] >= 0.7
-            return {"requested_slot": None, "company": None}
+            return {}
 
         if len(slot_value.split(" ")) > 1:
             dispatcher.utter_message(text="Sorry, I can't find such company. Please repeat")
