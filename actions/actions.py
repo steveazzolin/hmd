@@ -146,14 +146,13 @@ class ValidateSuggestCategoryForm(FormValidationAction):
         domain: DomainDict,
     ) -> Dict[Text, Any]:
         """Validate suggest_category value."""
-        print("In here")
 
         if slot_value.lower() in self.plots_db():
-            print("Validating suggest_category = True")
+            print(f"Validating suggest_category = True ({slot_value})")
             return {"suggest_category": slot_value}
         else:
             # validation failed, set this slot to None so that the user will be asked for the slot again
-            print("Validating suggest_category = False")
+            print(f"Validating suggest_category = False ({slot_value})")
             return {"suggest_category": None}
 
 class ActionGetStockValues(Action):
