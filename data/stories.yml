@@ -635,7 +635,7 @@ stories:
   - active_loop: null  
   - action: make_suggestion
   - action: ask_want_description
-  - action: affirm
+  - intent: affirm
   - action: get_company_info
 
 - story: Main task - don't want the desciption of the company
@@ -663,7 +663,7 @@ stories:
   - active_loop: null  
   - action: make_suggestion
   - action: ask_want_description
-  - action: deny
+  - intent: deny
   - action: utter_stopped
 
   # - action: utter_ask_want_news_link
