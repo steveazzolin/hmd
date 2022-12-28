@@ -147,12 +147,18 @@ class ValidateSuggestCategoryForm(FormValidationAction):
     ) -> Dict[Text, Any]:
         """Validate suggest_category value."""
 
+        print(tracker.latest_message)
+        print(tracker.latest_message["intent"]["name"])
+        print(tracker.latest_message["entities"])
+        print()
+
         if slot_value.lower() in self.plots_db():
             print(f"Validating suggest_category = True ({slot_value})")
             return {"suggest_category": slot_value}
         else:
             # validation failed, set this slot to None so that the user will be asked for the slot again
             print(f"Validating suggest_category = False ({slot_value})")
+            dispatcher.utter_message(text=f"I didn't manage to find {slot_value} in my database.")
             return {"suggest_category": None}
 
 class ActionGetStockValues(Action):

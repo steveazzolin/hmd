@@ -174,4 +174,4 @@ forms:
     required_slots:
       suggest_category:
       - entity: suggest_category
-        type: from_text
+        type: from_entity

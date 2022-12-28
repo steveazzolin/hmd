@@ -104,7 +104,6 @@ nlu:
   examples: |
     - i want to give some feddback
     - feedback
-    - suggestions
     - i found a problem
     - can you add a feature?
 - intent: help
@@ -142,6 +141,8 @@ nlu:
     - [sw](suggest_category)
     - [hw](suggest_category)
     - [car](suggest_category) companies
+    - i want [hw](suggest_category)
+    - i want [sport](suggest_category) stocks
 - intent: nlu_fallback
   examples: |
     - apple
