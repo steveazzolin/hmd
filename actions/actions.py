@@ -435,7 +435,8 @@ class ActionMakeSuggestion(Action):
         inv_type = tracker.get_slot("suggest_investment_type")
 
         #EXTENSION: include here some business logic to take into consideration the investment type specified by the user
-        possible_proposals = [(k, stock_names[i]) for i , (k,v) in enumerate(stock_type.items()) if v == category and stock_names[i].lower() not in tracker.get_slot("companies_stock_asked")] 
+        companies_so_far = tracker.get_slot("companies_stock_asked") if tracker.get_slot("companies_stock_asked") is not None else []
+        possible_proposals = [(k, stock_names[i]) for i , (k,v) in enumerate(stock_type.items()) if v == category and stock_names[i].lower() not in companies_so_far] 
         print("possible_proposals: ", possible_proposals)
         proposed = possible_proposals[random.randint(0, len(possible_proposals)-1) if len(possible_proposals) > 1 else 0]
         print("the chosen is: ", proposed)
