@@ -169,3 +169,6 @@ nlu:
     - Hardware
     - hw
     - HW
+- synonym: sport
+  examples: |
+    - sports

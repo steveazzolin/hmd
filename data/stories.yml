@@ -487,15 +487,6 @@ stories:
 - story: Help
   steps:
   - action: utter_help1
-  - action: utter_help2
-  - action: utter_help3
-  - action: utter_help4
-  - action: utter_help5
-  - action: utter_help6
-  - action: utter_help7
-  - action: utter_help8
-  - action: utter_help9
-
   
 - story: interactive_story_1
   steps:
@@ -619,7 +610,7 @@ stories:
     - company: null
 
 
-- story: Main task - don't know the investment type
+- story: Main task - want description of the company
   steps:
   - intent: suggest
   - action: utter_choose_category
@@ -643,6 +634,37 @@ stories:
     - requested_slot: null
   - active_loop: null  
   - action: make_suggestion
+  - action: ask_want_description
+  - action: affirm
+  - action: get_company_info
+
+- story: Main task - don't want the desciption of the company
+  steps:
+  - intent: suggest
+  - action: utter_choose_category
+  - action: suggest_category_form
+  - active_loop: suggest_category_form
+  - slot_was_set:
+    - requested_slot: suggest_category
+  - slot_was_set:
+    - suggest_category: sport
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null  
+  - action: utter_investment_type
+  - action: suggest_investment_type_form
+  - active_loop: suggest_investment_type_form
+  - slot_was_set:
+    - requested_slot: suggest_investment_type
+  - slot_was_set:
+    - suggest_investment_type: shorting
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null  
+  - action: make_suggestion
+  - action: ask_want_description
+  - action: deny
+  - action: utter_stopped
 
   # - action: utter_ask_want_news_link
   # - intent: deny
