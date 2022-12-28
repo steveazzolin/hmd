@@ -633,6 +633,16 @@ stories:
     - requested_slot: null
   - active_loop: null  
   - action: utter_investment_type
+  - action: suggest_investment_type_form
+  - active_loop: suggest_investment_type_form
+  - slot_was_set:
+    - requested_slot: suggest_investment_type
+  - slot_was_set:
+    - suggest_investment_type: shorting
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null  
+  - action: utter_happy
 
   # - action: utter_ask_want_news_link
   # - intent: deny

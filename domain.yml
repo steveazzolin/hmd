@@ -19,16 +19,21 @@ intents:
 - help
 - suggest
 - suggest_category
+- suggest_investment_type
 entities:
 - company
 - feedback
 - plot_type
 - suggest_category
+- suggest_investment_type
 slots:
   company:
     type: text
     influence_conversation: true
   suggest_category:
+    type: text
+    influence_conversation: true
+  suggest_investment_type:
     type: text
     influence_conversation: true
   plot_type:
@@ -154,6 +159,7 @@ actions:
 - validate_company_form
 - validate_plot_type_form
 - validate_suggest_category_form
+- validate_suggest_investment_type_form
 forms:
   company_form:
     required_slots:
@@ -175,3 +181,8 @@ forms:
       suggest_category:
       - entity: suggest_category
         type: from_entity
+  suggest_investment_type_form:
+    required_slots:
+        suggest_investment_type:
+        - entity: suggest_investment_type
+          type: from_entity

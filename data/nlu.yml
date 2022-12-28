@@ -143,6 +143,15 @@ nlu:
     - [car](suggest_category) companies
     - i want [hw](suggest_category)
     - i want [sport](suggest_category) stocks
+- intent: suggest_investment_type
+  examples: |
+      - i am interested in [shorting](suggest_investment_type) 
+      - i prefer [shorting](suggest_investment_type)
+      - i do [long range investment](suggest_investment_type)
+      - [long range](suggest_investment_type)
+      - [shorting](suggest_investment_type)
+      - [not sure](suggest_investment_type)
+      - [i don't know](suggest_investment_type)
 - intent: nlu_fallback
   examples: |
     - apple

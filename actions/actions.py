@@ -136,7 +136,7 @@ class ValidateSuggestCategoryForm(FormValidationAction):
     @staticmethod
     def plots_db() -> List[Text]:
         """Database of supported categories"""
-        return ["sport", "software", "hardware", "cars"]
+        return ["sport", "software", "hardware", "cars", "car"]
 
     def validate_suggest_category(
         self,
@@ -158,8 +158,36 @@ class ValidateSuggestCategoryForm(FormValidationAction):
         else:
             # validation failed, set this slot to None so that the user will be asked for the slot again
             print(f"Validating suggest_category = False ({slot_value})")
-            dispatcher.utter_message(text=f"I didn't manage to find {slot_value} in my database.")
+            dispatcher.utter_message(text=f"I didn't manage to find {slot_value} in my database. Please try with another category.")
             return {"suggest_category": None}
+
+class ValidateInvestmentTypeForm(FormValidationAction):
+    def name(self) -> Text:
+        return "validate_suggest_investment_type_form"
+
+    def validate_suggest_investment_type(
+        self,
+        slot_value: Any,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: DomainDict,
+    ) -> Dict[Text, Any]:
+
+        print(tracker.latest_message)
+        print(tracker.latest_message["intent"]["name"])
+        print(tracker.latest_message["entities"])
+        print()
+
+        if "shorting" in slot_value.lower():
+            print(f"Validating suggest_investment_type = shorting ({slot_value})")
+            return {"suggest_investment_type": "shorting"}
+        elif "long range" in slot_value.lower():
+            print(f"Validating suggest_investment_type = long range ({slot_value})")
+            return {"suggest_investment_type": "long range"}
+        else:
+            print(f"Validating suggest_investment_type = don't know ({slot_value})")
+            dispatcher.utter_message(text=f"If you are not sure try with either 'shorting' or 'long range'")
+            return {"suggest_investment_type": None}
 
 class ActionGetStockValues(Action):
     def name(self) -> Text:
