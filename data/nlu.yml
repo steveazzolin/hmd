@@ -122,9 +122,40 @@ nlu:
     - hi
     - hello
     - hey there
+- intent: suggest
+  examples: |
+    - Can you give me some suggestions on which stock to buy?
+    - Can you give me some suggestions on what to buy?
+    - What should I buy?
+    - Suggest me something
+    - I don't know what to buy
+    - Give me a promising stock
+    - What should I invest on?
+    - Suggestion
+- intent: suggest_category
+  examples: |
+    - I am interested in [software](suggest_category) companies
+    - I am interested in [hardware](suggest_category) companies
+    - I am interested in [sport](suggest_category) companies
+    - I am interested in [car](suggest_category) companies
+    - [car](suggest_category)
+    - [sw](suggest_category)
+    - [hw](suggest_category)
+    - [car](suggest_category) companies
 - intent: nlu_fallback
   examples: |
     - apple
+
 - synonym: Meta
   examples: |
     - Facebook
+- synonym: software
+  examples: |
+    - Software
+    - sw
+    - SW
+- synonym: hardware
+  examples: |
+    - Hardware
+    - hw
+    - HW

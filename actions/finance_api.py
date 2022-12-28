@@ -75,6 +75,10 @@ def get_past_values_from_symbol(symbol, debug=False, start_date=None, end_date=N
     return panel_data
 
 def create_past_values_plot(data, company_name, type):
+    if len(data.index) == 0:
+        print("No data to generate the plot")
+        return None
+
     path = "plots/plot.jpeg"
     title = f"{company_name.upper()} {data.index[0].strftime('%Y/%m/%d')}-{data.index[-1].strftime('%Y/%m/%d')}"
     xlabel = "Time period"

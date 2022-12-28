@@ -86,7 +86,7 @@ class ValidateCompanyForm(FormValidationAction):
                 else: #suggest based on prev. experience
                     index = np.argmax(list(stock_type_counter.values()))  #the most freq. type of stock
                     proposed_type = list(stock_type_counter.keys())[index]
-                    possible_proposals = [stock_names[i] for i , (k,v) in enumerate(stock_type.items()) if v == proposed_type and v not in tracker.get_slot("companies_stock_asked")] 
+                    possible_proposals = [stock_names[i] for i , (k,v) in enumerate(stock_type.items()) if v == proposed_type and stock_names[i].lower() not in tracker.get_slot("companies_stock_asked")] 
                     proposed = possible_proposals[random.randint(0, len(possible_proposals)-1) if len(possible_proposals) > 1 else 0]
                     dispatcher.utter_message(text=f"Based on your previous searches, I may suggest you to check out {proposed}")                    
 
@@ -129,7 +129,31 @@ class ValidatePlotTypeForm(FormValidationAction):
             print("Validating plot_type = False")
             return {"plot_type": None}
 
+class ValidateSuggestCategoryForm(FormValidationAction):
+    def name(self) -> Text:
+        return "validate_suggest_category_form"
 
+    @staticmethod
+    def plots_db() -> List[Text]:
+        """Database of supported categories"""
+        return ["sport", "software", "hardware", "cars"]
+
+    def validate_suggest_category(
+        self,
+        slot_value: Any,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: DomainDict,
+    ) -> Dict[Text, Any]:
+        """Validate suggest_category value."""
+
+        if slot_value.lower() in self.plots_db():
+            print("Validating suggest_category = True")
+            return {"suggest_category": slot_value}
+        else:
+            # validation failed, set this slot to None so that the user will be asked for the slot again
+            print("Validating suggest_category = False")
+            return {"suggest_category": None}
 
 class ActionGetStockValues(Action):
     def name(self) -> Text:
@@ -169,7 +193,12 @@ class ActionSendTelegramPlot(Action):
         data = finance_api.get_past_values_from_symbol(name_symbol_mapper[company_name.lower()], debug=True)
         print("Plot type: ", tracker.get_slot("plot_type"))
         plot_path = finance_api.create_past_values_plot(data, company_name, type=tracker.get_slot("plot_type"))
-        finance_api.send_plot_telegram(plot_path, message="Here the plot that you requested:")
+        
+        if plot_path is None:
+            dispatcher.utter_message(text=f"I'm sorry, a problem with the API occured. I can't generate the plot now.")        
+        else:
+            finance_api.send_plot_telegram(plot_path, message="Here the plot that you requested:")
+            dispatcher.utter_message(text=f"Sent!")        
         return []
 
 class ActionPredictTrend(Action):

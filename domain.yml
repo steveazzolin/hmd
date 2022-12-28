@@ -17,12 +17,18 @@ intents:
 - worst_index
 - feedback
 - help
+- suggest
+- suggest_category
 entities:
 - company
 - feedback
 - plot_type
+- suggest_category
 slots:
   company:
+    type: text
+    influence_conversation: true
+  suggest_category:
     type: text
     influence_conversation: true
   plot_type:
@@ -91,16 +97,13 @@ responses:
   utter_want_stock_plot:
   - text: Do you want me to send you a Telegram report of the stock performance for the last period?
   - text: Do you want the plot of the past performances on Telegram?
-  utter_stock_plot_sent:
-  - text: Sent!
-  - text: Done!
   utter_plot_type_changed:
   - text: Your preferences have been updated. The type of the plot is now {plot_type}.
   utter_ask_feedback:
   - text: Please, tell me what you are thinking
   utter_help1:
-  - image: http://azzolinsteve.altervista.org/hmd_project/fin_logo.png
-    text: Hi! My name is FIN
+  #- image: http://azzolinsteve.altervista.org/hmd_project/fin_logo.png
+  - text: Hi! My name is FIN
   utter_help2:
   - text: I'm the FINancial chatbot, here to help you with queries about the stock market and about news about companies
   utter_help3:
@@ -125,6 +128,10 @@ responses:
   - text: Sorry I didn't get that. Can you rephrase?
   utter_company_not_found:
   - text: I didn't manage to find {company} in my database. Try with another company.
+  utter_choose_category:
+  - text: Which stock category are you interested in? Examples are Sport or Software
+  utter_investment_type:
+  - text: Great! Which kind of investment are you looking for?
 actions:
 - ask_want_stock
 - clear_company
@@ -161,4 +168,9 @@ forms:
     required_slots:
       feedback:
       - entity: feedback
+        type: from_text
+  suggest_category_form:
+    required_slots:
+      suggest_category:
+      - entity: suggest_category
         type: from_text

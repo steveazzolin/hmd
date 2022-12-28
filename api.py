@@ -123,32 +123,8 @@ def telegram():
 from actions import finance_api
 import pandas_datareader.data as web
 
-keys = [
-        "GOOG",
-        "apple",
-        "tesla",
-        "meta",
-        "pfizer",
-        "juventus",
-        "roma",
-        "microsoft",
-        "netflix",
-        "amazon",
-        "nvidia",
-        "nike",
-        "neo",
-        "cisco",
-        "intel",
-        "qualcomm"
-]
-ret = {}
-for k in keys:
-    company_symbol , ambiguity = finance_api.get_symbol_from_name(k, debug=False)
-    ret[k] = company_symbol
-    
-print(ret)
 
-company_symbol , ambiguity = finance_api.get_symbol_from_name("apple", debug=False)
+company_symbol , ambiguity = finance_api.get_symbol_from_name("juventus", debug=False)
 finance_api.get_value_from_symbol(company_symbol, debug=False)
 
 # company_symbol , ambiguity = finance_api.get_symbol_from_name("amazon", debug=False)

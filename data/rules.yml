@@ -81,6 +81,22 @@ rules:
   - slot_was_set:
     - requested_slot: null
   wait_for_user_input: false
+
+- rule: Activate suggest_category form
+  steps:
+  - intent: suggest_category
+  - action: suggest_category_form
+  - active_loop: suggest_category_form
+
+- rule: Submit suggest_category_form
+  condition:
+  - active_loop: suggest_category_form
+  steps:
+  - action: suggest_category_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  wait_for_user_input: false
   
 - rule: Give feedback
   steps:

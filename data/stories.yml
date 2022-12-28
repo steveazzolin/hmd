@@ -109,7 +109,6 @@ stories:
   - slot_was_set:
     - plot_type: Any_plot
   - action: send_stock_value_plot
-  - action: utter_stock_plot_sent
   - action: clear_company
 
 
@@ -142,7 +141,6 @@ stories:
   - slot_was_set:
     - plot_type: Any_plot
   - action: send_stock_value_plot
-  - action: utter_stock_plot_sent
   - action: clear_company
 
 
@@ -260,7 +258,6 @@ stories:
   - slot_was_set:
     - plot_type: Any_plot
   - action: send_stock_value_plot
-  - action: utter_stock_plot_sent
   - action: clear_company
 
 - story: Stock updates + deny telegram plot
@@ -363,7 +360,6 @@ stories:
   - slot_was_set:
     - plot_type: Any_plot
   - action: send_stock_value_plot
-  - action: utter_stock_plot_sent
   - action: clear_company
 
 
@@ -544,7 +540,6 @@ stories:
     - requested_slot: null
   - active_loop: null
   - action: send_stock_value_plot
-  - action: utter_stock_plot_sent
   - action: clear_company
   - slot_was_set:
     - company: null
@@ -619,10 +614,56 @@ stories:
     - requested_slot: null
   - active_loop: null
   - action: send_stock_value_plot
-  - action: utter_stock_plot_sent
   - action: clear_company
   - slot_was_set:
     - company: null
+
+
+- story: Main task - don't know the investment type
+  steps:
+  - intent: suggest
+  - action: utter_choose_category
+  - action: suggest_category_form
+  - active_loop: suggest_category_form
+  - slot_was_set:
+    - requested_slot: suggest_category
+  - slot_was_set:
+    - suggest_category: sport
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null  
+  - action: utter_investment_type
+
+  # - action: utter_ask_want_news_link
+  # - intent: deny
+  # - action: utter_ok
+  # - action: ask_want_stock
+  # - intent: affirm
+  # - action: get_stock_value
+  # - slot_was_set:
+  #   - company_symbol: META
+  # - slot_was_set:
+  #   - company_stock_value: 170.57
+  # - slot_was_set:
+  #   - currency: USD
+  # - action: utter_stock_value
+  # - action: utter_want_stock_plot
+  # - intent: affirm
+  # - action: plot_type_form
+  # - active_loop: plot_type_form
+  # - slot_was_set:
+  #   - requested_slot: plot_type
+  # - slot_was_set:
+  #   - plot_type: line
+  # - slot_was_set:
+  #   - plot_type: line
+  # - slot_was_set:
+  #   - requested_slot: null
+  # - active_loop: null
+  # - action: send_stock_value_plot
+  # - action: clear_company
+  # - slot_was_set:
+  #   - company: null
 
 
 # - story: test to stop story if company not found
