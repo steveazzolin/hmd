@@ -146,6 +146,7 @@ class ValidateSuggestCategoryForm(FormValidationAction):
         domain: DomainDict,
     ) -> Dict[Text, Any]:
         """Validate suggest_category value."""
+        print("In here")
 
         if slot_value.lower() in self.plots_db():
             print("Validating suggest_category = True")

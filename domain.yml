@@ -153,6 +153,7 @@ actions:
 - utter_want_stock_plot
 - validate_company_form
 - validate_plot_type_form
+- validate_suggest_category_form
 forms:
   company_form:
     required_slots:
