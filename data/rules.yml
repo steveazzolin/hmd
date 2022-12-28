@@ -24,6 +24,12 @@ rules:
   - slot_was_set:
     - requested_slot: null
 
+
+- rule: Provide info about investment type
+  steps:
+  - intent: clarify_investment_type
+  - action: clarify_investment_type
+
 ###
 # Domain specific rules
 ###

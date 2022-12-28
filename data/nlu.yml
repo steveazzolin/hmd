@@ -156,6 +156,12 @@ nlu:
       - [shorting](suggest_investment_type)
       - [not sure](suggest_investment_type)
       - [i don't know](suggest_investment_type)
+- intent: clarify_investment_type
+  examples: |
+      - what is [shorting](tmp_suggest_investment_type)?
+      - what is a [long range](tmp_suggest_investment_type) investment?
+      - what do you mean by [shorting](tmp_suggest_investment_type)?
+      - what do you mean by [long range](tmp_suggest_investment_type)?
 - intent: nlu_fallback
   examples: |
     - apple

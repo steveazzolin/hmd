@@ -667,6 +667,7 @@ stories:
   - action: utter_ask_want_description
   - intent: deny
   - action: utter_stopped
+  
 
   # - action: utter_ask_want_news_link
   # - intent: deny

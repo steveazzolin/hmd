@@ -469,3 +469,25 @@ class ActionReset(Action):
         return [
             AllSlotsReset()
         ]
+
+
+class ActionClarify(Action):
+    def name(self) -> Text:
+        return "clarify_investment_type"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        print("ActionClarifyInv.Type")
+        
+        if tracker.get_slot("tmp_suggest_investment_type") == "shorting":
+            dispatcher.utter_message(text=f"In finance, being short in an asset means investing in such a way that the investor will profit if the value of the asset falls.")  
+        elif tracker.get_slot("tmp_suggest_investment_type") == "long range":
+            dispatcher.utter_message(text=f"In finance, a long position in a financial instrument means the holder of the position owns a positive amount of the instrument.")  
+        else:
+            print("Error: option not available")
+            dispatcher.utter_message(text=f"Sorry, I didn't get that.")  
+
+        return [
+            SlotSet("tmp_suggest_investment_type", None), 
+        ]

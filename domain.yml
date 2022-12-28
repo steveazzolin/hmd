@@ -21,12 +21,14 @@ intents:
 - suggest_category
 - suggest_investment_type
 - reset
+- clarify_investment_type
 entities:
 - company
 - feedback
 - plot_type
 - suggest_category
 - suggest_investment_type
+- tmp_suggest_investment_type
 slots:
   company:
     type: text
@@ -35,6 +37,9 @@ slots:
     type: text
     influence_conversation: true
   suggest_investment_type:
+    type: text
+    influence_conversation: true
+  tmp_suggest_investment_type:
     type: text
     influence_conversation: true
   plot_type:
@@ -152,6 +157,7 @@ actions:
 - validate_suggest_investment_type_form
 - make_suggestion
 - reset
+- clarify_investment_type
 forms:
   company_form:
     required_slots:
@@ -174,6 +180,11 @@ forms:
       - entity: suggest_category
         type: from_entity
   suggest_investment_type_form:
+    required_slots:
+        suggest_investment_type:
+        - entity: suggest_investment_type
+          type: from_entity
+  tmp_suggest_investment_type_form:
     required_slots:
         suggest_investment_type:
         - entity: suggest_investment_type
