@@ -11,6 +11,17 @@ rules:
   steps:
   - intent: help
   - action: utter_help1
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+
+- rule: Reset the rasa state when user want to change path
+  steps:
+  - intent: reset
+  - action: reset
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
 
 ###
 # Domain specific rules

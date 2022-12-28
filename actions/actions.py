@@ -65,7 +65,7 @@ class ValidateCompanyForm(FormValidationAction):
     def validate_company(self, slot_value: Any, dispatcher: CollectingDispatcher, tracker: Tracker, domain: DomainDict) -> Dict[Text, Any]:     
         # TODO: capture more intents here. Do not include company_info unless you change nlu pattern
         print("Validating", slot_value)
-        if tracker.latest_message['intent']['name'] == "deny": # and tracker.latest_message['intent']['confidence'] >= 0.7
+        if tracker.latest_message['intent']['name'] in ["deny", "reset"]: # and tracker.latest_message['intent']['confidence'] >= 0.7
             return {"requested_slot": None, "company": None}
 
         if len(slot_value.split(" ")) > 1:
@@ -86,7 +86,8 @@ class ValidateCompanyForm(FormValidationAction):
                 else: #suggest based on prev. experience
                     index = np.argmax(list(stock_type_counter.values()))  #the most freq. type of stock
                     proposed_type = list(stock_type_counter.keys())[index]
-                    possible_proposals = [stock_names[i] for i , (k,v) in enumerate(stock_type.items()) if v == proposed_type and stock_names[i].lower() not in tracker.get_slot("companies_stock_asked")] 
+                    companies_asked = tracker.get_slot("companies_stock_asked") if tracker.get_slot("companies_stock_asked") is not None else []
+                    possible_proposals = [stock_names[i] for i , (k,v) in enumerate(stock_type.items()) if v == proposed_type and stock_names[i].lower() not in companies_asked] 
                     proposed = possible_proposals[random.randint(0, len(possible_proposals)-1) if len(possible_proposals) > 1 else 0]
                     dispatcher.utter_message(text=f"Based on your previous searches, I may suggest you to check out {proposed}")                    
 
@@ -450,4 +451,20 @@ class ActionMakeSuggestion(Action):
             SlotSet("suggest_category", None), 
             SlotSet("suggest_investment_type", None), 
             SlotSet("company", proposed)
+        ]
+
+
+class ActionReset(Action):
+    def name(self) -> Text:
+        return "reset"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        print("Resetting")
+        
+        dispatcher.utter_message(text=f"Stopped. How can I help you?")  
+
+        return [
+            AllSlotsReset()
         ]

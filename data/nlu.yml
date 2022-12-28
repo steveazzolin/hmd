@@ -20,9 +20,13 @@ nlu:
     - don't like that
     - no way
     - not really
-    - wrong
     - nope
+- intent: reset
+  examples: |
     - stop
+    - clear
+    - reset
+    - wrong
 - intent: stock_value
   examples: |
     - i want an update on stock market

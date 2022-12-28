@@ -20,6 +20,7 @@ intents:
 - suggest
 - suggest_category
 - suggest_investment_type
+- reset
 entities:
 - company
 - feedback
@@ -149,6 +150,7 @@ actions:
 - validate_suggest_category_form
 - validate_suggest_investment_type_form
 - make_suggestion
+- reset
 forms:
   company_form:
     required_slots:

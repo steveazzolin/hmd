@@ -484,7 +484,7 @@ stories:
   - action: save_feedback
 
 
-# - story: Help
+# - story: Help (replaced by a rule)
 #   steps:
 #   - action: utter_help1
   
