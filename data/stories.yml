@@ -832,3 +832,73 @@ stories:
   - action: get_company_info
   - action: save_asked_company
   - action: utter_what_todo_next
+
+
+- story: interactive_story_2
+  steps:
+  - intent: suggest
+  - action: suggest_category_form
+  - active_loop: suggest_category_form
+  - slot_was_set:
+    - requested_slot: suggest_category
+  - intent: clarify_investment_type
+    entities:
+    - tmp_suggest_investment_type: shorting
+  - slot_was_set:
+    - tmp_suggest_investment_type: shorting
+  - action: clarify_investment_type
+  - slot_was_set:
+    - tmp_suggest_investment_type: null
+  - action: suggest_category_form
+  - slot_was_set:
+    - requested_slot: suggest_category
+  - slot_was_set:
+    - suggest_category: sport
+  - slot_was_set:
+    - suggest_category: sport
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: suggest_investment_type_form
+  - active_loop: suggest_investment_type_form
+  - slot_was_set:
+    - requested_slot: suggest_investment_type
+  - slot_was_set:
+    - suggest_investment_type: know
+  - slot_was_set:
+    - suggest_investment_type: null
+  - slot_was_set:
+    - requested_slot: suggest_investment_type
+  - intent: clarify_investment_type
+    entities:
+    - tmp_suggest_investment_type: shorting
+  - slot_was_set:
+    - tmp_suggest_investment_type: shorting
+  - action: clarify_investment_type
+  - slot_was_set:
+    - tmp_suggest_investment_type: null
+  - action: suggest_investment_type_form
+  - slot_was_set:
+    - requested_slot: suggest_investment_type
+  - slot_was_set:
+    - suggest_investment_type: shorting
+  - slot_was_set:
+    - suggest_investment_type: shorting
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: make_suggestion
+  - slot_was_set:
+    - suggest_category: null
+  - slot_was_set:
+    - suggest_investment_type: null
+  - slot_was_set:
+    - company: Roma
+  - action: utter_ask_want_description
+  - intent: affirm
+  - action: get_company_info
+  - action: save_asked_company
+  - slot_was_set:
+    - companies_stock_asked:
+      - Roma
+  - action: utter_what_todo_next
