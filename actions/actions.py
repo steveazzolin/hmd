@@ -482,6 +482,11 @@ class ActionClarify(Action):
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         print("ActionClarifyInvType")
         
+        #print(tracker.latest_message)        
+        bot_event = next(e for e in reversed(tracker.events) if e["event"] == "bot")
+        print(bot_event["text"])
+        print("A loop is active" if tracker.active_loop != {} else "No loop")
+        
         if tracker.get_slot("tmp_suggest_investment_type") == "shorting":
             dispatcher.utter_message(text=f"In finance, being short in an asset means investing in such a way that the investor will profit if the value of the asset falls.")  
         elif tracker.get_slot("tmp_suggest_investment_type") == "long range":

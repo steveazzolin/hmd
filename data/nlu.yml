@@ -10,7 +10,7 @@ nlu:
     - correct
     - right
     - yep
-    - deepmind
+    - yes please
 - intent: deny
   examples: |
     - no
@@ -21,6 +21,7 @@ nlu:
     - no way
     - not really
     - nope
+    - no thanks
 - intent: reset
   examples: |
     - stop
