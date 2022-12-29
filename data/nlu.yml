@@ -168,7 +168,10 @@ nlu:
   examples: |
     - what is [shorting](tmp_suggest_investment_type)?
     - what is a [long range](tmp_suggest_investment_type) investment?
+    - what is a [shorting](tmp_suggest_investment_type) investment?
     - what do you mean by [shorting](tmp_suggest_investment_type)?
+    - what do you mean by a [short](tmp_suggest_investment_type)?
+    - what do you mean by a [long](tmp_suggest_investment_type)?
     - what do you mean by [long range](tmp_suggest_investment_type)?
 - intent: nlu_fallback
   examples: |

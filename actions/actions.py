@@ -390,8 +390,8 @@ class ActionGetCompanyInfo(Action):
             print(e)
             dispatcher.utter_message(text="The maximum number of requests to the API has been reached. Try again tomorrow.")    
             return []
-            
-        dispatcher.utter_message(text=info)
+
+        dispatcher.utter_message(text=f"Here the description of {company_name}:" + info)
         return []
 
 
