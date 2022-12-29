@@ -331,7 +331,13 @@ class ActionGetNews(Action):
         global cached_last_news_shown
         company_name = tracker.get_slot("company")
         
-        data = finance_api.get_company_news(company_name)
+        try:
+            data = finance_api.get_company_news(company_name)
+        except Exception as e:
+            print(e)
+            dispatcher.utter_message(text="The maximum number of requests have been reached. Try again later.")
+            return []
+            
         if len(data) == 0:
             dispatcher.utter_message(text="No news where found")
             return []
