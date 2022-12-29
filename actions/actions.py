@@ -337,7 +337,7 @@ class ActionGetNews(Action):
             print(e)
             dispatcher.utter_message(text="The maximum number of requests have been reached. Try again later.")
             return []
-            
+
         if len(data) == 0:
             dispatcher.utter_message(text="No news where found")
             return []
@@ -384,7 +384,13 @@ class ActionGetCompanyInfo(Action):
         print("ActionGetCompanyInfo")
         company_name = tracker.get_slot("company")
         
-        info = finance_api.get_company_info(company_name.lower())
+        try:
+            info = finance_api.get_company_info(company_name.lower())
+        except Exception as e:
+            print(e)
+            dispatcher.utter_message(text="The maximum number of requests to the API has been reached. Try again tomorrow.")    
+            return []
+            
         dispatcher.utter_message(text=info)
         return []
 
