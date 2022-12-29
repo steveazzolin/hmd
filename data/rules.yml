@@ -93,7 +93,7 @@ rules:
 
 - rule: Activate suggest_category form
   steps:
-  - intent: suggest_category
+  - intent: suggest
   - action: suggest_category_form
   - active_loop: suggest_category_form
 
