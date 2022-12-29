@@ -348,7 +348,8 @@ class ActionGetNews(Action):
         cached_company_news = data
         n = 0
         for news in cached_company_news[:3]:
-            dispatcher.utter_message(text=f"{n+1}. {news['pillarName']}: {news['webTitle']}")
+            pillarName = news['pillarName'] if 'pillarName' in news.keys() else "News"
+            dispatcher.utter_message(text=f"{n+1}. {pillarName}: {news['webTitle']}")
             dispatcher.utter_message(text=f"")
             n += 1
         cached_last_news_shown.extend(cached_company_news[:3].copy())
@@ -500,9 +501,9 @@ class ActionClarify(Action):
         print("A loop is active" if tracker.active_loop != {} else "No loop")
         print(tracker.active_loop)
         
-        if tracker.get_slot("tmp_suggest_investment_type") == "shorting":
+        if tracker.get_slot("tmp_suggest_investment_type") == "shorting" or tracker.get_slot("tmp_suggest_investment_type") == "short":
             dispatcher.utter_message(text=f"In finance, being short in an asset means investing in such a way that the investor will profit if the value of the asset falls.")  
-        elif tracker.get_slot("tmp_suggest_investment_type") == "long range":
+        elif tracker.get_slot("tmp_suggest_investment_type") == "long range" or tracker.get_slot("tmp_suggest_investment_type") == "long":
             dispatcher.utter_message(text=f"In finance, a long position in a financial instrument means the holder of the position owns a positive amount of the instrument.")  
         else:
             print("Error: option not available")
