@@ -825,8 +825,8 @@ stories:
     - suggest_category: null
   - slot_was_set:
     - suggest_investment_type: null
-  - slot_was_set:
-    - company: Roma
+  # - slot_was_set:
+  #   - company: Roma
   - action: utter_ask_want_description
   - intent: affirm
   - action: get_company_info

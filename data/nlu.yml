@@ -158,8 +158,12 @@ nlu:
     - [long range](suggest_investment_type)
     - [shorting](suggest_investment_type)
     - [not sure](suggest_investment_type)
-    - [i don't know](suggest_investment_type)
+    - i [don't know](suggest_investment_type)
     - [shorting](suggest_investment_type)
+    - i am [not sure](suggest_investment_type) really
+    - i [do not really know](suggest_investment_type)
+    - let's go with [shorting](suggest_investment_type) then
+    - okay let's try with [long range](suggest_investment_type)
 - intent: clarify_investment_type
   examples: |
     - what is [shorting](tmp_suggest_investment_type)?
