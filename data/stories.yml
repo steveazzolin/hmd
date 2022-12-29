@@ -613,7 +613,7 @@ stories:
 - story: Main task - want description of the company
   steps:
   - intent: suggest
-  - action: utter_choose_category
+  #- action: utter_choose_category
   - action: suggest_category_form
   - active_loop: suggest_category_form
   - slot_was_set:
@@ -644,7 +644,7 @@ stories:
 - story: Main task - don't want the description of the company
   steps:
   - intent: suggest
-  - action: utter_choose_category
+  #- action: utter_choose_category
   - action: suggest_category_form
   - active_loop: suggest_category_form
   - slot_was_set:
