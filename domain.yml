@@ -3,10 +3,13 @@ session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
 intents:
+- suggest_investment_type
+- suggest_category
+- suggest
+- affirm
 - company_info
 - stock_value
 - deny
-- affirm
 - change_plot_type
 - nlu_fallback
 - greet
@@ -17,9 +20,6 @@ intents:
 - worst_index
 - feedback
 - help
-- suggest
-- suggest_category
-- suggest_investment_type
 - reset
 - clarify_investment_type
 entities:
@@ -117,7 +117,6 @@ responses:
   utter_ask_feedback:
   - text: Please, tell me what you are thinking
   utter_help1:
-  #- image: http://azzolinsteve.altervista.org/hmd_project/fin_logo.png
   - text: Hey! My name is Fin and I can answer questions about the stock market, such as searching news, and stocks value. How can I help you?
   utter_out_of_scope:
   - text: Sorry, I can't handle that request
@@ -140,30 +139,32 @@ responses:
   - text: How can I help you now?
 actions:
 - ask_want_stock
+- clarify_investment_type
 - clear_company
 - clear_company_with_msg
 - get_best_index
 - get_company_info
 - get_stock_value
 - get_worst_index
+- make_suggestion
 - predict_stock_trend
+- reset
 - save_asked_company
 - save_feedback
 - search_company_news
 - send_news_link
 - send_stock_value_plot
+- utter_ask_want_description
 - utter_company_not_found
 - utter_stock_plot_sent
 - utter_stock_value
 - utter_stopped
 - utter_want_stock_plot
+- utter_what_todo_next
 - validate_company_form
 - validate_plot_type_form
 - validate_suggest_category_form
 - validate_suggest_investment_type_form
-- make_suggestion
-- reset
-- clarify_investment_type
 forms:
   company_form:
     required_slots:
@@ -187,11 +188,11 @@ forms:
         type: from_entity
   suggest_investment_type_form:
     required_slots:
-        suggest_investment_type:
-        - entity: suggest_investment_type
-          type: from_entity
+      suggest_investment_type:
+      - entity: suggest_investment_type
+        type: from_entity
   tmp_suggest_investment_type_form:
     required_slots:
-        suggest_investment_type:
-        - entity: suggest_investment_type
-          type: from_entity
+      suggest_investment_type:
+      - entity: suggest_investment_type
+        type: from_entity
