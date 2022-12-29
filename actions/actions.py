@@ -173,6 +173,8 @@ class ValidateInvestmentTypeForm(FormValidationAction):
     ) -> Dict[Text, Any]:
 
         print(slot_value)
+        if type(slot_value) is list:
+            slot_value = " ".join(slot_value)
 
         if "shorting" in slot_value.lower():
             print(f"Validating suggest_investment_type = shorting ({slot_value})")

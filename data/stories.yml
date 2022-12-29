@@ -687,7 +687,7 @@ stories:
   - active_loop: suggest_investment_type_form
   - intent: clarify_investment_type
   - action: clarify_investment_type
-  - action: utter_investment_type
+  - action: utter_confirm_investment_type
   - slot_was_set:
     - requested_slot: suggest_investment_type
   - slot_was_set:

@@ -127,6 +127,8 @@ responses:
   - text: Which stock category are you interested in? Examples are Sport or Software
   utter_investment_type:
   - text: Great! Which kind of investment are you looking for?
+  utter_confirm_investment_type:
+  - text: So, which kind of investment are you looking for?
   utter_ask_want_description:
   - text: Would you like to know more about {company}?
   - text: Do you want more info about {company}?
