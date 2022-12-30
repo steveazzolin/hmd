@@ -902,3 +902,13 @@ stories:
     - companies_stock_asked:
       - Roma
   - action: utter_what_todo_next
+
+
+- story: Unlikely intent
+  steps:
+  - intent: suggest_category
+    entities:
+    - suggest_category: sport
+  - slot_was_set:
+    - suggest_category: sport
+  - action: utter_out_of_scope
