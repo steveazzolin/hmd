@@ -123,6 +123,10 @@ def telegram():
 from actions import finance_api
 import pandas_datareader.data as web
 
+news = finance_api.get_company_news("cisco")
+for n in news:
+    print(n)
+    print()
 
 company_symbol , ambiguity = finance_api.get_symbol_from_name("juventus", debug=False)
 finance_api.get_value_from_symbol(company_symbol, debug=False)

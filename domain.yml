@@ -123,7 +123,7 @@ responses:
   utter_please_rephrase:
   - text: I'm sorry, I didn't quite understand that. Please rephrase.
   utter_default:
-  - text: Sorry I didn't get that. Can you rephrase?
+  - text: Sorry I didn't get that. Please rephrase.
   utter_company_not_found:
   - text: I didn't manage to find {company} in my database. Try with another company.
   utter_choose_category:
