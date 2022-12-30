@@ -129,6 +129,7 @@ class ValidatePlotTypeForm(FormValidationAction):
         else:
             # validation failed, set this slot to None so that the user will be asked for the slot again
             print("Validating plot_type = False")
+            dispatcher.utter_message(text=f"Type {slot_value.lower()} not recognized.")
             return {"plot_type": None}
 
 class ValidateSuggestCategoryForm(FormValidationAction):
