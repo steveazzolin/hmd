@@ -143,6 +143,11 @@ nlu:
     - I am interested in [hardware](suggest_category) companies
     - I am interested in [sport](suggest_category) companies
     - I am interested in [car](suggest_category) companies
+    - I am interested in [entertainment](suggest_category) companies
+    - I am interested in [socio](suggest_category) companies
+    - I am interested in [innovative](suggest_category) companies
+    - I am interested in [game](suggest_category) companies
+    - I am interested in [tech](suggest_category) companies
     - [car](suggest_category)
     - [sw](suggest_category)
     - [hw](suggest_category)
@@ -159,7 +164,6 @@ nlu:
     - [shorting](suggest_investment_type)
     - [not sure](suggest_investment_type)
     - i [don't know](suggest_investment_type)
-    - [shorting](suggest_investment_type)
     - i am [not sure](suggest_investment_type) really
     - i [do not really know](suggest_investment_type)
     - let's go with [shorting](suggest_investment_type) then
