@@ -123,13 +123,16 @@ class ValidatePlotTypeForm(FormValidationAction):
     ) -> Dict[Text, Any]:
         """Validate plot type value."""
 
-        if slot_value.lower() in self.plots_db():
-            print("Validating plot_type = True")
-            return {"plot_type": slot_value}
+        if "line" in slot_value.lower():
+            print("Validating plot_type = line")
+            return {"plot_type": "line"}
+        elif "candle" in slot_value.lower():
+            print("Validating plot_type = candle")
+            return {"plot_type": "candle"}
         else:
             # validation failed, set this slot to None so that the user will be asked for the slot again
             print("Validating plot_type = False")
-            dispatcher.utter_message(text=f"Type {slot_value.lower()} not recognized.")
+            dispatcher.utter_message(text=f"The plot type '{slot_value.lower()}' was not recognized.")
             return {"plot_type": None}
 
 class ValidateSuggestCategoryForm(FormValidationAction):
