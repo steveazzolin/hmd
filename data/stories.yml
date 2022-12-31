@@ -232,6 +232,7 @@ stories:
   - action: ask_want_stock
   - intent: deny
   - action: utter_happy
+  - action: clear_company
 
 
 - story: Stock updates + affirm telegram plot
@@ -243,7 +244,7 @@ stories:
     - company: meta
   - active_loop: null
   - slot_was_set:
-    - company: Any_company
+    - requested_slot: null
   - action: get_stock_value
   - action: utter_stock_value
   - action: save_asked_company
@@ -269,7 +270,7 @@ stories:
     - company: meta
   - active_loop: null
   - slot_was_set:
-    - company: Any_company
+    - requested_slot: null
   - action: get_stock_value
   - action: utter_stock_value
   - action: save_asked_company
@@ -297,42 +298,42 @@ stories:
 #     - company: Any_company
 #   - action: clear_company
 
-- story: Stock updates + interruption affirm
-  steps:
-  - intent: stock_value
-  - action: company_form
-  - active_loop: company_form
-  - slot_was_set:
-    - company: meta
-  #- intent: deny
-  - active_loop: null
-  - slot_was_set:
-    - requested_slot: null
-    - company: null
-  - action: utter_confirm_stop
-  - intent: affirm
-  - action: action_deactivate_loop
-  - active_loop: null
-  - slot_was_set:
-    - requested_slot: null
-  - action: utter_stopped
+# - story: Stock updates + interruption affirm
+#   steps:
+#   - intent: stock_value
+#   - action: company_form
+#   - active_loop: company_form
+#   - slot_was_set:
+#     - company: meta
+#   #- intent: deny
+#   - active_loop: null
+#   - slot_was_set:
+#     - requested_slot: null
+#     - company: null
+#   - action: utter_confirm_stop
+#   - intent: affirm
+#   - action: action_deactivate_loop
+#   - active_loop: null
+#   - slot_was_set:
+#     - requested_slot: null
+#   - action: utter_stopped
 
 
-- story: Stock updates + interruption not_affirm
-  steps:
-  - intent: stock_value
-  - action: company_form
-  - active_loop: company_form
-  - slot_was_set:
-    - company: meta
-  #- active_loop: null
-  - slot_was_set:
-    - requested_slot: null
-    - company: null
-  - action: utter_confirm_stop
-  - intent: deny
-  - action: company_form
-  - active_loop: company_form
+# - story: Stock updates + interruption not_affirm
+#   steps:
+#   - intent: stock_value
+#   - action: company_form
+#   - active_loop: company_form
+#   - slot_was_set:
+#     - company: meta
+#   #- active_loop: null
+#   - slot_was_set:
+#     - requested_slot: null
+#     - company: null
+#   - action: utter_confirm_stop
+#   - intent: deny
+#   - action: company_form
+#   - active_loop: company_form
 
 
 - story: Company info + affirm stock + send plot
@@ -398,6 +399,7 @@ stories:
   - action: ask_want_stock
   - intent: deny
   - action: utter_happy
+  - action: clear_company
 
 
 - story: Company info + interruption affirm
@@ -456,9 +458,9 @@ stories:
   - active_loop: company_form
   - slot_was_set:
     - company: meta
-  - active_loop: null
   - slot_was_set:
     - requested_slot: null
+  - active_loop: null
   - action: predict_stock_trend
   
 - story: Get worst index
@@ -1015,3 +1017,4 @@ stories:
   - action: clear_company
   - slot_was_set:
     - company: null
+

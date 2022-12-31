@@ -52,6 +52,7 @@ nlu:
     - i would like the current stock value of that company
     - i want the stock value
     - i want the stock value of [Juventus](company)
+    - can you give me its stock value ?
 - intent: company_news
   examples: |
     - news about [Meta](company)
@@ -111,6 +112,7 @@ nlu:
     - do you think is worth investing in [Google](company)?
     - predict the trend for [Amazon](company)
     - which is the current trend of [google](company)?
+    - predict the trend for [google](company)
 - intent: best_index
   examples: |
     - which is the best index?
@@ -153,6 +155,7 @@ nlu:
     - What should I invest on?
     - Suggestion
     - suggestion
+    - do you have any suggestion?
 - intent: suggest_category
   examples: |
     - I am interested in [software](suggest_category) companies
@@ -171,6 +174,8 @@ nlu:
     - i want [hw](suggest_category)
     - i want [sport](suggest_category) stocks
     - [sport](suggest_category)
+    - i am interested in [tech](suggest_category) companies
+    - i am into [software](suggest_category)
 - intent: suggest_investment_type
   examples: |
     - i am interested in [shorting](suggest_investment_type)
@@ -184,6 +189,8 @@ nlu:
     - i [do not really know](suggest_investment_type)
     - let's go with [shorting](suggest_investment_type) then
     - okay let's try with [long range](suggest_investment_type)
+    - i am [not sure](suggest_investment_type)
+    - [long range](suggest_investment_type)
 - intent: clarify_investment_type
   examples: |
     - what is [shorting](tmp_suggest_investment_type)?
@@ -192,6 +199,7 @@ nlu:
     - what do you mean by [shorting](tmp_suggest_investment_type)?
     - what do you mean by a [short](tmp_suggest_investment_type)?
     - what do you mean by a [long](tmp_suggest_investment_type)?
+    - what do you mean by [long range](tmp_suggest_investment_type)?
     - what do you mean by [long range](tmp_suggest_investment_type)?
 - intent: nlu_fallback
   examples: |
