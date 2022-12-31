@@ -397,7 +397,7 @@ stories:
   - action: get_company_info
   - action: ask_want_stock
   - intent: deny
-  - action: utter_stopped
+  - action: utter_happy
 
 
 - story: Company info + interruption affirm

@@ -11,6 +11,8 @@ nlu:
     - right
     - yep
     - yes please
+    - ok thanks
+    - thanks
 - intent: deny
   examples: |
     - no
@@ -42,9 +44,14 @@ nlu:
     - [Meta](company) stock news
     - how much is [Meta](company) worth?
     - which is the current stock value of [Meta](company)?
+    - which is the stock value of [Tesla](company)?
     - stock values
     - stock value
     - stock updates
+    - can you give me the stock value of it?
+    - i would like the current stock value of that company
+    - i want the stock value
+    - i want the stock value of [Juventus](company)
 - intent: company_news
   examples: |
     - news about [Meta](company)
@@ -58,6 +65,11 @@ nlu:
     - can you look for some news about [Meta](company)
     - company news
     - [meta](company) news
+    - i would like some news
+    - i would like some news of [Google](company)
+    - i would like some news about [Amazon](company)
+    - can you give me some news?
+    - i want some news about [Roma](company)
 - intent: company_info
   examples: |
     - [Meta](company)
@@ -71,6 +83,9 @@ nlu:
     - business [Facebook]{"entity": "company", "value": "Meta"}
     - business [Amazon](company)
     - Can you describe me [Meta](company) ?
+    - Can you describe me [Neo](company) ?
+    - Can you describe me [Tesla](company) ?
+    - Can you describe me [Roma](company) ?
     - What is [Facebook]{"entity": "company", "value": "Meta"} ?
     - What is [Google](company) ?
     - What kind of company is [Amazon](company) ?
@@ -95,6 +110,7 @@ nlu:
     - is [Meta](company) growing?
     - do you think is worth investing in [Google](company)?
     - predict the trend for [Amazon](company)
+    - which is the current trend of [google](company)?
 - intent: best_index
   examples: |
     - which is the best index?
