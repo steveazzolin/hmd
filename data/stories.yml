@@ -912,3 +912,106 @@ stories:
   - slot_was_set:
     - suggest_category: sport
   - action: utter_out_of_scope
+
+- story: interactive_story_1
+  steps:
+  - intent: help
+  - action: utter_help1
+  - intent: suggest
+  - action: suggest_category_form
+  - active_loop: suggest_category_form
+  - slot_was_set:
+    - requested_slot: suggest_category
+  - slot_was_set:
+    - suggest_category: software
+  - slot_was_set:
+    - suggest_category: software
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: suggest_investment_type_form
+  - active_loop: suggest_investment_type_form
+  - slot_was_set:
+    - requested_slot: suggest_investment_type
+  - slot_was_set:
+    - suggest_investment_type: not sure
+  - slot_was_set:
+    - suggest_investment_type: null
+  - slot_was_set:
+    - requested_slot: suggest_investment_type
+  - intent: clarify_investment_type
+    entities:
+    - tmp_suggest_investment_type: long range
+  - slot_was_set:
+    - tmp_suggest_investment_type: long range
+  - action: clarify_investment_type
+  - slot_was_set:
+    - tmp_suggest_investment_type: null
+  - action: suggest_investment_type_form
+  - slot_was_set:
+    - requested_slot: suggest_investment_type
+  - slot_was_set:
+    - suggest_investment_type: long range
+  - slot_was_set:
+    - suggest_investment_type: long range
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: make_suggestion
+  - slot_was_set:
+    - suggest_category: null
+  - slot_was_set:
+    - suggest_investment_type: null
+  - slot_was_set:
+    - company: Meta
+  - action: utter_ask_want_description
+  - intent: affirm
+  - action: get_company_info
+  - action: save_asked_company
+  - slot_was_set:
+    - companies_stock_asked:
+      - Meta
+  - action: utter_what_todo_next
+  - intent: stock_value
+  - action: company_form
+  - active_loop: company_form
+  - slot_was_set:
+    - company: Meta
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: get_stock_value
+  - slot_was_set:
+    - company_symbol: META
+  - slot_was_set:
+    - company_stock_value: 120.34
+  - slot_was_set:
+    - currency: USD
+  - action: utter_stock_value
+  - action: save_asked_company
+  - slot_was_set:
+    - companies_stock_asked:
+      - Meta
+      - Meta
+  - action: utter_want_stock_plot
+  - intent: deny
+  - action: utter_stopped
+  - intent: company_news
+  - action: company_form
+  - active_loop: company_form
+  - slot_was_set:
+    - company: Meta
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_searching_company_news
+  - action: search_company_news
+  - action: utter_ask_want_news_link
+  - intent: deny
+  - action: utter_ok
+  - action: ask_want_stock
+  - intent: deny
+  - action: utter_happy
+  - action: clear_company
+  - slot_was_set:
+    - company: null
