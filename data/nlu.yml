@@ -30,6 +30,9 @@ nlu:
     - clear
     - reset
     - wrong
+    - please stop
+    - you did not understand
+    - shut up
 - intent: stock_value
   examples: |
     - i want an update on stock market
@@ -50,6 +53,8 @@ nlu:
     - stock updates
     - can you give me the stock value of it?
     - i would like the current stock value of that company
+    - i would like the current stock value of [Nvidia](company)
+    - i would like the current stock value of [Microsoft](company)
     - i want the stock value
     - i want the stock value of [Juventus](company)
     - can you give me its stock value ?

@@ -99,6 +99,7 @@ stories:
   - intent: affirm
   - action: get_stock_value
   - action: utter_stock_value
+  - action: save_asked_company
   - action: utter_want_stock_plot
   - intent: affirm
   - action: plot_type_form
@@ -131,6 +132,7 @@ stories:
   - intent: affirm
   - action: get_stock_value
   - action: utter_stock_value
+  - action: save_asked_company
   - action: utter_want_stock_plot
   - intent: affirm
   - action: plot_type_form
@@ -163,6 +165,7 @@ stories:
   - intent: affirm
   - action: get_stock_value
   - action: utter_stock_value
+  - action: save_asked_company
   - action: utter_want_stock_plot
   - intent: deny
   - action: utter_stopped
@@ -188,6 +191,7 @@ stories:
   - intent: affirm
   - action: get_stock_value
   - action: utter_stock_value
+  - action: save_asked_company
   - action: utter_want_stock_plot
   - intent: deny
   - action: utter_stopped
@@ -351,6 +355,7 @@ stories:
   - intent: affirm
   - action: get_stock_value
   - action: utter_stock_value
+  - action: save_asked_company
   - action: utter_want_stock_plot
   - intent: affirm
   - action: plot_type_form
@@ -379,6 +384,7 @@ stories:
   - intent: affirm
   - action: get_stock_value
   - action: utter_stock_value
+  - action: save_asked_company
   - action: utter_want_stock_plot
   - intent: deny
   - action: utter_stopped
@@ -519,6 +525,7 @@ stories:
   - slot_was_set:
     - currency: USD
   - action: utter_stock_value
+  - action: save_asked_company
   - action: utter_want_stock_plot
   - intent: affirm
   - action: plot_type_form
@@ -562,6 +569,7 @@ stories:
   - slot_was_set:
     - currency: USD
   - action: utter_stock_value
+  - action: save_asked_company
   - action: utter_want_stock_plot
   - intent: deny
   - action: utter_stopped
