@@ -505,14 +505,14 @@ class ActionClarify(Action):
         print("A loop is active" if tracker.active_loop != {} else "No loop")
         print(tracker.active_loop)
         
-        if tracker.get_slot("tmp_suggest_investment_type") == "shorting" or tracker.get_slot("tmp_suggest_investment_type") == "short":
+        if tracker.get_slot("suggest_investment_type") == "shorting" or tracker.get_slot("suggest_investment_type") == "short":
             dispatcher.utter_message(text=f"In finance, being short in an asset means investing in such a way that the investor will profit if the value of the asset falls.")  
-        elif tracker.get_slot("tmp_suggest_investment_type") == "long range" or tracker.get_slot("tmp_suggest_investment_type") == "long":
+        elif tracker.get_slot("suggest_investment_type") == "long range" or tracker.get_slot("suggest_investment_type") == "long":
             dispatcher.utter_message(text=f"In finance, a long position in a financial instrument means the holder of the position owns a positive amount of the instrument.")  
         else:
             print("Error: option not available")
             dispatcher.utter_message(text=f"Sorry, I didn't get that.")  
 
         return [
-            SlotSet("tmp_suggest_investment_type", None)
+            SlotSet("suggest_investment_type", None)
         ]
