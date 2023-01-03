@@ -106,9 +106,9 @@ stories:
   - active_loop: plot_type_form
   - slot_was_set:
     - plot_type: line
-  - active_loop: null
   - slot_was_set:
-    - plot_type: Any_plot
+    - requested_slot: null
+  - active_loop: null
   - action: send_stock_value_plot
   - action: clear_company
 
@@ -139,9 +139,9 @@ stories:
   - active_loop: plot_type_form
   - slot_was_set:
     - plot_type: line
-  - active_loop: null
   - slot_was_set:
-    - plot_type: Any_plot
+    - requested_slot: null
+  - active_loop: null
   - action: send_stock_value_plot
   - action: clear_company
 
@@ -254,14 +254,13 @@ stories:
   - action: save_asked_company
   - action: utter_want_stock_plot
   - intent: affirm
-
   - action: plot_type_form
   - active_loop: plot_type_form
   - slot_was_set:
     - plot_type: line
-  - active_loop: null
   - slot_was_set:
-    - plot_type: Any_plot
+    - requested_slot: null
+  - active_loop: null
   - action: send_stock_value_plot
   - action: clear_company
 
@@ -362,9 +361,9 @@ stories:
   - active_loop: plot_type_form
   - slot_was_set:
     - plot_type: line
-  - active_loop: null
   - slot_was_set:
-    - plot_type: Any_plot
+    - requested_slot: null
+  - active_loop: null
   - action: send_stock_value_plot
   - action: clear_company
 
