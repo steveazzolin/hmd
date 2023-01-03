@@ -1,141 +1,153 @@
 version: '2.0'
 stories:
 
-- story: Test story from Rasa X 1
-  steps:
-    - intent: help
-      user: |-
-        hi
-    - action: utter_help1
-    - intent: suggest
-      user: |-
-        can you give me some suggestions on which stock to buy?
-    - action: suggest_category_form
-    - active_loop: suggest_category_form
-    - slot_was_set:
-        - requested_slot: suggest_category
-    - intent: suggest_category
-      user: |-
-        I am into [software](suggest_category)
-    - slot_was_set:
-        - suggest_category: software
-    - action: suggest_category_form
-    - slot_was_set:
-        - suggest_category: software
-    - slot_was_set:
-        - requested_slot: null
-    - active_loop: null
-    - action: suggest_investment_type_form
-    - active_loop: suggest_investment_type_form
-    - slot_was_set:
-        - requested_slot: suggest_investment_type
-    - intent: suggest_investment_type
-      user: |-
-        I'm [not sure](suggest_investment_type) really
-    - slot_was_set:
-        - suggest_investment_type: not sure
-    - action: suggest_investment_type_form
-    - slot_was_set:
-        - suggest_investment_type: null
-    - slot_was_set:
-        - requested_slot: suggest_investment_type
-    - intent: clarify_investment_type
-      user: |-
-        what do you mean by [long range](tmp_suggest_investment_type)?
-    - slot_was_set:
-        - tmp_suggest_investment_type: long range
-    - action: clarify_investment_type
-    - slot_was_set:
-        - tmp_suggest_investment_type: null
-    - action: suggest_investment_type_form
-    - slot_was_set:
-        - requested_slot: suggest_investment_type
-    - intent: suggest_investment_type
-      user: |-
-        I will go for [long range](suggest_investment_type) then
-    - slot_was_set:
-        - suggest_investment_type: long range
-    - action: suggest_investment_type_form
-    - slot_was_set:
-        - suggest_investment_type: long range
-    - slot_was_set:
-        - requested_slot: null
-    - active_loop: null
-    - action: make_suggestion
-    - slot_was_set:
-        - suggest_category: null
-    - slot_was_set:
-        - suggest_investment_type: null
-    - slot_was_set:
-        - company: Apple
-    - action: utter_ask_want_description
-    - intent: affirm
-      user: |-
-        yes please
-    - action: get_company_info
-    - action: save_asked_company
-    - slot_was_set:
-        - companies_stock_asked:
-            - Apple
-    - action: utter_what_todo_next
-    - intent: stock_value
-      user: |-
-        can you give me the stock value of it?
-    - action: company_form
-    - active_loop: company_form
-    - slot_was_set:
-        - company: Apple
-    - slot_was_set:
-        - requested_slot: null
-    - active_loop: null
-    - action: get_stock_value
-    - slot_was_set:
-        - company_symbol: AAPL
-    - slot_was_set:
-        - company_stock_value: 129.61
-    - slot_was_set:
-        - currency: USD
-    - action: utter_stock_value
-    - action: save_asked_company
-    - slot_was_set:
-        - companies_stock_asked:
-            - Apple
-            - Apple
-    - action: utter_want_stock_plot
-    - intent: deny
-      user: |-
-        n
-    - action: utter_stopped
-    - intent: company_news
-      user: |-
-        i would like some news about Apple
-    - action: company_form
-    - active_loop: company_form
-    - slot_was_set:
-        - company: Apple
-    - slot_was_set:
-        - requested_slot: null
-    - active_loop: null
-    - action: utter_searching_company_news
-    - action: search_company_news
-    - action: utter_ask_want_news_link
-    - intent: deny
-      user: |-
-        nope
-    - action: utter_ok
-    - action: ask_want_stock
 
-- story: Test story from Rasa X 2
+
+- story: Story 1
   steps:
-  - intent: company_info
+  - intent: help
     user: |-
-      what is [amazon](company)?
+      hi
+  - action: utter_help1
+  - intent: suggest
+    user: |-
+      can you give me some suggestions on which stock to buy?
+  - action: suggest_category_form
+  - active_loop: suggest_category_form
   - slot_was_set:
-    - company: amazon
+    - requested_slot: suggest_category
+  - intent: suggest_category
+    user: |-
+      I am into [software](suggest_category)
+  - slot_was_set:
+    - suggest_category: software
+  - action: suggest_category_form
+  - slot_was_set:
+    - suggest_category: software
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: suggest_investment_type_form
+  - active_loop: suggest_investment_type_form
+  - slot_was_set:
+    - requested_slot: suggest_investment_type
+  - intent: suggest_investment_type
+    user: |-
+      I am [not sure really](suggest_investment_type)
+  - slot_was_set:
+    - suggest_investment_type: not sure really
+  - action: suggest_investment_type_form
+  - slot_was_set:
+    - suggest_investment_type: null
+  - slot_was_set:
+    - requested_slot: suggest_investment_type
+  - intent: clarify_investment_type
+    user: |-
+      What do you mean by a [long range](tmp_suggest_investment_type) investment?
+  - slot_was_set:
+    - tmp_suggest_investment_type: long range
+  - action: clarify_investment_type
+  - slot_was_set:
+    - tmp_suggest_investment_type: null
+  - action: suggest_investment_type_form
+  - slot_was_set:
+    - requested_slot: suggest_investment_type
+  - intent: suggest_investment_type
+    user: |-
+      I will go for [long range](suggest_investment_type) then
+  - slot_was_set:
+    - suggest_investment_type: long range
+  - action: suggest_investment_type_form
+  - slot_was_set:
+    - suggest_investment_type: long range
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: make_suggestion
+  - slot_was_set:
+    - suggest_category: null
+  - slot_was_set:
+    - suggest_investment_type: null
+  - slot_was_set:
+    - company: Apple
+  - action: utter_ask_want_description
+  - intent: affirm
+    user: |-
+      Yes please
+  - action: get_company_info
+  - action: save_asked_company
+  - slot_was_set:
+    - companies_stock_asked:
+      - Apple
+  - action: utter_what_todo_next
+  - intent: stock_value
+    user: |-
+      can you give me the stock value of it?
   - action: company_form
   - active_loop: company_form
   - slot_was_set:
-    - company: amazon
+    - company: Apple
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: get_stock_value
+  - slot_was_set:
+    - company_symbol: AAPL
+  - slot_was_set:
+    - company_stock_value: 129.38
+  - slot_was_set:
+    - currency: USD
+  - action: utter_stock_value
+  - action: save_asked_company
+  - slot_was_set:
+    - companies_stock_asked:
+      - Apple
+      - Apple
+  - action: utter_want_stock_plot
+  - intent: deny
+    user: |-
+      No
+  - action: utter_stopped
+  - intent: company_news
+    user: |-
+      i would like some news about Apple
+  - action: company_form
+  - active_loop: company_form
+  - slot_was_set:
+    - company: Apple
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_searching_company_news
+  - action: search_company_news
+  - action: utter_ask_want_news_link
+  - intent: deny
+    user: |-
+      No thanks
+  - action: utter_ok
+  - action: ask_want_stock
+
+
+
+- story: Story 2
+  steps:
+  - intent: nlu_fallback
+    user: |-
+      what is Pfizer?
+  - action: utter_please_rephrase
+  - intent: company_info
+    user: |-
+      Can you describe me Pfizer?
+  - action: company_form
+  - active_loop: company_form
+  - slot_was_set:
+    - requested_slot: company
+  - intent: nlu_fallback
+    user: |-
+      Pfizer
+  - action: company_form
+  - slot_was_set:
+    - company: Pfizer
   - slot_was_set:
     - requested_slot: null
   - active_loop: null
@@ -146,12 +158,16 @@ stories:
       yes
   - action: get_stock_value
   - slot_was_set:
-    - company_symbol: AMZN
+    - company_symbol: PFE
   - slot_was_set:
-    - company_stock_value: 84.18
+    - company_stock_value: 51.24
   - slot_was_set:
     - currency: USD
   - action: utter_stock_value
+  - action: save_asked_company
+  - slot_was_set:
+    - companies_stock_asked:
+      - Pfizer
   - action: utter_want_stock_plot
   - intent: deny
     user: |-
@@ -167,14 +183,12 @@ stories:
   - active_loop: company_form
   - slot_was_set:
     - requested_slot: company
-  - intent: company_info
+  - intent: nlu_fallback
     user: |-
-      [amazon](company)
-  - slot_was_set:
-    - company: amazon
+      Pfizer
   - action: company_form
   - slot_was_set:
-    - company: amazon
+    - company: Pfizer
   - slot_was_set:
     - requested_slot: null
   - active_loop: null
@@ -183,19 +197,13 @@ stories:
   - action: utter_ask_want_news_link
   - intent: deny
     user: |-
-      nope
+      no
   - action: utter_ok
   - action: ask_want_stock
-  - intent: deny
-    user: |-
-      nope
-  - action: utter_happy
-  - action: clear_company
-  - slot_was_set:
-    - company: null
 
 
-- story: Test story from Rasa X 3
+
+- story: Story 3
   steps:
   - intent: company_news
     user: |-
@@ -214,30 +222,26 @@ stories:
   - action: utter_ask_want_news_link
   - intent: deny
     user: |-
-      n
+      no thanks
   - action: utter_ok
   - action: ask_want_stock
   - intent: deny
     user: |-
-      n
+      no
   - action: utter_happy
   - action: clear_company
   - slot_was_set:
     - company: null
 
-- story: Test story from Rasa X 4
+- story: Story 4
   steps:
   - intent: stock_value
     user: |-
-      i would like the current stock value for Roma
+      i would like the current stock value of [Roma](company)
+  - slot_was_set:
+    - company: Roma
   - action: company_form
   - active_loop: company_form
-  - slot_was_set:
-    - requested_slot: company
-  - intent: nlu_fallback
-    user: |-
-      Roma
-  - action: company_form
   - slot_was_set:
     - company: Roma
   - slot_was_set:
@@ -247,7 +251,7 @@ stories:
   - slot_was_set:
     - company_symbol: NROM
   - slot_was_set:
-    - company_stock_value: 0.24
+    - company_stock_value: 0.2675
   - slot_was_set:
     - currency: USD
   - action: utter_stock_value
@@ -261,7 +265,9 @@ stories:
       n
   - action: utter_stopped
 
-- story: Test story from Rasa X 4
+
+
+- story: Story 5
   steps:
   - intent: help
     user: |-
@@ -269,17 +275,17 @@ stories:
   - action: utter_help1
   - intent: feedback
     user: |-
-      i want to leave a feedback
+      I want to leave a feedback
   - action: feedback_form
   - active_loop: feedback_form
   - slot_was_set:
     - requested_slot: feedback
-  - intent: nlu_fallback
+  - intent: help
     user: |-
-      I thinking this bot is super cool
+      I think you should add a logo
   - action: feedback_form
   - slot_was_set:
-    - feedback: I thinking this bot is super cool
+    - feedback: I think you should add a logo
   - slot_was_set:
     - requested_slot: null
   - active_loop: null
@@ -288,11 +294,13 @@ stories:
     - feedback: null
 
 
-- story: Interactive story from User1
+
+
+- story: Story 6
   steps:
   - intent: suggest_category
     user: |-
-      i am interested in [tech](suggest_category) companies
+      I am interested in [tech](suggest_category) companies
   - slot_was_set:
     - suggest_category: tech
   - action: utter_out_of_scope
@@ -302,7 +310,7 @@ stories:
   - action: utter_help1
   - intent: suggest
     user: |-
-      do you have any suggestion?
+      Do you have any suggestion?
   - action: suggest_category_form
   - active_loop: suggest_category_form
   - slot_was_set:
@@ -311,7 +319,7 @@ stories:
     - requested_slot: suggest_category
   - intent: suggest_category
     user: |-
-      i am into [software](suggest_category)
+      I am into [software](suggest_category)
   - slot_was_set:
     - suggest_category: software
   - action: suggest_category_form
@@ -326,9 +334,9 @@ stories:
     - requested_slot: suggest_investment_type
   - intent: suggest_investment_type
     user: |-
-      im [not sure](suggest_investment_type) really
+      I am [not sure really](suggest_investment_type)
   - slot_was_set:
-    - suggest_investment_type: not sure
+    - suggest_investment_type: not sure really
   - action: suggest_investment_type_form
   - slot_was_set:
     - suggest_investment_type: null
@@ -336,7 +344,7 @@ stories:
     - requested_slot: suggest_investment_type
   - intent: clarify_investment_type
     user: |-
-      what do you mean by [long range](tmp_suggest_investment_type)?
+      what do you mean by a [long range](tmp_suggest_investment_type) investment?
   - slot_was_set:
     - tmp_suggest_investment_type: long range
   - action: clarify_investment_type
@@ -347,7 +355,7 @@ stories:
     - requested_slot: suggest_investment_type
   - intent: suggest_investment_type
     user: |-
-      i wil go with [long range](suggest_investment_type) then
+      I will go with [long range](suggest_investment_type) then
   - slot_was_set:
     - suggest_investment_type: long range
   - action: suggest_investment_type_form
@@ -362,7 +370,7 @@ stories:
   - slot_was_set:
     - suggest_investment_type: null
   - slot_was_set:
-    - company: Google
+    - company: Apple
   - action: utter_ask_want_description
   - intent: affirm
     user: |-
@@ -371,7 +379,7 @@ stories:
   - action: save_asked_company
   - slot_was_set:
     - companies_stock_asked:
-      - Google
+      - Apple
   - action: utter_what_todo_next
   - intent: stock_value
     user: |-
@@ -379,54 +387,45 @@ stories:
   - action: company_form
   - active_loop: company_form
   - slot_was_set:
-    - company: Google
+    - company: Apple
   - slot_was_set:
     - requested_slot: null
   - active_loop: null
   - action: get_stock_value
   - slot_was_set:
-    - company_symbol: GOOG
+    - company_symbol: AAPL
   - slot_was_set:
-    - company_stock_value: 88.95
+    - company_stock_value: 129.93
   - slot_was_set:
     - currency: USD
   - action: utter_stock_value
   - action: save_asked_company
   - slot_was_set:
     - companies_stock_asked:
-      - Google
-      - Google
+      - Apple
+      - Apple
   - action: utter_want_stock_plot
   - intent: deny
     user: |-
-      nope
+      no
   - action: utter_stopped
-  - intent: nlu_fallback
-    user: |-
-      which is the current trend of [google](company)?
-  - slot_was_set:
-    - company: google
-  - action: utter_please_rephrase
   - intent: predict_stock_trend
     user: |-
-      predict the trend for [google](company)
+      which is the current trend of [Google](company)?
   - slot_was_set:
-    - company: google
+    - company: Google
   - action: company_form
   - active_loop: company_form
   - slot_was_set:
-    - company: google
+    - company: Google
   - slot_was_set:
     - requested_slot: null
   - active_loop: null
   - action: predict_stock_trend
-  - intent: deny
-    user: |-
-      ok thanks
-  - action: action_default_fallback
 
 
-- story: Interactive story from User2
+
+- story: Story 7
   steps:
   - intent: help
     user: |-
@@ -434,13 +433,13 @@ stories:
   - action: utter_help1
   - intent: company_news
     user: |-
-      i want some news about [amazon](company)
+      i want some news about [Tesla](company)
   - slot_was_set:
-    - company: amazon
+    - company: Tesla
   - action: company_form
   - active_loop: company_form
   - slot_was_set:
-    - company: amazon
+    - company: Tesla
   - slot_was_set:
     - requested_slot: null
   - active_loop: null
@@ -457,16 +456,20 @@ stories:
       yes
   - action: get_stock_value
   - slot_was_set:
-    - company_symbol: AMZN
+    - company_symbol: TSLA
   - slot_was_set:
-    - company_stock_value: 84.18
+    - company_stock_value: 123.18
   - slot_was_set:
     - currency: USD
   - action: utter_stock_value
+  - action: save_asked_company
+  - slot_was_set:
+    - companies_stock_asked:
+      - Tesla
   - action: utter_want_stock_plot
   - intent: deny
     user: |-
-      no
+      no thanks
   - action: utter_stopped
   - action: clear_company
   - slot_was_set:
@@ -482,9 +485,9 @@ stories:
   - active_loop: suggest_category_form
   - slot_was_set:
     - requested_slot: suggest_category
-  - intent: suggest_category
+  - intent: nlu_fallback
     user: |-
-      [cars](suggest_category)
+      I am interested in [cars](suggest_category)
   - slot_was_set:
     - suggest_category: cars
   - action: suggest_category_form
@@ -499,7 +502,7 @@ stories:
     - requested_slot: suggest_investment_type
   - intent: suggest_investment_type
     user: |-
-      i am into [shorting](suggest_investment_type)
+      I am into [shorting](suggest_investment_type)
   - slot_was_set:
     - suggest_investment_type: shorting
   - action: suggest_investment_type_form
@@ -514,7 +517,7 @@ stories:
   - slot_was_set:
     - suggest_investment_type: null
   - slot_was_set:
-    - company: Neo
+    - company: Tesla
   - action: utter_ask_want_description
   - intent: deny
     user: |-
@@ -522,7 +525,9 @@ stories:
   - action: utter_stopped
   - intent: stock_value
     user: |-
-      which is the current stock value of Neo?
+      which is the current stock value of [Neo](company)?
+  - slot_was_set:
+    - company: Neo
   - action: company_form
   - active_loop: company_form
   - slot_was_set:
@@ -534,22 +539,25 @@ stories:
   - slot_was_set:
     - company_symbol: NEO
   - slot_was_set:
-    - company_stock_value: 9.44
+    - company_stock_value: 9.24
   - slot_was_set:
     - currency: USD
   - action: utter_stock_value
   - action: save_asked_company
   - slot_was_set:
     - companies_stock_asked:
+      - Tesla
       - Neo
   - action: utter_want_stock_plot
   - intent: deny
     user: |-
-      n
+      no
   - action: utter_stopped
   - intent: company_info
     user: |-
-      can you describe me Neo?
+      can you describe me [Neo](company)?
+  - slot_was_set:
+    - company: Neo
   - action: company_form
   - active_loop: company_form
   - slot_was_set:
@@ -559,35 +567,24 @@ stories:
   - active_loop: null
   - action: get_company_info
   - action: ask_want_stock
-  - intent: deny
-  - action: utter_happy
-  - action: clear_company
 
 
 
-- story: Interactive story from User3
+- story: Story 8
   steps:
   - intent: company_news
     user: |-
-      i would like some news of deepmind
+      I would like some news about Pfizer
   - action: company_form
   - active_loop: company_form
   - slot_was_set:
     - requested_slot: company
-  - intent: affirm
+  - intent: nlu_fallback
     user: |-
-      deepmind
+      Pfizer
   - action: company_form
   - slot_was_set:
-    - company: null
-  - slot_was_set:
-    - requested_slot: company
-  - intent: affirm
-    user: |-
-      pfizer
-  - action: company_form
-  - slot_was_set:
-    - company: pfizer
+    - company: Pfizer
   - slot_was_set:
     - requested_slot: null
   - active_loop: null
@@ -606,26 +603,30 @@ stories:
   - slot_was_set:
     - company_symbol: PFE
   - slot_was_set:
-    - company_stock_value: 51.33
+    - company_stock_value: 51.24
   - slot_was_set:
     - currency: USD
   - action: utter_stock_value
+  - action: save_asked_company
+  - slot_was_set:
+    - companies_stock_asked:
+      - Pfizer
   - action: utter_want_stock_plot
   - intent: deny
     user: |-
-      n
+      nope
   - action: utter_stopped
   - action: clear_company
   - slot_was_set:
     - company: null
   - intent: predict_stock_trend
     user: |-
-      how is pfizer doing stock wise?
+      how is it doing stock wise?
   - action: company_form
   - active_loop: company_form
   - slot_was_set:
     - requested_slot: company
-  - intent: affirm
+  - intent: nlu_fallback
     user: |-
       pfizer
   - action: company_form
@@ -635,9 +636,13 @@ stories:
     - requested_slot: null
   - active_loop: null
   - action: predict_stock_trend
-  - intent: stock_value
+  - intent: nlu_fallback
     user: |-
-      give me the stock value of fiat
+      What is Pfizer?
+  - action: utter_please_rephrase
+  - intent: company_info
+    user: |-
+      Can you describe me Pfizer?
   - action: company_form
   - active_loop: company_form
   - slot_was_set:
@@ -645,104 +650,13 @@ stories:
   - slot_was_set:
     - requested_slot: null
   - active_loop: null
-  - action: get_stock_value
-  - slot_was_set:
-    - company_symbol: PFE
-  - slot_was_set:
-    - company_stock_value: 51.33
-  - slot_was_set:
-    - currency: USD
-  - action: utter_stock_value
-  - action: save_asked_company
-  - slot_was_set:
-    - companies_stock_asked:
-      - pfizer
-  - action: utter_want_stock_plot
-  - intent: reset
-    user: |-
-      wrong
-  - action: reset
-  - action: action_deactivate_loop
-  - active_loop: null
-  - slot_was_set:
-    - requested_slot: null
-  - intent: stock_value
-    user: |-
-      give me the stock value of fiat
-  - action: company_form
-  - active_loop: company_form
-  - slot_was_set:
-    - requested_slot: company
-  - intent: nlu_fallback
-    user: |-
-      fiat
-  - action: company_form
-  - slot_was_set:
-    - company: fiat
-  - slot_was_set:
-    - requested_slot: null
-  - active_loop: null
-  - action: get_stock_value
-  - slot_was_set:
-    - company_symbol: FIATX
-  - slot_was_set:
-    - company_stock_value: 20.92
-  - slot_was_set:
-    - currency: USD
-  - action: utter_stock_value
-  - action: save_asked_company
-  - slot_was_set:
-    - companies_stock_asked:
-      - fiat
-  - action: utter_want_stock_plot
-  - intent: deny
-    user: |-
-      n
-  - action: utter_stopped
-  - intent: stock_value
-    user: |-
-      i want the stock value of deepmind
-  - action: company_form
-  - active_loop: company_form
-  - slot_was_set:
-    - company: fiat
-  - slot_was_set:
-    - requested_slot: null
-  - active_loop: null
-  - action: get_stock_value
-  - slot_was_set:
-    - company_symbol: FIATX
-  - slot_was_set:
-    - company_stock_value: 20.92
-  - slot_was_set:
-    - currency: USD
-  - action: utter_stock_value
-  - action: save_asked_company
-  - slot_was_set:
-    - companies_stock_asked:
-      - fiat
-      - fiat
-  - action: utter_want_stock_plot
-  - intent: deny
-    user: |-
-      n
-  - action: utter_stopped
-  - intent: company_news
-    user: |-
-      i want some news about it
-  - action: company_form
-  - active_loop: company_form
-  - slot_was_set:
-    - company: fiat
-  - slot_was_set:
-    - requested_slot: null
-  - active_loop: null
-  - action: utter_searching_company_news
-  - action: search_company_news
-  - action: utter_ask_want_news_link
-  - intent: deny
-  - action: utter_ok
+  - action: get_company_info
   - action: ask_want_stock
   - intent: deny
+    user: |-
+      nope
   - action: utter_happy
   - action: clear_company
+  - slot_was_set:
+    - company: null
+

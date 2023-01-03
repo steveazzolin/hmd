@@ -1,16 +1,1 @@
-version: "2.0"
-stories:
-- story: Company news (data\stories.yml)
-  steps:
-  - intent: company_news
-  - action: company_form
-  - active_loop: company_form
-  - slot_was_set:
-    - company: meta
-  - active_loop: null
-  - slot_was_set:
-    - requested_slot: null
-  - action: utter_searching_company_news
-  - action: action_listen  # predicted: ask_want_stock
-  - intent: deny
-  - action: clear_company
+# None of the test stories failed - all good!

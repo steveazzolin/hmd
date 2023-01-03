@@ -108,7 +108,6 @@ nlu:
     - just [line](plot_type) plots
     - [line](plot_type)
     - [candle](plot_type)
-    - [candle](plot_type)
 - intent: predict_stock_trend
   examples: |
     - how is [Google](company) doing?
