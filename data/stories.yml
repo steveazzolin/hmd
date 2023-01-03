@@ -1025,3 +1025,47 @@ stories:
   - slot_was_set:
     - company: null
 
+
+- story: interactive_story_1
+  steps:
+  - intent: stock_value
+    entities:
+    - company: Google
+  - slot_was_set:
+    - company: Google
+  - action: company_form
+  - active_loop: company_form
+  - slot_was_set:
+    - company: Google
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: get_stock_value
+  - slot_was_set:
+    - company_symbol: GOOG
+  - slot_was_set:
+    - company_stock_value: 88.73
+  - slot_was_set:
+    - currency: USD
+  - action: utter_stock_value
+  - action: save_asked_company
+  - slot_was_set:
+    - companies_stock_asked:
+      - Google
+  - action: utter_want_stock_plot
+  - intent: affirm
+  - action: plot_type_form
+  - active_loop: plot_type_form
+  - slot_was_set:
+    - requested_slot: plot_type
+  - slot_was_set:
+    - plot_type: candle
+  - slot_was_set:
+    - plot_type: candle
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: send_stock_value_plot
+  - action: clear_company
+  - slot_was_set:
+    - company: null

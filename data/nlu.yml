@@ -58,6 +58,7 @@ nlu:
     - i want the stock value
     - i want the stock value of [Juventus](company)
     - can you give me its stock value ?
+    - i would like the stock value of [Google](company)
 - intent: company_news
   examples: |
     - news about [Meta](company)
@@ -106,6 +107,7 @@ nlu:
     - please send [candle](plot_type) plots
     - just [line](plot_type) plots
     - [line](plot_type)
+    - [candle](plot_type)
     - [candle](plot_type)
 - intent: predict_stock_trend
   examples: |
@@ -195,7 +197,6 @@ nlu:
     - let's go with [shorting](suggest_investment_type) then
     - okay let's try with [long range](suggest_investment_type)
     - i am [not sure](suggest_investment_type)
-    - [long range](suggest_investment_type)
 - intent: clarify_investment_type
   examples: |
     - what is [shorting](tmp_suggest_investment_type)?
