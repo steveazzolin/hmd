@@ -209,6 +209,8 @@ nlu:
     - feedback
     - i found a problem
     - can you add a feature?
+    - i think that this bot is super cool
+    - i think that this bot is cool
     - let me tell you something
 - intent: help
   examples: |
@@ -335,3 +337,6 @@ nlu:
 - synonym: qualcomm
   examples: |
     - qualcom
+- synonym: Juventus
+  examples: |
+    - Juve
