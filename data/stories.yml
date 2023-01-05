@@ -2,34 +2,6 @@ version: "2.0"
 
 stories:
 
-# - story: happy path
-#   steps:
-#   - intent: greet
-#   - action: utter_greet
-#   - intent: mood_great
-#   - action: utter_happy
-
-# - story: sad path 1
-#   steps:
-#   - intent: greet
-#   - action: utter_greet
-#   - intent: mood_unhappy
-#   - action: utter_cheer_up
-#   - action: utter_did_that_help
-#   - intent: affirm
-#   - action: utter_happy
-
-# - story: sad path 2
-#   steps:
-#   - intent: greet
-#   - action: utter_greet
-#   - intent: mood_unhappy
-#   - action: utter_cheer_up
-#   - action: utter_did_that_help
-#   - intent: deny
-#   - action: utter_goodbye
-
-
 
 
 
@@ -1069,3 +1041,47 @@ stories:
   - action: clear_company
   - slot_was_set:
     - company: null
+
+- story: How to start investing?
+  steps:
+  - intent: starting_investing
+  - action: utter_how_to_start
+
+
+- story: How to start investing + Suggestion as affirm intent
+  steps:
+  - intent: starting_investing
+  - action: utter_how_to_start
+  - intent: affirm
+  - action: suggest_category_form
+  - active_loop: suggest_category_form
+  - slot_was_set:
+    - requested_slot: suggest_category
+  - slot_was_set:
+    - suggest_category: sport
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null  
+  - action: suggest_investment_type_form
+  - active_loop: suggest_investment_type_form
+  - slot_was_set:
+    - requested_slot: suggest_investment_type
+  - slot_was_set:
+    - suggest_investment_type: shorting
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null  
+  - action: make_suggestion
+  - action: utter_ask_want_description
+  - intent: affirm
+  - action: get_company_info
+  - action: save_asked_company
+  - action: utter_what_todo_next
+
+
+- story: How to start investing + Say no
+  steps:
+  - intent: starting_investing
+  - action: utter_how_to_start
+  - intent: deny
+  - action: utter_what_todo_next

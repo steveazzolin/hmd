@@ -13,6 +13,8 @@ nlu:
     - yes please
     - ok thanks
     - thanks
+    - yeah ok
+    - yeah fine
 - intent: deny
   examples: |
     - no
@@ -46,8 +48,16 @@ nlu:
     - updates of [Meta](company)
     - [Meta](company) stock news
     - how much is [Meta](company) worth?
+    - how much is [Cisco](company) worth?
+    - how much is [Microsoft](company) worth?
+    - how much is [Amazon](company) worth?
+    - how much is [Juventus](company) worth?
     - which is the current stock value of [Meta](company)?
     - which is the stock value of [Tesla](company)?
+    - which is the stock value of [Microsoft](company)?
+    - which is the stock value of [Neo](company)?
+    - which is the stock value of [Nvidia](company)?
+    - which is the stock value of [Meta](company)?
     - stock values
     - stock value
     - stock updates
@@ -55,10 +65,31 @@ nlu:
     - i would like the current stock value of that company
     - i would like the current stock value of [Nvidia](company)
     - i would like the current stock value of [Microsoft](company)
+    - i would like the current stock value of [Google](company)
+    - i would like the current stock value of [Neo](company)
+    - i would like the current stock value of [Tesla](company)
+    - i would like the current stock value of [Amazon](company)
+    - i would like the current stock value of [Meta](company)
+    - i would like the current stock value of [Nvidia](company)
+    - i would like the current stock value of [Qualcomm](company)
+    - i would like the current stock value of [Intel](company)
+    - i would like the scurrent tock value of [Cisco](company)
     - i want the stock value
     - i want the stock value of [Juventus](company)
+    - i want the stock value of [Cisco](company)
+    - i want the stock value of [Tesla](company)
+    - i want the stock value of [Apple](company)
+    - i want the stock value of [Google](company)
     - can you give me its stock value ?
     - i would like the stock value of [Google](company)
+    - i would like the stock value of [Neo](company)
+    - i would like the stock value of [Tesla](company)
+    - i would like the stock value of [Amazon](company)
+    - i would like the stock value of [Meta](company)
+    - i would like the stock value of [Nvidia](company)
+    - i would like the stock value of [Qualcomm](company)
+    - i would like the stock value of [Intel](company)
+    - i would like the stock value of [Cisco](company)
 - intent: company_news
   examples: |
     - news about [Meta](company)
@@ -70,13 +101,29 @@ nlu:
     - how is [Google](company) doing?
     - what about [Amazon](company)?
     - can you look for some news about [Meta](company)
+    - can you look for some news about [Qualcomm](company)
+    - can you look for some news about [Neo](company)
+    - can you look for some news about [juventus](company)
+    - can you look for some news about [Google](company)
     - company news
     - [meta](company) news
     - i would like some news
     - i would like some news of [Google](company)
     - i would like some news about [Amazon](company)
+    - i would like some news about [Tesla](company)
+    - i would like some news about [Cisco](company)
+    - i would like some news about [Intel](company)
+    - i would like some news about [Qualcomm](company)
+    - i would like some news about [Neo](company)
+    - i would like some news about [juventus](company)
     - can you give me some news?
     - i want some news about [Roma](company)
+    - i want some news about [Tesla](company)
+    - i want some news about [Cisco](company)
+    - i want some news about [Intel](company)
+    - i want some news about [Qualcomm](company)
+    - i want some news about [Neo](company)
+    - i want some news about [Juventus](company)
 - intent: company_info
   examples: |
     - [Meta](company)
@@ -93,9 +140,19 @@ nlu:
     - Can you describe me [Neo](company) ?
     - Can you describe me [Tesla](company) ?
     - Can you describe me [Roma](company) ?
+    - Can you describe me [Cisco](company) ?
+    - Can you describe me [juventus](company) ?
+    - Can you describe me [Microsoft](company) ?
     - What is [Facebook]{"entity": "company", "value": "Meta"} ?
     - What is [Google](company) ?
+    - What is [Juventus](company) ?
+    - What is [Roma](company) ?
+    - What is [Neo](company) ?
+    - What is [Tesla](company) ?
     - What kind of company is [Amazon](company) ?
+    - What kind of company is [Cisco](company) ?
+    - What kind of company is [Nvidia](company) ?
+    - What kind of company is [Juventus](company) ?
     - what is [google](company)
     - [google](company)
     - [amazon](company)
@@ -113,9 +170,23 @@ nlu:
     - how is [Google](company) doing?
     - what about [Amazon](company) stock-wise?
     - what about [Facebook](company) stock wise?
+    - what about [Tesla](company) stock-wise?
+    - what about [Cisco](company) stock-wise?
+    - what about [Juventus](company) stock-wise?
+    - what about [Roma](company) stock-wise?
+    - what about [Nvidia](company) stock-wise?
+    - what about [Apple](company) stock-wise?
     - will [Meta](company) grow?
+    - will [Amazon](company) grow?
+    - will [Juventus](company) grow?
+    - will [Roma](company) grow?
+    - do you think that [Meta](company) will grow?
+    - do you think that [Cisco](company) will grow?
+    - do you think that [Microsoft](company) will grow?
+    - do you think that [Amazon](company) will grow?
     - is [Meta](company) growing?
-    - do you think is worth investing in [Google](company)?
+    - do you think it is worth investing in [Google](company)?
+    - do you think that is worth investing in [Google](company)?
     - predict the trend for [Amazon](company)
     - which is the current trend of [google](company)?
     - predict the trend for [google](company)
@@ -124,17 +195,21 @@ nlu:
     - which is the best index?
     - best index
     - which index is performing the best?
+    - which is the most promising index?
 - intent: worst_index
   examples: |
     - which is the worst index?
     - worst index
     - which index is performing the worse?
+    - which is the less promising index?
+    - which is the last promising index?
 - intent: feedback
   examples: |
     - i want to give some feddback
     - feedback
     - i found a problem
     - can you add a feature?
+    - let me tell you something
 - intent: help
   examples: |
     - help
@@ -179,9 +254,19 @@ nlu:
     - [car](suggest_category) companies
     - i want [hw](suggest_category)
     - i want [sport](suggest_category) stocks
+    - i want [software](suggest_category) stocks
+    - i want [hardware](suggest_category) stocks
+    - i want [innovative](suggest_category) stocks
     - [sport](suggest_category)
+    - [software](suggest_category)
+    - [hardware](suggest_category)
+    - [tech](suggest_category)
     - i am interested in [tech](suggest_category) companies
     - i am into [software](suggest_category)
+    - i am into [cars](suggest_category)
+    - i am into [game](suggest_category)
+    - i am into [hardware](suggest_category)
+    - i am into [tech](suggest_category)
 - intent: suggest_investment_type
   examples: |
     - i am interested in [shorting](suggest_investment_type)
@@ -206,9 +291,31 @@ nlu:
     - what do you mean by a [long](tmp_suggest_investment_type) investment?
     - what do you mean by [long range](tmp_suggest_investment_type)?
     - what do you mean by a [shorting](tmp_suggest_investment_type) investment
-- intent: nlu_fallback
+- intent: starting_investing
   examples: |
-    - apple
+    - how can I start investing?
+    - how to start?
+    - how to start investing?
+    - how can I invest?
+    - which is the best way to start investing?
+    - how to invest?
+    - Can you tell me which is the best way to start investing?
+    - Can you tell me how to start investing?
+    - Can you tell me how to start?
+    - Which is in your opinion the best way to start investing?
+    - let's start investing
+    - i want to start investing
+    - i want to invest some money
+    - i want to invest something
+    - i want to buy a stock
+    - i want to buy something
+    - can you give me suggestions on how to start investing?
+    - can you give me suggestions on how to investing?
+    - can you give me suggestions on how investing?
+    - can you give me suggestions on how to start?
+#- intent: nlu_fallback
+#  examples: |
+#    - apple
 - synonym: Meta
   examples: |
     - Facebook
@@ -225,3 +332,6 @@ nlu:
 - synonym: sport
   examples: |
     - sports
+- synonym: qualcomm
+  examples: |
+    - qualcom

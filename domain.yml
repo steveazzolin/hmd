@@ -11,7 +11,7 @@ intents:
 - stock_value
 - deny
 - change_plot_type
-- nlu_fallback
+#- nlu_fallback
 - greet
 - goodbye
 - company_news
@@ -22,6 +22,7 @@ intents:
 - help
 - reset
 - clarify_investment_type
+- starting_investing
 entities:
 - company
 - feedback
@@ -69,9 +70,6 @@ slots:
 responses:
   utter_greet:
   - text: Hey! How are you?
-  utter_cheer_up:
-  - image: https://i.imgur.com/nGF1K8f.jpg
-    text: 'Here is something to cheer you up:'
   utter_did_that_help:
   - text: Did that help you?
   utter_happy:
@@ -123,7 +121,7 @@ responses:
   utter_please_rephrase:
   - text: I'm sorry, I didn't quite understand that. Please rephrase.
   utter_default:
-  - text: Sorry I didn't get that. Please rephrase.
+  - text: I'm sorry, I can't help you.
   utter_company_not_found:
   - text: I didn't manage to find {company} in my database. Try with another company.
   utter_choose_category:
@@ -137,6 +135,10 @@ responses:
   - text: Do you want more info about {company}?
   utter_what_todo_next:
   - text: How can I help you now?
+  utter_how_to_start:
+  - text: To start investing I may suggest you to check out some online Brokers like Directa, or to consult your personal bank. If you are interested I can give you some suggestions on which stock to buy.
+  utter_ask_rephrase:
+  - text: I'm sorry, I didn't quite understand that. Please rephrase
 actions:
 - ask_want_stock
 - clarify_investment_type
