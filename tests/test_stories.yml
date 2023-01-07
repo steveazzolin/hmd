@@ -3,7 +3,7 @@ stories:
 
 
 
-- story: Story 1
+- story: Story1
   steps:
   - intent: help
     user: |-
@@ -33,9 +33,9 @@ stories:
     - requested_slot: suggest_investment_type
   - intent: suggest_investment_type
     user: |-
-      I am [not sure really](suggest_investment_type)
+      I am [not sure](suggest_investment_type) really
   - slot_was_set:
-    - suggest_investment_type: not sure really
+    - suggest_investment_type: not sure
   - action: suggest_investment_type_form
   - slot_was_set:
     - suggest_investment_type: null
@@ -43,7 +43,7 @@ stories:
     - requested_slot: suggest_investment_type
   - intent: clarify_investment_type
     user: |-
-      What do you mean by a [long range](tmp_suggest_investment_type) investment?
+      what do you mean by a [long range](tmp_suggest_investment_type) investment?
   - slot_was_set:
     - tmp_suggest_investment_type: long range
   - action: clarify_investment_type
@@ -69,7 +69,7 @@ stories:
   - slot_was_set:
     - suggest_investment_type: null
   - slot_was_set:
-    - company: Apple
+    - company: Google
   - action: utter_ask_want_description
   - intent: affirm
     user: |-
@@ -78,7 +78,7 @@ stories:
   - action: save_asked_company
   - slot_was_set:
     - companies_stock_asked:
-      - Apple
+      - Google
   - action: utter_what_todo_next
   - intent: stock_value
     user: |-
@@ -86,31 +86,33 @@ stories:
   - action: company_form
   - active_loop: company_form
   - slot_was_set:
-    - company: Apple
+    - company: Google
   - slot_was_set:
     - requested_slot: null
   - active_loop: null
   - action: get_stock_value
   - slot_was_set:
-    - company_symbol: AAPL
+    - company_symbol: GOOG
   - slot_was_set:
-    - company_stock_value: 129.38
+    - company_stock_value: 88.16
   - slot_was_set:
     - currency: USD
   - action: utter_stock_value
   - action: save_asked_company
   - slot_was_set:
     - companies_stock_asked:
-      - Apple
-      - Apple
+      - Google
+      - Google
   - action: utter_want_stock_plot
   - intent: deny
     user: |-
-      No
+      nope
   - action: utter_stopped
   - intent: company_news
     user: |-
-      i would like some news about Apple
+      i would like some news about [Apple](company)
+  - slot_was_set:
+    - company: Apple
   - action: company_form
   - active_loop: company_form
   - slot_was_set:
@@ -123,26 +125,29 @@ stories:
   - action: utter_ask_want_news_link
   - intent: deny
     user: |-
-      No thanks
+      no
   - action: utter_ok
   - action: ask_want_stock
-
-
-
-- story: Story 2
-  steps:
-  - intent: nlu_fallback
+  - intent: deny
     user: |-
-      what is Pfizer?
-  - action: utter_please_rephrase
+      no thanks
+  - action: utter_happy
+  - action: clear_company
+  - slot_was_set:
+    - company: null
+
+
+
+- story: Story2
+  steps:
   - intent: company_info
     user: |-
-      Can you describe me Pfizer?
+      what is Pfizer?
   - action: company_form
   - active_loop: company_form
   - slot_was_set:
     - requested_slot: company
-  - intent: nlu_fallback
+  - intent: deny
     user: |-
       Pfizer
   - action: company_form
@@ -160,7 +165,7 @@ stories:
   - slot_was_set:
     - company_symbol: PFE
   - slot_was_set:
-    - company_stock_value: 51.24
+    - company_stock_value: 50.92
   - slot_was_set:
     - currency: USD
   - action: utter_stock_value
@@ -171,7 +176,7 @@ stories:
   - action: utter_want_stock_plot
   - intent: deny
     user: |-
-      no thanks
+      nope
   - action: utter_stopped
   - action: clear_company
   - slot_was_set:
@@ -183,7 +188,7 @@ stories:
   - active_loop: company_form
   - slot_was_set:
     - requested_slot: company
-  - intent: nlu_fallback
+  - intent: deny
     user: |-
       Pfizer
   - action: company_form
@@ -197,9 +202,10 @@ stories:
   - action: utter_ask_want_news_link
   - intent: deny
     user: |-
-      no
+      no thanks
   - action: utter_ok
   - action: ask_want_stock
+
 
 
 
@@ -267,7 +273,7 @@ stories:
 
 
 
-- story: Story 5
+- story: Story5
   steps:
   - intent: help
     user: |-
@@ -280,7 +286,7 @@ stories:
   - active_loop: feedback_form
   - slot_was_set:
     - requested_slot: feedback
-  - intent: help
+  - intent: feedback
     user: |-
       I think you should add a logo
   - action: feedback_form
@@ -296,7 +302,7 @@ stories:
 
 
 
-- story: Story 6
+- story: Story6
   steps:
   - intent: suggest_category
     user: |-
@@ -334,9 +340,9 @@ stories:
     - requested_slot: suggest_investment_type
   - intent: suggest_investment_type
     user: |-
-      I am [not sure really](suggest_investment_type)
+      I'm [not sure](suggest_investment_type)
   - slot_was_set:
-    - suggest_investment_type: not sure really
+    - suggest_investment_type: not sure
   - action: suggest_investment_type_form
   - slot_was_set:
     - suggest_investment_type: null
@@ -344,9 +350,9 @@ stories:
     - requested_slot: suggest_investment_type
   - intent: clarify_investment_type
     user: |-
-      what do you mean by a [long range](tmp_suggest_investment_type) investment?
+      what do you mean by a [shorting](tmp_suggest_investment_type) investment?
   - slot_was_set:
-    - tmp_suggest_investment_type: long range
+    - tmp_suggest_investment_type: shorting
   - action: clarify_investment_type
   - slot_was_set:
     - tmp_suggest_investment_type: null
@@ -372,15 +378,10 @@ stories:
   - slot_was_set:
     - company: Apple
   - action: utter_ask_want_description
-  - intent: affirm
+  - intent: deny
     user: |-
-      yes please
-  - action: get_company_info
-  - action: save_asked_company
-  - slot_was_set:
-    - companies_stock_asked:
-      - Apple
-  - action: utter_what_todo_next
+      no thanks
+  - action: utter_stopped
   - intent: stock_value
     user: |-
       can you give me its stock value?
@@ -395,7 +396,7 @@ stories:
   - slot_was_set:
     - company_symbol: AAPL
   - slot_was_set:
-    - company_stock_value: 129.93
+    - company_stock_value: 129.62
   - slot_was_set:
     - currency: USD
   - action: utter_stock_value
@@ -403,29 +404,15 @@ stories:
   - slot_was_set:
     - companies_stock_asked:
       - Apple
-      - Apple
   - action: utter_want_stock_plot
   - intent: deny
     user: |-
-      no
+      no thanks
   - action: utter_stopped
-  - intent: predict_stock_trend
-    user: |-
-      which is the current trend of [Google](company)?
-  - slot_was_set:
-    - company: Google
-  - action: company_form
-  - active_loop: company_form
-  - slot_was_set:
-    - company: Google
-  - slot_was_set:
-    - requested_slot: null
-  - active_loop: null
-  - action: predict_stock_trend
 
 
 
-- story: Story 7
+- story: Story7
   steps:
   - intent: help
     user: |-
@@ -433,7 +420,7 @@ stories:
   - action: utter_help1
   - intent: company_news
     user: |-
-      i want some news about [Tesla](company)
+      I want some news about [Tesla](company)
   - slot_was_set:
     - company: Tesla
   - action: company_form
@@ -458,7 +445,7 @@ stories:
   - slot_was_set:
     - company_symbol: TSLA
   - slot_was_set:
-    - company_stock_value: 123.18
+    - company_stock_value: 113.06
   - slot_was_set:
     - currency: USD
   - action: utter_stock_value
@@ -469,7 +456,7 @@ stories:
   - action: utter_want_stock_plot
   - intent: deny
     user: |-
-      no thanks
+      no
   - action: utter_stopped
   - action: clear_company
   - slot_was_set:
@@ -485,7 +472,7 @@ stories:
   - active_loop: suggest_category_form
   - slot_was_set:
     - requested_slot: suggest_category
-  - intent: nlu_fallback
+  - intent: suggest_category
     user: |-
       I am interested in [cars](suggest_category)
   - slot_was_set:
@@ -517,11 +504,11 @@ stories:
   - slot_was_set:
     - suggest_investment_type: null
   - slot_was_set:
-    - company: Tesla
+    - company: Neo
   - action: utter_ask_want_description
   - intent: deny
     user: |-
-      no
+      nope
   - action: utter_stopped
   - intent: stock_value
     user: |-
@@ -539,7 +526,7 @@ stories:
   - slot_was_set:
     - company_symbol: NEO
   - slot_was_set:
-    - company_stock_value: 9.24
+    - company_stock_value: 9.27
   - slot_was_set:
     - currency: USD
   - action: utter_stock_value
@@ -555,7 +542,7 @@ stories:
   - action: utter_stopped
   - intent: company_info
     user: |-
-      can you describe me [Neo](company)?
+      Can you describe me [Neo](company)?
   - slot_was_set:
     - company: Neo
   - action: company_form
@@ -570,21 +557,18 @@ stories:
 
 
 
-- story: Story 8
+
+- story: Story8
   steps:
   - intent: company_news
     user: |-
-      I would like some news about Pfizer
+      I would like some news about [Microsoft](company)
+  - slot_was_set:
+    - company: Microsoft
   - action: company_form
   - active_loop: company_form
   - slot_was_set:
-    - requested_slot: company
-  - intent: nlu_fallback
-    user: |-
-      Pfizer
-  - action: company_form
-  - slot_was_set:
-    - company: Pfizer
+    - company: Microsoft
   - slot_was_set:
     - requested_slot: null
   - active_loop: null
@@ -593,29 +577,13 @@ stories:
   - action: utter_ask_want_news_link
   - intent: deny
     user: |-
-      no
+      nope
   - action: utter_ok
   - action: ask_want_stock
-  - intent: affirm
-    user: |-
-      yes please
-  - action: get_stock_value
-  - slot_was_set:
-    - company_symbol: PFE
-  - slot_was_set:
-    - company_stock_value: 51.24
-  - slot_was_set:
-    - currency: USD
-  - action: utter_stock_value
-  - action: save_asked_company
-  - slot_was_set:
-    - companies_stock_asked:
-      - Pfizer
-  - action: utter_want_stock_plot
   - intent: deny
     user: |-
-      nope
-  - action: utter_stopped
+      no
+  - action: utter_happy
   - action: clear_company
   - slot_was_set:
     - company: null
@@ -626,27 +594,27 @@ stories:
   - active_loop: company_form
   - slot_was_set:
     - requested_slot: company
-  - intent: nlu_fallback
+  - intent: company_info
     user: |-
-      pfizer
+      [Microsoft](company)
+  - slot_was_set:
+    - company: Microsoft
   - action: company_form
   - slot_was_set:
-    - company: pfizer
+    - company: Microsoft
   - slot_was_set:
     - requested_slot: null
   - active_loop: null
   - action: predict_stock_trend
-  - intent: nlu_fallback
-    user: |-
-      What is Pfizer?
-  - action: utter_please_rephrase
   - intent: company_info
     user: |-
-      Can you describe me Pfizer?
+      What is [Microsoft](company)?
+  - slot_was_set:
+    - company: Microsoft
   - action: company_form
   - active_loop: company_form
   - slot_was_set:
-    - company: pfizer
+    - company: Microsoft
   - slot_was_set:
     - requested_slot: null
   - active_loop: null
@@ -654,9 +622,73 @@ stories:
   - action: ask_want_stock
   - intent: deny
     user: |-
-      nope
+      no thanks
   - action: utter_happy
   - action: clear_company
   - slot_was_set:
     - company: null
 
+
+- story: Story9 (to debug less explored intents)
+  steps:
+  - intent: best_index
+    user: |-
+      Which is the best index?
+  - action: get_best_index
+  - intent: worst_index
+    user: |-
+      Which index is the worst instead?
+  - action: get_worst_index
+  - intent: stock_value
+    user: |-
+      stock value
+  - action: company_form
+  - active_loop: company_form
+  - slot_was_set:
+    - requested_slot: company
+  - intent: company_info
+    user: |-
+      [amazon](company)
+  - slot_was_set:
+    - company: amazon
+  - action: company_form
+  - slot_was_set:
+    - company: amazon
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: get_stock_value
+  - slot_was_set:
+    - company_symbol: AMZN
+  - slot_was_set:
+    - company_stock_value: 86.08
+  - slot_was_set:
+    - currency: USD
+  - action: utter_stock_value
+  - action: save_asked_company
+  - slot_was_set:
+    - companies_stock_asked:
+      - amazon
+  - action: utter_want_stock_plot
+  - intent: affirm
+    user: |-
+      yes
+  - action: plot_type_form
+  - active_loop: plot_type_form
+  - slot_was_set:
+    - requested_slot: plot_type
+  - intent: change_plot_type
+    user: |-
+      A [candle](plot_type) plot
+  - slot_was_set:
+    - plot_type: candle
+  - action: plot_type_form
+  - slot_was_set:
+    - plot_type: candle
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: send_stock_value_plot
+  - action: clear_company
+  - slot_was_set:
+    - company: null
