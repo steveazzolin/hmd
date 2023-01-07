@@ -75,7 +75,7 @@ class ValidateCompanyForm(FormValidationAction):
 
         if slot_value.lower() not in name_symbol_mapper:
             company_symbol , ambiguity = finance_api.get_symbol_from_name(slot_value, debug=False)
-            if company_symbol is None:
+            if company_symbol is None or slot_value.lower() not in [e.lower() for e in stock_names]:
                 print(f"{slot_value} not found")
                 dispatcher.utter_message(text=f"I didn't manage to find {slot_value} in my database, please try with another company.")        
                 
@@ -188,7 +188,7 @@ class ValidateInvestmentTypeForm(FormValidationAction):
             return {"suggest_investment_type": "long range"}
         else:
             print(f"Validating suggest_investment_type = don't know ({slot_value})")
-            dispatcher.utter_message(text=f"If you are not sure try with either 'shorting' or 'long range'")
+            dispatcher.utter_message(text=f"If you are not sure try with either 'shorting' or 'long range'.")
             return {"suggest_investment_type": None}
 
 class ActionGetStockValues(Action):
@@ -260,7 +260,7 @@ class ActionPredictTrend(Action):
         data = finance_api.get_past_values_from_symbol(name_symbol_mapper[company_name.lower()], debug=True)
         trend = finance_api.predict_trend(data, debug=False)
         trend = "positive" if trend >= 0 else "negative"
-        dispatcher.utter_message(text=f"The current trend of {company_name} is {trend}")
+        dispatcher.utter_message(text=f"The current trend of {company_name} is {trend}.")
         return []
 
 class ActionClearCompanyWMsg(Action):
@@ -353,7 +353,7 @@ class ActionGetNews(Action):
         n = 0
         for news in cached_company_news[:3]:
             pillarName = news['pillarName'] if 'pillarName' in news.keys() else "News"
-            dispatcher.utter_message(text=f"{n+1}. {pillarName}: {news['webTitle']}")
+            dispatcher.utter_message(text=f"{n+1}. {pillarName}: {news['webTitle']}.")
             dispatcher.utter_message(text=f"")
             n += 1
         cached_last_news_shown.extend(cached_company_news[:3].copy())
@@ -500,14 +500,14 @@ class ActionClarify(Action):
         print("ActionClarifyInvType")
 
         #print(tracker.latest_message)        
-        bot_event = next(e for e in reversed(tracker.events) if e["event"] == "bot")
-        print(bot_event["text"])
-        print("A loop is active" if tracker.active_loop != {} else "No loop")
-        print(tracker.active_loop)
+        #bot_event = next(e for e in reversed(tracker.events) if e["event"] == "bot")
+        #print(bot_event["text"])
+        #print("A loop is active" if tracker.active_loop != {} else "No loop")
+        #print(tracker.active_loop)
         
-        if tracker.get_slot("tmp_suggest_investment_type") == "shorting" or tracker.get_slot("tmp_suggest_investment_type") == "short":
+        if tracker.get_slot("tmp_suggest_investment_type") == "shorting" or "short" in tracker.get_slot("tmp_suggest_investment_type"):
             dispatcher.utter_message(text=f"In finance, being short in an asset means investing in such a way that the investor will profit if the value of the asset falls.")  
-        elif tracker.get_slot("tmp_suggest_investment_type") == "long range" or tracker.get_slot("tmp_suggest_investment_type") == "long":
+        elif tracker.get_slot("tmp_suggest_investment_type") == "long range" or "long" in tracker.get_slot("tmp_suggest_investment_type"):
             dispatcher.utter_message(text=f"In finance, a long position in a financial instrument means the holder of the position owns a positive amount of the instrument.")  
         else:
             print("Error: option not available")

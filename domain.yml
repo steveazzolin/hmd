@@ -11,8 +11,6 @@ intents:
 - stock_value
 - deny
 - change_plot_type
-#- nlu_fallback
-- greet
 - goodbye
 - company_news
 - predict_stock_trend
@@ -23,6 +21,7 @@ intents:
 - reset
 - clarify_investment_type
 - starting_investing
+- nlu_fallback
 entities:
 - company
 - feedback
@@ -68,8 +67,6 @@ slots:
     type: text
     influence_conversation: true
 responses:
-  utter_greet:
-  - text: Hey! How are you?
   utter_did_that_help:
   - text: Did that help you?
   utter_happy:
@@ -90,7 +87,7 @@ responses:
   - text: I am searching information about {company}
   utter_ask_company:
   - text: For which company do you want information?
-  - text: Please, tell me the company for which you want information
+  - text: Please, tell me the company for which you want information.
   utter_ask_suggest_category:
   - text: Which stock category are you interested in? Examples are Sport or Software
   utter_ask_suggest_investment_type:
@@ -100,7 +97,7 @@ responses:
   utter_ask_want_news_link:
   - text: Do you want to read the full articles on your device?
   utter_clear_company:
-  - text: Sorry, if it was wrong, let me clean my memory. Please continue...
+  - text: Sorry, if it was wrong, let me clean my memory. Please continue.
   utter_confirm_stop:
   - text: Are you sure that you want to stop the search?
   utter_stopped:
@@ -125,7 +122,7 @@ responses:
   utter_company_not_found:
   - text: I didn't manage to find {company} in my database. Try with another company.
   utter_choose_category:
-  - text: Which stock category are you interested in? Examples are Sport or Software
+  - text: Which stock category are you interested in? Examples are Sport or Software.
   utter_investment_type:
   - text: Great! Which kind of investment are you looking for?
   utter_confirm_investment_type:
@@ -138,7 +135,7 @@ responses:
   utter_how_to_start:
   - text: To start investing I may suggest you to check out some online Brokers like Directa, or to consult your personal bank. If you are interested I can give you some suggestions on which stock to buy.
   utter_ask_rephrase:
-  - text: I'm sorry, I didn't quite understand that. Please rephrase
+  - text: I'm sorry, I didn't quite understand that. Please rephrase.
 actions:
 - ask_want_stock
 - clarify_investment_type
@@ -177,7 +174,7 @@ forms:
     required_slots:
       plot_type:
       - entity: plot_type
-        type: from_text
+        type: from_entity
   feedback_form:
     required_slots:
       feedback:

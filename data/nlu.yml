@@ -26,6 +26,8 @@ nlu:
     - not really
     - nope
     - no thanks
+    - no thanks I am fine
+    - no thanks I'm fine
 - intent: reset
   examples: |
     - stop
@@ -70,7 +72,6 @@ nlu:
     - i would like the current stock value of [Tesla](company)
     - i would like the current stock value of [Amazon](company)
     - i would like the current stock value of [Meta](company)
-    - i would like the current stock value of [Nvidia](company)
     - i would like the current stock value of [Qualcomm](company)
     - i would like the current stock value of [Intel](company)
     - i would like the scurrent tock value of [Cisco](company)
@@ -160,11 +161,15 @@ nlu:
   examples: |
     - i want [line](plot_type) plots
     - i want [candle](plot_type) plots
+    - i want a [line](plot_type) plot
+    - i want a [candle](plot_type) plot
     - next time send me a [line](plot_type) plot
     - please send [candle](plot_type) plots
     - just [line](plot_type) plots
     - [line](plot_type)
     - [candle](plot_type)
+    - a [line](plot_type) plot
+    - a [candle](plot_type) plot
 - intent: predict_stock_trend
   examples: |
     - how is [Google](company) doing?
@@ -269,18 +274,25 @@ nlu:
     - i am into [game](suggest_category)
     - i am into [hardware](suggest_category)
     - i am into [tech](suggest_category)
+    - I am interested in [medicine](suggest_category) companies
+    - i am into [medicine](suggest_category)
 - intent: suggest_investment_type
   examples: |
     - i am interested in [shorting](suggest_investment_type)
+    - i am interested in [short thing](suggest_investment_type)
     - i prefer [shorting](suggest_investment_type)
-    - i do [long range investment](suggest_investment_type)
+    - i prefer [short thing](suggest_investment_type)
+    - i do [long range](suggest_investment_type) investment
+    - i do [short thing](suggest_investment_type)
     - [long range](suggest_investment_type)
     - [shorting](suggest_investment_type)
+    - [short thing](suggest_investment_type)
     - [not sure](suggest_investment_type)
     - i [don't know](suggest_investment_type)
     - i am [not sure](suggest_investment_type) really
     - i [do not really know](suggest_investment_type)
     - let's go with [shorting](suggest_investment_type) then
+    - let's go with [short thing](suggest_investment_type) then
     - okay let's try with [long range](suggest_investment_type)
     - i am [not sure](suggest_investment_type)
 - intent: clarify_investment_type
@@ -315,9 +327,6 @@ nlu:
     - can you give me suggestions on how to investing?
     - can you give me suggestions on how investing?
     - can you give me suggestions on how to start?
-#- intent: nlu_fallback
-#  examples: |
-#    - apple
 - synonym: Meta
   examples: |
     - Facebook
@@ -340,3 +349,9 @@ nlu:
 - synonym: Juventus
   examples: |
     - Juve
+- synonym: candle
+  examples: |
+    - kindle
+- synonym: line
+  examples: |
+    - liner

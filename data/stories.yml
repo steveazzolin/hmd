@@ -1085,3 +1085,43 @@ stories:
   - action: utter_how_to_start
   - intent: deny
   - action: utter_what_todo_next
+
+- story: Help + start investing
+  steps:
+  - intent: help
+  - action: utter_help1
+  - intent: starting_investing
+  - action: utter_how_to_start
+
+
+- story: Help + start investing
+  steps:
+  - intent: help
+  - action: utter_help1
+  - intent: starting_investing
+  - action: utter_how_to_start
+  - intent: affirm
+  - action: suggest_category_form
+  - active_loop: suggest_category_form
+  - slot_was_set:
+    - requested_slot: suggest_category
+  - slot_was_set:
+    - suggest_category: sport
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null  
+  - action: suggest_investment_type_form
+  - active_loop: suggest_investment_type_form
+  - slot_was_set:
+    - requested_slot: suggest_investment_type
+  - slot_was_set:
+    - suggest_investment_type: shorting
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null  
+  - action: make_suggestion
+  - action: utter_ask_want_description
+  - intent: affirm
+  - action: get_company_info
+  - action: save_asked_company
+  - action: utter_what_todo_next
