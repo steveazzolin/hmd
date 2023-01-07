@@ -1,1 +1,924 @@
-# None of the test stories failed - all good!
+version: "2.0"
+stories:
+- story: Company news + ask for sending links (yes) +  ask for stock updates + affirm + send plot (data/stories.yml)
+  steps:
+  - intent: company_news
+  - action: company_form
+  - active_loop: company_form
+  - slot_was_set:
+    - company: meta
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_searching_company_news  # predicted: action_default_fallback
+  - action: search_company_news  # predicted: action_default_fallback
+  - action: utter_ask_want_news_link  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+  - intent: affirm
+  - action: send_news_link  # predicted: action_default_fallback
+  - action: ask_want_stock  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+  - intent: affirm
+  - action: get_stock_value  # predicted: action_default_fallback
+  - action: utter_stock_value  # predicted: action_default_fallback
+  - action: save_asked_company  # predicted: action_default_fallback
+  - action: utter_want_stock_plot  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+  - intent: affirm
+  - action: plot_type_form  # predicted: action_default_fallback
+  - active_loop: plot_type_form
+  - slot_was_set:
+    - plot_type: line
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: send_stock_value_plot  # predicted: action_default_fallback
+  - action: clear_company  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+- story: Company news + ask for sending links (no) + ask for stock updates + affirm + send plot (data/stories.yml)
+  steps:
+  - intent: company_news
+  - action: company_form
+  - active_loop: company_form
+  - slot_was_set:
+    - company: meta
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_searching_company_news  # predicted: action_default_fallback
+  - action: search_company_news  # predicted: action_default_fallback
+  - action: utter_ask_want_news_link  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+  - intent: deny
+  - action: utter_ok  # predicted: action_default_fallback
+  - action: ask_want_stock  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+  - intent: affirm
+  - action: get_stock_value  # predicted: action_default_fallback
+  - action: utter_stock_value  # predicted: action_default_fallback
+  - action: save_asked_company  # predicted: action_default_fallback
+  - action: utter_want_stock_plot  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+  - intent: affirm
+  - action: plot_type_form  # predicted: action_default_fallback
+  - active_loop: plot_type_form
+  - slot_was_set:
+    - plot_type: line
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: send_stock_value_plot  # predicted: action_default_fallback
+  - action: clear_company  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+- story: Company news + ask for sending links (no) + ask for stock updates + affirm + no plot (data/stories.yml)
+  steps:
+  - intent: company_news
+  - action: company_form
+  - active_loop: company_form
+  - slot_was_set:
+    - company: meta
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_searching_company_news  # predicted: action_default_fallback
+  - action: search_company_news  # predicted: action_default_fallback
+  - action: utter_ask_want_news_link  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+  - intent: deny
+  - action: utter_ok  # predicted: action_default_fallback
+  - action: ask_want_stock  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+  - intent: affirm
+  - action: get_stock_value  # predicted: action_default_fallback
+  - action: utter_stock_value  # predicted: action_default_fallback
+  - action: save_asked_company  # predicted: action_default_fallback
+  - action: utter_want_stock_plot  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+  - intent: deny
+  - action: utter_stopped  # predicted: action_default_fallback
+  - action: clear_company  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+- story: Company news + ask for sending links (yes) + ask for stock updates + affirm + no plot (data/stories.yml)
+  steps:
+  - intent: company_news
+  - action: company_form
+  - active_loop: company_form
+  - slot_was_set:
+    - company: meta
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_searching_company_news  # predicted: action_default_fallback
+  - action: search_company_news  # predicted: action_default_fallback
+  - action: utter_ask_want_news_link  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+  - intent: affirm
+  - action: send_news_link  # predicted: action_default_fallback
+  - action: ask_want_stock  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+  - intent: affirm
+  - action: get_stock_value  # predicted: action_default_fallback
+  - action: utter_stock_value  # predicted: action_default_fallback
+  - action: save_asked_company  # predicted: action_default_fallback
+  - action: utter_want_stock_plot  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+  - intent: deny
+  - action: utter_stopped  # predicted: action_default_fallback
+  - action: clear_company  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+- story: Company news + ask for sending links (no) + ask for stock updates (no) + deny (data/stories.yml)
+  steps:
+  - intent: company_news
+  - action: company_form
+  - active_loop: company_form
+  - slot_was_set:
+    - company: meta
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_searching_company_news  # predicted: action_default_fallback
+  - action: search_company_news  # predicted: action_default_fallback
+  - action: utter_ask_want_news_link  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+  - intent: deny
+  - action: utter_ok  # predicted: action_default_fallback
+  - action: ask_want_stock  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+  - intent: deny
+  - action: utter_happy  # predicted: action_default_fallback
+  - action: clear_company  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+- story: Company news + ask for sending links (yes) + ask for stock updates (yes) + deny (data/stories.yml)
+  steps:
+  - intent: company_news
+  - action: company_form
+  - active_loop: company_form
+  - slot_was_set:
+    - company: meta
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_searching_company_news  # predicted: action_default_fallback
+  - action: search_company_news  # predicted: action_default_fallback
+  - action: utter_ask_want_news_link  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+  - intent: affirm
+  - action: send_news_link  # predicted: action_default_fallback
+  - action: ask_want_stock  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+  - intent: deny
+  - action: utter_happy  # predicted: action_default_fallback
+  - action: clear_company  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+- story: Stock updates + affirm telegram plot (data/stories.yml)
+  steps:
+  - intent: stock_value
+  - action: company_form
+  - active_loop: company_form
+  - slot_was_set:
+    - company: meta
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: get_stock_value  # predicted: action_default_fallback
+  - action: utter_stock_value  # predicted: action_default_fallback
+  - action: save_asked_company  # predicted: action_default_fallback
+  - action: utter_want_stock_plot  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+  - intent: affirm
+  - action: plot_type_form  # predicted: action_default_fallback
+  - active_loop: plot_type_form
+  - slot_was_set:
+    - plot_type: line
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: send_stock_value_plot  # predicted: action_default_fallback
+  - action: clear_company  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+- story: Stock updates + deny telegram plot (data/stories.yml)
+  steps:
+  - intent: stock_value
+  - action: company_form
+  - active_loop: company_form
+  - slot_was_set:
+    - company: meta
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: get_stock_value  # predicted: action_default_fallback
+  - action: utter_stock_value  # predicted: action_default_fallback
+  - action: save_asked_company  # predicted: action_default_fallback
+  - action: utter_want_stock_plot  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+  - intent: deny
+  - action: utter_stopped  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+- story: Company info + affirm stock + send plot (data/stories.yml)
+  steps:
+  - intent: company_info
+  - action: company_form
+  - active_loop: company_form
+  - slot_was_set:
+    - company: meta
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: get_company_info  # predicted: action_default_fallback
+  - action: ask_want_stock  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+  - intent: affirm
+  - action: get_stock_value  # predicted: action_default_fallback
+  - action: utter_stock_value  # predicted: action_default_fallback
+  - action: save_asked_company  # predicted: action_default_fallback
+  - action: utter_want_stock_plot  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+  - intent: affirm
+  - action: plot_type_form  # predicted: action_default_fallback
+  - active_loop: plot_type_form
+  - slot_was_set:
+    - plot_type: line
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: send_stock_value_plot  # predicted: action_default_fallback
+  - action: clear_company  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+- story: Company info + affirm stock + no plot (data/stories.yml)
+  steps:
+  - intent: company_info
+  - action: company_form
+  - active_loop: company_form
+  - slot_was_set:
+    - company: meta
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: get_company_info  # predicted: action_default_fallback
+  - action: ask_want_stock  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+  - intent: affirm
+  - action: get_stock_value  # predicted: action_default_fallback
+  - action: utter_stock_value  # predicted: action_default_fallback
+  - action: save_asked_company  # predicted: action_default_fallback
+  - action: utter_want_stock_plot  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+  - intent: deny
+  - action: utter_stopped  # predicted: action_default_fallback
+  - action: clear_company  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+- story: Company info + deny stock (data/stories.yml)
+  steps:
+  - intent: company_info
+  - action: company_form
+  - active_loop: company_form
+  - slot_was_set:
+    - company: meta
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: get_company_info  # predicted: action_default_fallback
+  - action: ask_want_stock  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+  - intent: deny
+  - action: utter_happy  # predicted: action_default_fallback
+  - action: clear_company  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+- story: Company info + interruption affirm (data/stories.yml)
+  steps:
+  - intent: company_info
+  - action: company_form
+  - active_loop: company_form
+  - slot_was_set:
+    - company: meta
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - slot_was_set:
+    - company: null
+  - action: utter_confirm_stop  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+  - intent: affirm
+  - action: action_deactivate_loop  # predicted: action_default_fallback
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_stopped  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+- story: Company info + interruption not_affirm (data/stories.yml)
+  steps:
+  - intent: company_info
+  - action: company_form
+  - active_loop: company_form
+  - slot_was_set:
+    - company: meta
+  - slot_was_set:
+    - requested_slot: null
+  - slot_was_set:
+    - company: null
+  - action: utter_confirm_stop  # predicted: action_listen
+  - action: action_listen  # predicted: action_default_fallback
+  - intent: deny
+  - action: company_form  # predicted: action_default_fallback
+  - active_loop: company_form
+- story: Change plot type (data/stories.yml)
+  steps:
+  - intent: change_plot_type
+  - action: plot_type_form
+  - active_loop: plot_type_form
+  - slot_was_set:
+    - plot_type: line
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_plot_type_changed  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+- story: Predict stock trend (data/stories.yml)
+  steps:
+  - intent: predict_stock_trend
+  - action: company_form  # predicted: action_default_fallback
+  - active_loop: company_form
+  - slot_was_set:
+    - company: meta
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: predict_stock_trend  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+- story: Get worst index (data/stories.yml)
+  steps:
+  - intent: worst_index
+  - action: get_worst_index  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+- story: Get best index (data/stories.yml)
+  steps:
+  - intent: best_index
+  - action: get_best_index  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+- story: Giving feedback (data/stories.yml)
+  steps:
+  - intent: feedback
+  - action: feedback_form
+  - active_loop: feedback_form
+  - slot_was_set:
+    - feedback: any
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: save_feedback  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+- story: interactive_story_1 (data/stories.yml)
+  steps:
+  - intent: company_news
+    entities:
+    - company: meta
+  - slot_was_set:
+    - company: meta
+  - slot_was_set:
+    - company: meta
+  - action: company_form
+  - active_loop: company_form
+  - slot_was_set:
+    - company: meta
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_searching_company_news  # predicted: action_default_fallback
+  - action: search_company_news  # predicted: action_default_fallback
+  - action: utter_ask_want_news_link  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+  - intent: deny
+  - action: utter_ok  # predicted: action_default_fallback
+  - action: ask_want_stock  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+  - intent: affirm
+  - action: get_stock_value  # predicted: action_default_fallback
+  - slot_was_set:
+    - company_symbol: META
+  - slot_was_set:
+    - company_stock_value: 170.57
+  - slot_was_set:
+    - currency: USD
+  - action: utter_stock_value  # predicted: action_default_fallback
+  - action: save_asked_company  # predicted: action_default_fallback
+  - action: utter_want_stock_plot  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+  - intent: affirm
+  - action: plot_type_form  # predicted: action_default_fallback
+  - active_loop: plot_type_form
+  - slot_was_set:
+    - requested_slot: plot_type
+  - slot_was_set:
+    - plot_type: line
+  - slot_was_set:
+    - plot_type: line
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: send_stock_value_plot  # predicted: action_default_fallback
+  - action: clear_company  # predicted: action_default_fallback
+  - slot_was_set:
+    - company: null
+  - action: action_listen  # predicted: action_default_fallback
+- story: interactive_story_2 (data/stories.yml)
+  steps:
+  - intent: company_info
+    entities:
+    - company: google
+  - slot_was_set:
+    - company: google
+  - slot_was_set:
+    - company: google
+  - action: company_form
+  - active_loop: company_form
+  - slot_was_set:
+    - company: google
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: get_company_info  # predicted: action_default_fallback
+  - action: ask_want_stock  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+  - intent: affirm
+  - action: get_stock_value  # predicted: action_default_fallback
+  - slot_was_set:
+    - company_symbol: GOOG
+  - slot_was_set:
+    - company_stock_value: 118.87
+  - slot_was_set:
+    - currency: USD
+  - action: utter_stock_value  # predicted: action_default_fallback
+  - action: save_asked_company  # predicted: action_default_fallback
+  - action: utter_want_stock_plot  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+  - intent: deny
+  - action: utter_stopped  # predicted: action_default_fallback
+  - action: clear_company  # predicted: action_default_fallback
+  - slot_was_set:
+    - company: null
+  - action: action_listen  # predicted: action_default_fallback
+- story: interactive_story_1 (data/stories.yml)
+  steps:
+  - intent: stock_value
+  - action: company_form
+  - active_loop: company_form
+  - slot_was_set:
+    - requested_slot: company
+  - slot_was_set:
+    - company: apple
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: get_stock_value  # predicted: action_default_fallback
+  - slot_was_set:
+    - company_symbol: AAPL
+  - slot_was_set:
+    - company_stock_value: 132.37
+  - slot_was_set:
+    - currency: USD
+  - action: utter_stock_value  # predicted: action_default_fallback
+  - action: save_asked_company  # predicted: action_default_fallback
+  - slot_was_set:
+    - companies_stock_asked:
+      - apple
+  - action: utter_want_stock_plot  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+  - intent: affirm
+  - action: plot_type_form  # predicted: action_default_fallback
+  - active_loop: plot_type_form
+  - slot_was_set:
+    - requested_slot: plot_type
+  - slot_was_set:
+    - plot_type: candle
+  - slot_was_set:
+    - plot_type: candle
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: send_stock_value_plot  # predicted: action_default_fallback
+  - action: clear_company  # predicted: action_default_fallback
+  - slot_was_set:
+    - company: null
+  - action: action_listen  # predicted: action_default_fallback
+- story: Main task - want description of the company (data/stories.yml)
+  steps:
+  - intent: suggest
+  - action: suggest_category_form
+  - active_loop: suggest_category_form
+  - slot_was_set:
+    - requested_slot: suggest_category
+  - slot_was_set:
+    - suggest_category: sport
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: suggest_investment_type_form  # predicted: action_default_fallback
+  - active_loop: suggest_investment_type_form
+  - slot_was_set:
+    - requested_slot: suggest_investment_type
+  - slot_was_set:
+    - suggest_investment_type: shorting
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: make_suggestion  # predicted: action_default_fallback
+  - action: utter_ask_want_description  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+  - intent: affirm
+  - action: get_company_info  # predicted: action_default_fallback
+  - action: save_asked_company  # predicted: action_default_fallback
+  - action: utter_what_todo_next  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+- story: Main task - don't want the description of the company (data/stories.yml)
+  steps:
+  - intent: suggest
+  - action: suggest_category_form
+  - active_loop: suggest_category_form
+  - slot_was_set:
+    - requested_slot: suggest_category
+  - slot_was_set:
+    - suggest_category: sport
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: suggest_investment_type_form  # predicted: action_default_fallback
+  - active_loop: suggest_investment_type_form
+  - slot_was_set:
+    - requested_slot: suggest_investment_type
+  - slot_was_set:
+    - suggest_investment_type: shorting
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: make_suggestion  # predicted: action_default_fallback
+  - action: utter_ask_want_description  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+  - intent: deny
+  - action: utter_stopped  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+- story: interactive_story_1 (data/stories.yml)
+  steps:
+  - intent: suggest
+  - action: suggest_category_form
+  - active_loop: suggest_category_form
+  - slot_was_set:
+    - requested_slot: suggest_category
+  - slot_was_set:
+    - suggest_category: sport
+  - slot_was_set:
+    - suggest_category: sport
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: suggest_investment_type_form  # predicted: action_default_fallback
+  - active_loop: suggest_investment_type_form
+  - slot_was_set:
+    - requested_slot: suggest_investment_type
+  - slot_was_set:
+    - suggest_investment_type: shorting
+  - slot_was_set:
+    - suggest_investment_type: shorting
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: make_suggestion  # predicted: action_default_fallback
+  - slot_was_set:
+    - suggest_category: null
+  - slot_was_set:
+    - suggest_investment_type: null
+  - action: utter_ask_want_description  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+  - intent: affirm
+  - action: get_company_info  # predicted: action_default_fallback
+  - action: save_asked_company  # predicted: action_default_fallback
+  - action: utter_what_todo_next  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+- story: interactive_story_2 (data/stories.yml)
+  steps:
+  - intent: suggest
+  - action: suggest_category_form
+  - active_loop: suggest_category_form
+  - slot_was_set:
+    - requested_slot: suggest_category
+  - intent: clarify_investment_type
+    entities:
+    - tmp_suggest_investment_type: shorting
+  - slot_was_set:
+    - tmp_suggest_investment_type: shorting
+  - slot_was_set:
+    - tmp_suggest_investment_type: shorting
+  - action: clarify_investment_type
+  - slot_was_set:
+    - tmp_suggest_investment_type: null
+  - action: suggest_category_form
+  - slot_was_set:
+    - requested_slot: suggest_category
+  - slot_was_set:
+    - suggest_category: sport
+  - slot_was_set:
+    - suggest_category: sport
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: suggest_investment_type_form  # predicted: action_default_fallback
+  - active_loop: suggest_investment_type_form
+  - slot_was_set:
+    - requested_slot: suggest_investment_type
+  - slot_was_set:
+    - suggest_investment_type: know
+  - slot_was_set:
+    - suggest_investment_type: null
+  - slot_was_set:
+    - requested_slot: suggest_investment_type
+  - intent: clarify_investment_type
+    entities:
+    - tmp_suggest_investment_type: shorting
+  - slot_was_set:
+    - tmp_suggest_investment_type: shorting
+  - slot_was_set:
+    - tmp_suggest_investment_type: shorting
+  - action: clarify_investment_type
+  - slot_was_set:
+    - tmp_suggest_investment_type: null
+  - action: suggest_investment_type_form
+  - slot_was_set:
+    - requested_slot: suggest_investment_type
+  - slot_was_set:
+    - suggest_investment_type: shorting
+  - slot_was_set:
+    - suggest_investment_type: shorting
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: make_suggestion  # predicted: action_default_fallback
+  - slot_was_set:
+    - suggest_category: null
+  - slot_was_set:
+    - suggest_investment_type: null
+  - slot_was_set:
+    - company: Roma
+  - action: utter_ask_want_description  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+  - intent: affirm
+  - action: get_company_info  # predicted: action_default_fallback
+  - action: save_asked_company  # predicted: action_default_fallback
+  - slot_was_set:
+    - companies_stock_asked:
+      - Roma
+  - action: utter_what_todo_next  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+- story: Unlikely intent (data/stories.yml)
+  steps:
+  - intent: suggest_category
+    entities:
+    - suggest_category: sport
+  - slot_was_set:
+    - suggest_category: sport
+  - slot_was_set:
+    - suggest_category: sport
+  - action: utter_out_of_scope  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+- story: interactive_story_1 (data/stories.yml)
+  steps:
+  - intent: help
+  - action: utter_help1
+  - intent: suggest
+  - action: suggest_category_form
+  - active_loop: suggest_category_form
+  - slot_was_set:
+    - requested_slot: suggest_category
+  - slot_was_set:
+    - suggest_category: software
+  - slot_was_set:
+    - suggest_category: software
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: suggest_investment_type_form  # predicted: action_default_fallback
+  - active_loop: suggest_investment_type_form
+  - slot_was_set:
+    - requested_slot: suggest_investment_type
+  - slot_was_set:
+    - suggest_investment_type: not sure
+  - slot_was_set:
+    - suggest_investment_type: null
+  - slot_was_set:
+    - requested_slot: suggest_investment_type
+  - intent: clarify_investment_type
+    entities:
+    - tmp_suggest_investment_type: long range
+  - slot_was_set:
+    - tmp_suggest_investment_type: long range
+  - slot_was_set:
+    - tmp_suggest_investment_type: long range
+  - action: clarify_investment_type
+  - slot_was_set:
+    - tmp_suggest_investment_type: null
+  - action: suggest_investment_type_form
+  - slot_was_set:
+    - requested_slot: suggest_investment_type
+  - slot_was_set:
+    - suggest_investment_type: long range
+  - slot_was_set:
+    - suggest_investment_type: long range
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: make_suggestion  # predicted: action_default_fallback
+  - slot_was_set:
+    - suggest_category: null
+  - slot_was_set:
+    - suggest_investment_type: null
+  - slot_was_set:
+    - company: Meta
+  - action: utter_ask_want_description  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+  - intent: affirm
+  - action: get_company_info  # predicted: action_default_fallback
+  - action: save_asked_company  # predicted: action_default_fallback
+  - slot_was_set:
+    - companies_stock_asked:
+      - Meta
+  - action: utter_what_todo_next  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+  - intent: stock_value
+  - action: company_form
+  - active_loop: company_form
+  - slot_was_set:
+    - company: Meta
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: get_stock_value  # predicted: action_default_fallback
+  - slot_was_set:
+    - company_symbol: META
+  - slot_was_set:
+    - company_stock_value: 120.34
+  - slot_was_set:
+    - currency: USD
+  - action: utter_stock_value  # predicted: action_default_fallback
+  - action: save_asked_company  # predicted: action_default_fallback
+  - slot_was_set:
+    - companies_stock_asked:
+      - Meta
+      - Meta
+  - action: utter_want_stock_plot  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+  - intent: deny
+  - action: utter_stopped  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+  - intent: company_news
+  - action: company_form
+  - active_loop: company_form
+  - slot_was_set:
+    - company: Meta
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_searching_company_news  # predicted: action_default_fallback
+  - action: search_company_news  # predicted: action_default_fallback
+  - action: utter_ask_want_news_link  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+  - intent: deny
+  - action: utter_ok  # predicted: action_default_fallback
+  - action: ask_want_stock  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+  - intent: deny
+  - action: utter_happy  # predicted: action_default_fallback
+  - action: clear_company  # predicted: action_default_fallback
+  - slot_was_set:
+    - company: null
+  - action: action_listen  # predicted: action_default_fallback
+- story: interactive_story_1 (data/stories.yml)
+  steps:
+  - intent: stock_value
+    entities:
+    - company: Google
+  - slot_was_set:
+    - company: Google
+  - slot_was_set:
+    - company: Google
+  - action: company_form
+  - active_loop: company_form
+  - slot_was_set:
+    - company: Google
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: get_stock_value  # predicted: action_default_fallback
+  - slot_was_set:
+    - company_symbol: GOOG
+  - slot_was_set:
+    - company_stock_value: 88.73
+  - slot_was_set:
+    - currency: USD
+  - action: utter_stock_value  # predicted: action_default_fallback
+  - action: save_asked_company  # predicted: action_default_fallback
+  - slot_was_set:
+    - companies_stock_asked:
+      - Google
+  - action: utter_want_stock_plot  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+  - intent: affirm
+  - action: plot_type_form  # predicted: action_default_fallback
+  - active_loop: plot_type_form
+  - slot_was_set:
+    - requested_slot: plot_type
+  - slot_was_set:
+    - plot_type: candle
+  - slot_was_set:
+    - plot_type: candle
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: send_stock_value_plot  # predicted: action_default_fallback
+  - action: clear_company  # predicted: action_default_fallback
+  - slot_was_set:
+    - company: null
+  - action: action_listen  # predicted: action_default_fallback
+- story: How to start investing? (data/stories.yml)
+  steps:
+  - intent: starting_investing
+  - action: utter_how_to_start  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+- story: How to start investing + Suggestion as affirm intent (data/stories.yml)
+  steps:
+  - intent: starting_investing
+  - action: utter_how_to_start  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+  - intent: affirm
+  - action: suggest_category_form  # predicted: action_default_fallback
+  - active_loop: suggest_category_form
+  - slot_was_set:
+    - requested_slot: suggest_category
+  - slot_was_set:
+    - suggest_category: sport
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: suggest_investment_type_form  # predicted: action_default_fallback
+  - active_loop: suggest_investment_type_form
+  - slot_was_set:
+    - requested_slot: suggest_investment_type
+  - slot_was_set:
+    - suggest_investment_type: shorting
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: make_suggestion  # predicted: action_default_fallback
+  - action: utter_ask_want_description  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+  - intent: affirm
+  - action: get_company_info  # predicted: action_default_fallback
+  - action: save_asked_company  # predicted: action_default_fallback
+  - action: utter_what_todo_next  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+- story: How to start investing + Say no (data/stories.yml)
+  steps:
+  - intent: starting_investing
+  - action: utter_how_to_start  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+  - intent: deny
+  - action: utter_what_todo_next  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+- story: Help + start investing (data/stories.yml)
+  steps:
+  - intent: help
+  - action: utter_help1
+  - intent: starting_investing
+  - action: utter_how_to_start  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+- story: Help + start investing (data/stories.yml)
+  steps:
+  - intent: help
+  - action: utter_help1
+  - intent: starting_investing
+  - action: utter_how_to_start  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+  - intent: affirm
+  - action: suggest_category_form  # predicted: action_default_fallback
+  - active_loop: suggest_category_form
+  - slot_was_set:
+    - requested_slot: suggest_category
+  - slot_was_set:
+    - suggest_category: sport
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: suggest_investment_type_form  # predicted: action_default_fallback
+  - active_loop: suggest_investment_type_form
+  - slot_was_set:
+    - requested_slot: suggest_investment_type
+  - slot_was_set:
+    - suggest_investment_type: shorting
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: make_suggestion  # predicted: action_default_fallback
+  - action: utter_ask_want_description  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+  - intent: affirm
+  - action: get_company_info  # predicted: action_default_fallback
+  - action: save_asked_company  # predicted: action_default_fallback
+  - action: utter_what_todo_next  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
